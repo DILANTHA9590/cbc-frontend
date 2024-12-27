@@ -1,4 +1,4 @@
-import "./homepage.css"
+
 import { Link } from "react-router-dom"//limk use karaddi e kiyanne button nav valayrta vge link use karaddi meka 
 //import karaganna oni
 

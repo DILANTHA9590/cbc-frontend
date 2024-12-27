@@ -5,7 +5,7 @@ export default function ProductCard(props) {
 
     return (
 
-
+// me thamai ape commponent eka
         <div>
             <img src={props.image} />
             <h1> {props.name}</h1>

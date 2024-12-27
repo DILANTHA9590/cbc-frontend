@@ -8,6 +8,10 @@ import TestOne from './components/testone'
 import Loginpage from './pages/loginpage'
 import Homepage from './pages/homepage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import SignupPage from './pages/signup'
+import Signup from './pages/signup'
+import AdminPage from './pages/adminpage'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -38,17 +42,30 @@ function App() {
         <Routes path="/*">
           {/* me router vala route athu athule thama api path eka saha pennvana commponnetnt eka denne()page eka
        */}
-          <Route path="/" element={<Homepage />} />
+          <Route path="/*" element={<Homepage />} />
+          {/* uda home page eka hadala thiyenne monava gahan avath home page ekata yana vidihata ekai /* dana eken 
+          
+          venne  habai <Route path="/admin/jhnkgbkj" element={<AdminPage />} /> mehema gahuvoth enne eth admioin ekata 
+           apata admin kiyana vachane gahala vena onima deyak gahuvath apata admin panel ekata yanaa vidihata hadanne me pahala thiyena vidihata */}
+
+           
+          <Route path="/admin/*" element={<AdminPage />} />
+
 
           <Route path="/login" element={<Loginpage />} />
+          <Route path="/signup" element={< Signup/>} />
 
-          <Route path="/*" element={<h1>404 error</h1>} />
+          <Route path="/admin" element={<AdminPage />} />
+  
+
+          {/* <Route path="/*" element={<h1>404 error</h1>} /> */}
           {/* me 404 eke api kiyala thiyenne  uda ena onima page element ekkata yana path ekakata ave naththam 404 pennnva 
-          /* mark eken kiyanne ekai*/}
-        </Routes>
-
+          /* mark eken kiyanne ekai*  api mona vidihata gahuvath metahana dan home page ekata enna dagannava mekata enne athivenna/}
+  
 
         {/* <Homepage /> kalin dunne me vidihata  routes valata noda */}
+
+         </Routes>
 
       </BrowserRouter>
     </>

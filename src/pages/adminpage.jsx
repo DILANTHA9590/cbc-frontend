@@ -2,6 +2,7 @@
 import { Link} from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { BsGraphUp, BsBox, BsCardChecklist, BsPeople } from "react-icons/bs";
+import AdminProductsPage from './admin/adminproductspage';
 
 export default function AdminPage() {
     return (
@@ -44,7 +45,8 @@ ethakota /dashbord kiyaala avoth eyata dashbord component eka loard karala penna
 
                     <Routes path="/*">
                     <Route path='/dashboard' element={<h1>Dashbord</h1>}/>
-                    <Route path='/products' element={<h1>products</h1>}/>
+                    
+                    <Route path='/products' element={<AdminProductsPage/>}/>
                     <Route path='/orders' element={<h1>orders</h1>}/>
                     <Route path='/customers' element={<h1>customers</h1>}/>
                     <Route path='/*' element={<h1>404 Not Found Page</h1>}/>

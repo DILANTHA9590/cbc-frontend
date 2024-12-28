@@ -55,7 +55,7 @@ function App() {
           <Route path="/login" element={<Loginpage />} />
           <Route path="/signup" element={< Signup/>} />
 
-          <Route path="/admin" element={<AdminPage />} />
+         
   
 
           {/* <Route path="/*" element={<h1>404 error</h1>} /> */}

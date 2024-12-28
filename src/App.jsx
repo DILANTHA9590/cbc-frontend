@@ -1,10 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-
-import ProductCard from './components/productCard'
-import UserData from './components/userData'
-import TestOne from './components/testone'
 import Loginpage from './pages/loginpage'
 import Homepage from './pages/homepage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'

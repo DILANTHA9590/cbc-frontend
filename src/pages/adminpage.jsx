@@ -44,12 +44,12 @@ ethakota /dashbord kiyaala avoth eyata dashbord component eka loard karala penna
 
 
                     <Routes path="/*">
-                    <Route path='/dashboard' element={<h1>Dashbord</h1>}/>
+                    <Route path="/dashboard" element={<h1>Dashbord</h1>}/>
                     
-                    <Route path='/products' element={<AdminProductsPage/>}/>
-                    <Route path='/orders' element={<h1>orders</h1>}/>
-                    <Route path='/customers' element={<h1>customers</h1>}/>
-                    <Route path='/*' element={<h1>404 Not Found Page</h1>}/>
+                    <Route path="/products" element={<AdminProductsPage/>}/>
+                    <Route path="/orders" element={<h1>orders</h1>}/>
+                    <Route path="/customers" element={<h1>customers</h1>}/>
+                    <Route path="/*" element={<h1>404 Not Found Page</h1>}/>
                     </Routes>
 
 

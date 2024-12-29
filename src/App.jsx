@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import SignupPage from './pages/signup'
 import Signup from './pages/signup'
 import AdminPage from './pages/adminpage'
+import { Toaster } from 'react-hot-toast'
 
 
 function App() {
@@ -23,6 +24,15 @@ function App() {
     */}
 
       <BrowserRouter>
+
+      {/* api metha  toast eka damme api ligibnn ekata toast alert ekk denna yanna ita kalin
+      api e tag eka methana use karaganna oni*/}
+      <Toaster
+
+// position="top-left"
+// reverseOrder={false}
+      
+      />
 
 
         {/* <ProductCard name="Mechanical keybord" price="LKR 100000" image="https://www.bing.com/ck/a?!&&p=9eef03445c1eddc40b45a2a5fb51e6aaa92361cc6f881f5ff55358b894fb181fJmltdHM9MTczNDgyNTYwMA&ptn=3&ver=2&hsh=4&fclid=3a0d9fda-7305-69d7-377b-8c737204686d&u=a1L2ltYWdlcy9zZWFyY2g_cT1tZWNoYW5pY2FsK2tleWJvYXJkJmlkPURBOUE4RkY4QTY0QkI3OTY2Nzk2MTgwODU1MjcyMzIyODg5MURDMkEmRk9STT1JUUZSQkE&ntb=1" />

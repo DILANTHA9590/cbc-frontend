@@ -28,12 +28,16 @@ export default function Loginpage() {
              Setvalue(res.data.message)
 
             //  naththam apata alert ekk denanath puluvan
-            alert(res.data.message)//mehema alert dana eka dan kathai apata me vidihata dammoth deafult thiyena vidihata tha aelrt enne
+            // alert(res.data.message)//mehema alert dana eka dan kathai apata me vidihata dammoth deafult thiyena vidihata tha aelrt enne
             // apata lassnata aler dagann use karanna puluan library ekk thyenava react hot toast library eka ganna puluvan
             //eyalage site eken apata oni eva daganna puluvan 
+            //e alert eka danne me vidihata
+            toast.error(res.data.message)
 
                 return
             }
+
+            toast.success(res.data.message)
 
             //dan api methandi usertype eka balananna oni 
             // type eka admin nam admin page ekata yavanna oni type eka customer nam ciustomer mpage ekata yavanna oni

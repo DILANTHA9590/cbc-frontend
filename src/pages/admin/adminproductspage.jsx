@@ -1,34 +1,308 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { MdDelete } from "react-icons/md";
+import { MdModeEditOutline } from "react-icons/md";
+import { FaPlus } from "react-icons/fa";
+import { Link } from "react-router-dom";
+//api me library eka insatall akaragathha meken tahamai backend ekata call
+//karala dta genna ganna ekata apata meka oni meken venne bakend ekata api call gahanava
+//  methana api arrey ekk vidihata TbHammerma daganne mokada me state ena arrey eka athule ththva thava vebnas vena attribute thiiyenava
 
- import axios from "axios"
-  //api me library eka insatall akaragathha meken tahamai backend ekata call
- //karala dta genna ganna ekata apata meka oni meken venne bakend ekata api call gahanava
+// danata me table eka hadaganna oni nisa sample data ekk danava post man eken product lest ekaa aran methanata danava
 
+export default function AdminProductsPage() {
+  const [products, setproducts] = useState([
+    // {
+    //   _id: "675fb7bce4d940ec3e4c6be4",
+    //   productId: "M001",
+    //   productName: "Matte Lipstick",
+    //   altNames: ["Velvet Matte", "Creamy Matte", "Long-Lasting Matte"],
+    //   images: [
+    //     "https://example.com/images/matte-lipstick-front.jpg",
+    //     "https://example.com/images/matte-lipstick-side.jpg",
+    //     "https://example.com/images/matte-lipstick-back.jpg",
+    //   ],
+    //   price: 15.99,
+    //   lastPrice: 18.99,
+    //   stock: 120,
+    //   description:
+    //     "A long-lasting matte lipstick available in various shades for every occasion.",
+    //   __v: 0,
+    // },
+    // {
+    //   _id: "675fc5680928679553f9d0e9",
+    //   productId: "M0013",
+    //   productName: "night cream",
+    //   altNames: ["Velvet Matte", "Creamy Matte", "Long-Lasting Matte"],
+    //   images: [
+    //     "https://example.com/images/matte-lipstick-front.jpg",
+    //     "https://example.com/images/matte-lipstick-side.jpg",
+    //     "https://example.com/images/matte-lipstick-back.jpg",
+    //   ],
+    //   price: 15.99,
+    //   lastPrice: 18.99,
+    //   stock: 120,
+    //   description:
+    //     "A long-lasting matte lipstick available in various shades for every occasion.",
+    //   __v: 0,
+    // },
+  ]);
 
- 
- export default function AdminProductsPage(){
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/products")
+      .then((res) => {
+        //methana .then damme me deka vena venama thiyena
+        //meken venne ape ustetae hook eka update karana gaman eka park refresh karana va ethakota ara pahala kiyala thiyena loop
+        //eka navathinava eka vennne me use state hook eken
 
-    //dan api methana component eka loard vena velavadi api call ekk ganava 
+        //  console.log(res.data);
+        setproducts(res.data.list);
+        //  console.log(res.data.list);
+      })
+      .catch((err) => {
+        console.error("Error fetching products:", err);
+      });
 
-    axios.get("http://localhost:3000/api/products").then((res)=>{//methana .then damme me deka vena venama thiyena 
-        //project dekka nisa koi veve euda dnne nane ekai
-        console.log(res);
-        
-        //habai mehema damma eorr ekk enava metahan apata broweser eke erorr ekk enava
-        //cores policy kiyala error ekk apiata ehema venne ape bkackend eka hamathanima  ena api codes piliganne na
-        // eka  piliganna apita npm install cores install karaganna oni eka backend ekata thama install karanne
-    })
+    //methanav varahana ganath danaganna oni
+  }, []);
 
-    // methandi api dan ape bacxkend eken data gannav metahana axios eken get dala thiyenne api 
-    //dan backeend eke dhadala 
+  //api companiyaka vadata gihin me vage sample arerey ekk pavichi karanna  eka hodai mokda apata aththatama product list ekka  vath enne mevge arrey e
+  // ekak
 
-    return(
+  // console.log(products)
 
-        <>
+  //dan me admin product page eka athule thiyena venas vena de mkokkda apata state define karanna e ka thani ekk nemei
+  // eth ththve difine karana veriabele eka mokkda   veriable eka thamai productlist eka adala databes ekaen ena product list eka thama meke productlist eka
+  // thama meke meke state eka thiranaya karenne
 
-        <h1>Admin Productpage</h1>
+  //dan api methana component eka loard vena velavadi api call ekk ganava
 
+  //     axios.get("http://localhost:3000/api/products").then((res)=>{//methana .then damme me deka vena venama thiyena
+  //         //project dekka nisa koi veve euda dnne nane ekai
+  //         // console.log(res);
 
-        </>
+  //         //habai mehema damma eorr ekk enava metahan apata broweser eke erorr ekk enava
+  //         //cores policy kiyala error ekk apiata ehema venne ape bkackend eka hamathanima  ena api codes piliganne na
+  //         // eka  piliganna apita npm install cores install karaganna oni eka backend ekata thama install karanne
 
-    )
+  //         // methana hadane uda tikai yata tikai ivara vela dan api back end eken data genna ganana hdanne
+
+  //         console.log(res.data); //dan api bakcked eke eva methandi pennava
+  //         // dan api  aththa values tika pennana oniu mokda api uda danata exple values dala thiyenne
+  //         // ekata dan api usestate ekata denna oni habai mekath varadi mekath dan eka digata run venava
+  //         //ekata apata
+  //         //mehema dunnathvardi apaitta ethakota loop ekkav vge meka navathinne nathuva run venav mokda
+  //         //backed eken data gannava itapsse state eka update karala e datath ekka
+  //         //  component refresh karanava aii okoa digatama ena refresh venava e kiyanne uda idan apahu run venava
+  //         //ai api call venava state eka update venava meka vardi  mekedi venne eka
+
+  //         //api call->uita passe setproduct eka usesate update karanava -> itapasse ape div tag eke element deka print venava
+  // // aai api run venava e tiakama aai venava
+
+  //         // mekata visadumak vidihata apita react valin dila thiyenava api kamathi eka function ekk kkea parak run
+  //         // vena vidihata hadanna  component ekk loard vena velavata vitharak function eka run vena vidihata hadaganna
+  //         //ethakota e run vena palaveni para vitharai e run vela venna oni de venmne eka tas paita use effect kiyana hook eka oni venava
+
+  //         // dan api me kalla dahanna use effect eka athulata
+
+  //         setproducts(res.data)
+
+  //     })
+
+  // methandi api dan ape bacxkend eken data gannav metahana axios eken get dala thiyenne api
+  //dan backeend eke dhadala
+
+  return (
+    <div className="p-6 bg-gray-50 min-h-screen relative">
+      <Link
+        to={"/admin/products/addProducts"}
+        className="absolute right-4 bottom-5 border  rounded-[10px] text-[30px] bg-[#5b6de6]  text-white p-[25px] 
+       border border-black  hover:bg-blue-400 duration-1000 border-[2px] hover:rounded-[20px] transition-all duration-1000"
+      >
+        <FaPlus />
+      </Link>
+      <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+        Admin Product Page
+      </h1>
+
+      <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+        <thead>
+          <tr className="text-left text-sm font-medium text-gray-600 bg-gray-100">
+            <th className="py-3 px-6">Product ID</th>
+            <th className="py-3 px-6">Product Name</th>
+            <th className="py-3 px-6">Price</th>
+            <th className="py-3 px-6">Last Price</th>
+            <th className="py-3 px-6">Stock</th>
+            <th className="py-3 px-6">Description</th>
+            <th className="py-3 px-6">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((product, index) => (
+            <tr
+              key={product._id}
+              className="border-b border-gray-200 hover:bg-gray-50"
+            >
+              <td className="py-3 px-6">{product.productId}</td>
+              <td className="py-3 px-6">{product.productName}</td>
+              <td className="py-3 px-6">${product.price.toFixed(2)}</td>
+              <td className="py-3 px-6">${product.lastPrice.toFixed(2)}</td>
+              <td className="py-3 px-6">{product.stock}</td>
+              <td className="py-3 px-6">{product.description}</td>
+              <td className="py-3 px-6 flex space-x-3">
+                <button className="text-red-600 hover:text-red-800">
+                  <MdDelete className="w-5 h-5" />
+                </button>
+                <button className="text-blue-600 hover:text-blue-800">
+                  <MdModeEditOutline className="w-5 h-5" />
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
+
+// me uda ekata kalin thibbe tablke eka pahala eka
+
+//   return (
+//     <div>
+//       <h1>Admin Productpage</h1>
+
+//       <table>
+//         <thead>
+//           <tr>
+//             <th>Product ID</th>
+//             <th>Product Name</th>
+//             <th>Price</th>
+//             <th>Last Price</th>
+//             <th>Stock</th>
+//             <th>Action</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {
+//             // map function eka use karla api map products arrey eka athule thiyena'
+//             //okkoma okkoma product ekein eka print karaganna hadanne
+//             products.map(
+//               //api methan akarla thiyenne product .map function eka athulata
+//               //thava function ekk dila thiyenne eken venne
+//               // uda thiyena products list ekata adla meke athule thiyena eka eka item valata adalava menna me athule thiyena
+//               //function eka run venava e ran veddi me product tike visthra tika enava products veriable ekata ekin eka 8 thibboth
+//               //8ma enava ekin eka
+//               (product, index) => {
+//                 // console.log(product)//dan apata mehema vdak na meka apata  balannapuluvan browerser eke apata meka oni dan ape products
+//                 //page eke display vennea  ekata api return function ekk dagena eke athulen div eka return karanava
+
+//                 //dan pahala thyena div eka
+//                 //
+//                 // <div>
+//                 //     {product.productName}
+//                 // </div>
+//                 //   product eken product ekata regenarate venava
+//                 //ethakota react valin apata brower eke erorr ekk pennanava e pennane
+//                 //apata react valin kiyanava me vge regenarate vena div ekk danakota div
+//                 //eken div ekata unique key ekk denna onii eka denne pradana element eka athulata key
+//                 //denna oni
+
+//                 //DAN API METHANA pradana return karana component ekata key ekk denna oni me vge
+//                 // ethakota uda pass karagena thiyenava products veraible ekk eken thama apata product eken ekata
+//                 //pennava eke element eken ekata denava  dan api ethana index  kiyala deveni input ekk ethanata danava
+//                 //ethakota palaveni element ekata adala 0 index eke deveni elment ekata adalava 1 index eka
+//                 //ehema naththam apata methana denna puluvan product ekata adala id eka etha unick ne api eka denava
+
+//                 return (
+//                   <tr key={index}>
+//                     <td>{product.productId}</td>
+//                     <td>{product.productName}</td>
+//                     <td>{product.price}</td>
+//                     <td>{product.lastPrice}</td>
+//                     <td>{product.stock}</td>
+//                     <td>{product.description}</td>
+//                     <td>
+//                       <MdDelete />
+//                       <MdModeEditOutline />
+//                     </td>
+//                   </tr>
+//                 );
+//               }
+//             )
+//           }
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// }
+
+// 1. Initial Rendering
+// The AdminProductsPage component is initialized and rendered.
+// The useState hook sets the initial state of products with the predefined array (sample data).
+// 2. API Call Triggers
+// During the rendering process, the axios.get function executes to fetch data from the backend (http://localhost:3000/api/products).
+// The setProducts function is called with the new data fetched from the backend.
+// 3. State Update Triggers Re-Render
+// When setProducts(res.data) is called, it updates the products state.
+// React detects this state change and re-renders the AdminProductsPage component to reflect the new state.
+// 4. Re-Render Triggers Another API Call
+// On each re-render, the axios.get call is executed again because it is in the main body of the component.
+// This creates a feedback loop:
+// Render → API Call → State Update → Render → API Call → ...
+// This process continues indefinitely until you manually stop the program or a stack overflow occurs.
+// Why This Happens
+// React components re-render whenever state or props change. In this case:
+
+// The axios.get function is directly in the component body. This makes it execute on every render.
+// Each render updates the products state with setProducts, triggering another render and repeating the process.
+// How to Break the Loop
+// The loop can be controlled by ensuring the API call runs only once when the component mounts. This is usually done using the useEffect hook with an empty dependency array ([]), which ensures the code inside runs only once after the initial render.
+
+// Would you like me to elaborate further on how the React rendering lifecycle causes such issues or provide more examples of such cases?
+
+// {
+
+//     // map function eka use karla api map products arrey eka athule thiyena'
+//     //okkoma okkoma product ekein eka print karaganna hadanne
+//     products.map(
+
+//         //api methan akarla thiyenne product .map function eka athulata
+//         //thava function ekk dila thiyenne eken venne
+//         // uda thiyena products list ekata adla meke athule thiyena eka eka item valata adalava menna me athule thiyena
+//         //function eka run venava e ran veddi me product tike visthra tika enava products veriable ekata ekin eka 8 thibboth
+//         //8ma enava ekin eka
+//         (product, index)=>{
+//             // console.log(product)//dan apata mehema vdak na meka apata  balannapuluvan browerser eke apata meka oni dan ape products
+//             //page eke display vennea  ekata api return function ekk dagena eke athulen div eka return karanava
+//             return(
+
+//                 //dan pahala thyena div eka
+//                 //
+//                 // <div>
+//                 //     {product.productName}
+//                 // </div>
+//                 //   product eken product ekata regenarate venava
+//                 //ethakota react valin apata brower eke erorr ekk pennanava e pennane
+//                 //apata react valin kiyanava me vge regenarate vena div ekk danakota div
+//                 //eken div ekata unique key ekk denna onii eka denne pradana element eka athulata key
+//                 //denna oni
+
+// //DAN API METHANA pradana return karana component ekata key ekk denna oni me vge
+// // ethakota uda pass karagena thiyenava products veraible ekk eken thama apata product eken ekata
+// //pennava eke element eken ekata denava  dan api ethana index  kiyala deveni input ekk ethanata danava
+// //ethakota palaveni element ekata adala 0 index eke deveni elment ekata adalava 1 index eka
+// //ehema naththam apata methana denna puluvan product ekata adala id eka etha unick ne api eka denava
+//                 <div key={product._id}>
+//                     {/* {index}mehema dunnam apata ekath balanna puluvan */}
+
+//                     {product.productName}
+
+//                     {/* product eke product name eka print karagttha */}
+
+//                 </div>
+//             )
+
+//         }
+//     )
+// }

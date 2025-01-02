@@ -4,6 +4,7 @@ import { MdDelete } from "react-icons/md";
 import { MdModeEditOutline } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 //api me library eka insatall akaragathha meken tahamai backend ekata call
 //karala dta genna ganna ekata apata meka oni meken venne bakend ekata api call gahanava
 //  methana api arrey ekk vidihata TbHammerma daganne mokada me state ena arrey eka athule ththva thava vebnas vena attribute thiiyenava
@@ -48,24 +49,66 @@ export default function AdminProductsPage() {
     // },
   ]);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/products")
-      .then((res) => {
-        //methana .then damme me deka vena venama thiyena
-        //meken venne ape ustetae hook eka update karana gaman eka park refresh karana va ethakota ara pahala kiyala thiyena loop
-        //eka navathinava eka vennne me use state hook eken
+  // const [test, settest] = useState("Not Pressed");
 
-        //  console.log(res.data);
-        setproducts(res.data.list);
-        //  console.log(res.data.list);
-      })
-      .catch((err) => {
-        console.error("Error fetching products:", err);
-      });
+  //api ara uda thiyena predsswed delete karalpage eka refresh karapu vade thama methanin karaganna yanne
+  //meka api set karanava delete button ekata
+
+  const [productsLoaded, setProductsLoaded] = useState(false);
+  useEffect(() => {
+    // if(productsLoaded == false)
+
+    //palaveni para component ekk
+    if (!productsLoaded) {
+      //meka thama use effet eka run vena palaveni vathvav api balanava api balanava uda hdapu use effect eka loadrd velavda kiyala effect eke
+      // api methandi balana ava methandi palaveni para lorad venakota product loard vela nadda kiyala
+      //ethakota flase nisa methandi true venava ethandi ekaparak if part keka eka parak run venava //ekiyanne productl loard vela
+      // naththam thama me kotasa run venne ita psse axios call eken product tika gannnava
+
+      // iata passe api set product kityala product tika set karagannava ita passe product tika uda idan pahalata refreshvenava
+      //haby use effect eka aye run venne na
+
+      // api dan  methana setproduct loaded true karagaththa ethakota ayeth parak run venava e unata
+      //aye axios call ekk vath product sert venne avth na ekai methanata id dagaththe true dapuva ma if part kea run venne na
+      //hithnne if else vge methana balala thiyenne product==false true vena nisa if block ekata yanav'
+      //eka api pahaladi setproductloaded eka true karagaganava ethakota if block ek arun venne na mokda false ne api me proct loard vble eka denava dependancy
+      // arrey eka athulata  dan apita methana karaganna oni product eka delete karata passe ayeth meka run karanna ethkota api delete button eka
+      //  athulata set setproductloaded(false) dunnama button eka click karana karana sareta me ayeth get kiyana if part eke kotasath run venava
+
+      axios
+        .get("http://localhost:3000/api/products")
+        .then((res) => {
+          //methana .then damme me deka vena venama thiyena
+          //meken venne ape ustetae hook eka update karana gaman eka park refresh karana va ethakota ara pahala kiyala thiyena loop
+          //eka navathinava eka vennne me use state hook eken
+
+          // console.log("runnin g");
+
+          //  console.log(res.data);
+          setproducts(res.data.list);
+
+          //  console.log(res.data.list);
+
+          setProductsLoaded(true);
+        })
+        .catch((err) => {
+          console.error("Error fetching products:", err);
+        });
+    }
 
     //methanav varahana ganath danaganna oni
-  }, []);
+  }, [productsLoaded]);
+
+  //use effect eka run venne ekaparai eth apita samaharaveriable valata ekasan vedi karanna pululuvan
+  //danata use effect eka run venne palaveni para loard vena velave vitharai
+  //apita p[uluvan meke depandanvcy arrey ekata veriable ekk dila dan methana hadala thiyenne useeffect hook
+  // ekk hadala  thiyenne button  eka press karanakota value change venna e useefect veriable eka api dan gihin dunna
+  //ape depandancy arrey ekata ethakota ape buttoinb eka click  krana hama velavema ape use effect hook ekath run venava
+  //dan kalin t=rubn une eka parai dan loard vena velave saha button ekla press karama aii run vena vidihata hadanna puluvan
+  // me hook eka run venava e vagema test vriable eka agaya vensa unath me use effect hook eka run venava
+  //apata meka oni venava refresh karanana me vidihe p veriable ekk dala hadaganna puluvan ethakota meka ooban obana sareta meka
+
+  //backend eken run venava ethakota data tika referesh venava
 
   //api companiyaka vadata gihin me vage sample arerey ekk pavichi karanna  eka hodai mokda apata aththatama product list ekka  vath enne mevge arrey e
   // ekak
@@ -118,10 +161,25 @@ export default function AdminProductsPage() {
       <Link
         to={"/admin/products/addProducts"}
         className="absolute right-4 bottom-5 border  rounded-[10px] text-[30px] bg-[#5b6de6]  text-white p-[25px] 
-       border border-black  hover:bg-blue-400 duration-1000 border-[2px] hover:rounded-[20px] transition-all duration-1000"
+       border border-black  hover:bg-blue-400 duration-1000 border-[2px] hover:rounded-[20px] transition-all duration-1000 "
       >
         <FaPlus />
       </Link>
+
+      {/* <button
+        className="absolute right-100 bottom-5 border  rounded-[10px] text-[30px] bg-[#5b6de6]  text-white p-[25px] 
+       border border-black  hover:bg-blue-400 duration-1000 border-[2px] hover:rounded-[20px] transition-all duration-1000"
+        onClick={() => {
+          if (test == "Pressed") {
+            settest("Not Pressed");
+          } else {
+            settest("Pressed");
+          }
+        }}
+      >
+        {test}
+      </button> */}
+
       <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
         Admin Product Page
       </h1>
@@ -146,12 +204,40 @@ export default function AdminProductsPage() {
             >
               <td className="py-3 px-6">{product.productId}</td>
               <td className="py-3 px-6">{product.productName}</td>
-              <td className="py-3 px-6">${product.price.toFixed(2)}</td>
-              <td className="py-3 px-6">${product.lastPrice.toFixed(2)}</td>
+              <td className="py-3 px-6">${product.price}</td>
+              <td className="py-3 px-6">${product.lastPrice}</td>
               <td className="py-3 px-6">{product.stock}</td>
               <td className="py-3 px-6">{product.description}</td>
               <td className="py-3 px-6 flex space-x-3">
-                <button className="text-red-600 hover:text-red-800">
+                <button
+                  className="text-red-600 hover:text-red-800 "
+                  onClick={() => {
+                    alert(product.productId); // Display the product ID for confirmation
+                    const token = localStorage.getItem("token"); // Retrieve the token from localStorage
+
+                    axios
+                      .delete(
+                        `http://localhost:3000/api/products/${product.productId}`,
+                        {
+                          headers: {
+                            Authorization: `Bearer ${token}`, // Add the token to the Authorization header
+                          },
+                        }
+                      )
+                      .then((res) => {
+                        console.log(res.data); // Log the response from the server
+                        toast.success("product deletede successfully");
+
+                        //product eka delete karapu gamn api window eka relaord karnava
+                        // meka smoothly venne na e nisa api uda hadagatghtha setprodect loaded eken meka refresh karanava
+                        // eka run  ruhn karannapai true denna oni setproductloaded(true)
+                        setProductsLoaded(false);
+                      })
+                      .catch((err) => {
+                        console.error(err); // Log any errors
+                      });
+                  }}
+                >
                   <MdDelete className="w-5 h-5" />
                 </button>
                 <button className="text-blue-600 hover:text-blue-800">

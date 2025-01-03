@@ -6,6 +6,7 @@ import SignupPage from "./pages/signup";
 import Signup from "./pages/signup";
 import AdminPage from "./pages/adminhomepage";
 import { Toaster } from "react-hot-toast";
+import Fileuploadtest from "./pages/test";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -51,6 +52,7 @@ function App() {
 
           <Route path="/login" element={<Loginpage />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/test" element={<Fileuploadtest />} />
 
           {/* <Route path="/*" element={<h1>404 error</h1>} /> */}
           {/* me 404 eke api kiyala thiyenne  uda ena onima page element ekkata yana path ekakata ave naththam 404 pennnva 

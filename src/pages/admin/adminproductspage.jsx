@@ -75,6 +75,12 @@ export default function AdminProductsPage() {
       // arrey eka athulata  dan apita methana karaganna oni product eka delete karata passe ayeth meka run karanna ethkota api delete button eka
       //  athulata set setproductloaded(false) dunnama button eka click karana karana sareta me ayeth get kiyana if part eke kotasath run venava
 
+      //set product tika set karagaththama ap9idenava setproduct true
+
+      // api balanava setprodudctloaded eka load velada kiayala loadrd vela naththam get ekjen adal;a deval araganna aragena eva set katrata passe api
+      //set product true kiyala true eken kiyanne product eka loard una kiyala true vechcha gaman navathgianava dan api me product veraiable eka venas una gaman
+      // meka loard venna thama hadaganna hadanbne if nathuva get vitharak dala thibbanam meka ayee infinite loop eakata yanava
+
       axios
         .get("http://localhost:3000/api/products")
         .then((res) => {
@@ -184,70 +190,85 @@ export default function AdminProductsPage() {
         Admin Product Page
       </h1>
 
-      <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
-        <thead>
-          <tr className="text-left text-sm font-medium text-gray-600 bg-gray-100">
-            <th className="py-3 px-6">Product ID</th>
-            <th className="py-3 px-6">Product Name</th>
-            <th className="py-3 px-6">Price</th>
-            <th className="py-3 px-6">Last Price</th>
-            <th className="py-3 px-6">Stock</th>
-            <th className="py-3 px-6">Description</th>
-            <th className="py-3 px-6">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product, index) => (
-            <tr
-              key={product._id}
-              className="border-b border-gray-200 hover:bg-gray-50"
-            >
-              <td className="py-3 px-6">{product.productId}</td>
-              <td className="py-3 px-6">{product.productName}</td>
-              <td className="py-3 px-6">${product.price}</td>
-              <td className="py-3 px-6">${product.lastPrice}</td>
-              <td className="py-3 px-6">{product.stock}</td>
-              <td className="py-3 px-6">{product.description}</td>
-              <td className="py-3 px-6 flex space-x-3">
-                <button
-                  className="text-red-600 hover:text-red-800 "
-                  onClick={() => {
-                    alert(product.productId); // Display the product ID for confirmation
-                    const token = localStorage.getItem("token"); // Retrieve the token from localStorage
-
-                    axios
-                      .delete(
-                        `http://localhost:3000/api/products/${product.productId}`,
-                        {
-                          headers: {
-                            Authorization: `Bearer ${token}`, // Add the token to the Authorization header
-                          },
-                        }
-                      )
-                      .then((res) => {
-                        console.log(res.data); // Log the response from the server
-                        toast.success("product deletede successfully");
-
-                        //product eka delete karapu gamn api window eka relaord karnava
-                        // meka smoothly venne na e nisa api uda hadagatghtha setprodect loaded eken meka refresh karanava
-                        // eka run  ruhn karannapai true denna oni setproductloaded(true)
-                        setProductsLoaded(false);
-                      })
-                      .catch((err) => {
-                        console.error(err); // Log any errors
-                      });
-                  }}
+      {
+        //api methana rotate animate  eka productkoard vela naththam pennai loard velanam table eka pennai hdagannava
+        // products tikaloard velanam
+        productsLoaded ? ( //true nampennana oni component eka
+          <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+            <thead>
+              <tr className="text-left text-sm font-medium text-gray-600 bg-gray-100">
+                <th className="py-3 px-6">Product ID</th>
+                <th className="py-3 px-6">Product Name</th>
+                <th className="py-3 px-6">Price</th>
+                <th className="py-3 px-6">Last Price</th>
+                <th className="py-3 px-6">Stock</th>
+                <th className="py-3 px-6">Description</th>
+                <th className="py-3 px-6">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product, index) => (
+                <tr
+                  key={product._id}
+                  className="border-b border-gray-200 hover:bg-gray-50"
                 >
-                  <MdDelete className="w-5 h-5" />
-                </button>
-                <button className="text-blue-600 hover:text-blue-800">
-                  <MdModeEditOutline className="w-5 h-5" />
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                  <td className="py-3 px-6">{product.productId}</td>
+                  <td className="py-3 px-6">{product.productName}</td>
+                  <td className="py-3 px-6">${product.price}</td>
+                  <td className="py-3 px-6">${product.lastPrice}</td>
+                  <td className="py-3 px-6">{product.stock}</td>
+                  <td className="py-3 px-6">{product.description}</td>
+                  <td className="py-3 px-6 flex space-x-3">
+                    <button
+                      className="text-red-600 hover:text-red-800 "
+                      onClick={() => {
+                        alert(product.productId); // Display the product ID for confirmation
+                        const token = localStorage.getItem("token"); // Retrieve the token from localStorage
+
+                        axios
+                          .delete(
+                            `http://localhost:3000/api/products/${product.productId}`,
+                            {
+                              headers: {
+                                Authorization: `Bearer ${token}`, // Add the token to the Authorization header
+                              },
+                            }
+                          )
+                          .then((res) => {
+                            console.log(res.data); // Log the response from the server
+                            toast.success("product deletede successfully");
+
+                            //product eka delete karapu gamn api window eka relaord karnava
+                            // meka smoothly venne na e nisa api uda hadagatghtha setprodect loaded eken meka refresh karanava
+                            // eka run  ruhn karannapai true denna oni setproductloaded(true)
+                            setProductsLoaded(false);
+                          })
+                          .catch((err) => {
+                            console.error(err); // Log any errors
+                          });
+                      }}
+                    >
+                      <MdDelete className="w-5 h-5" />
+                    </button>
+                    <button className="text-blue-600 hover:text-blue-800">
+                      <MdModeEditOutline className="w-5 h-5" />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          //loard vela naththam ape bufffer eka penna va//if elas eka vagema thama
+          <div className="w-full h-full flex justify-center items-center">
+            <div
+              className="w-[60px] h-[60px] border-[5px] border-gray-200 animate-spin border-b-blue-700
+     
+     rounded-full "
+            ></div>
+          </div>
+        )
+      }
     </div>
   );
 }

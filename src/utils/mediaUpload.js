@@ -31,7 +31,7 @@ export default async function uploadMedmiaToSupaBase(file) {
     // dan api  me time stamp eken ape image name eke agata me time stamo eka ellla ganavva ethakota e image
     //eka unque venava ethakota aulak venne na
 
-    fileName = timesatamp + "." + extention;
+    fileName = timesatamp + file.name + "." + extention;
 
     //itapasse api superbase ekata upload karanava api methana .thrn use karanava
 

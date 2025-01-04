@@ -2,13 +2,17 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom"; //apata page athara smoothlky yanna meka oni
-//ape routes okkoma handle karanna api use karanne react router dom eka
+import uploadMedmiaToSupaBase from "../../utils/mediaUpload";
+//ape routes okkoma handle karanna api use karanne react router dom eka\
 
 export default function AddproductForm() {
   const [productId, setProductID] = useState("");
   const [productName, setProductName] = useState("");
   const [alterNataiveName, setAlternativeNames] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  //const [imageUrl, setImageUrl] = useState("");
+
+  const [imageFiles, setImageFiles] = useState([]);
+
   const [price, setPrice] = useState("");
   const [lastPrice, setLastPrice] = useState("");
   const [stock, setStock] = useState("");
@@ -20,7 +24,33 @@ export default function AddproductForm() {
   async function handleSubmit() {
     const altNames = alterNataiveName.split(","); //"," cooma valin ven karala denna //mekedi api commsa dala type karnava eva ain vela methanin arrtey ekk enava split function eka nisa
     //mokda meva mehema kare nam godk thiyena nisa api
-    const imgUrls = imageUrl.split(",");
+    //onst imgUrls = imageUrl.split(",");//mehema karala hariyanne na apata promises godak us e karanna venava
+
+    // api hadanava methana promise arrey ekk
+
+    const promisearrey = [];
+
+    //  api forloop ekk use karana mokda apita enne image arrey ekk e ekineka ganna oni mokad api multiple image danne
+
+    for (let i = 0; i < imageFiles.length; i++) {
+      //dan api me ena aena eka eka files valata adala promise ekk hadaganna api hada pu promise ekata me files value pasds karala
+      promisearrey[i] = uploadMedmiaToSupaBase(imageFiles[i]); //dan apita methandi vennea api add karapu photos tika yanava
+      //api hadagathth8uu supabase promise ekata eken supasbase ekata api dena image upload vela ethanin dena imagses links tika aran
+      //e tika api promisearrey ekata dagannava dan apata ekin eka dapu pics vala links enava
+      //  console.log(imageFiles[i]);
+
+      // api it udin dagannava promises arrey ekk mokda apta links enna oni meka terst karanne haduve dan api hadapu promise ekata
+      //supabase tiakta image dala ethannin ena link tika thama save karanna yabnne db eke
+    }
+
+    // console.log(promisearrey); //apita promise eka para godak run karaganna oninamapata option ekk thiyena promise kkoma ekapara run karaganan
+    //ethakota uda thiyena upi upload karana promise arrey ekekn eka para promise tika run vela promise aarrey ekk denava eka karanne mehema
+
+    const imgUrls = await Promise.all(promisearrey); //meken thama apta eka para promises arrey ekkk aepa apara run karaganna
+    //meka hari giyoth apta enava image url eka varadunoth ekk avath run no vi navathinava methanadi venne eka para image url tika labenava
+    //uda une eka eaka arrey vala ave methandi oklkoma ekama rrey ekka enava
+
+    //console.log(imgUrls);
 
     //ita apsse api  db eke values valin meke thiyena evata usestae values samana karagannava
     const product = {
@@ -126,10 +156,18 @@ export default function AddproductForm() {
         <div className="flex flex-col space-y-2">
           <label className="font-semibold text-gray-700">Image URL</label>
           <input
-            type="text"
+            // api dan image url add karanna yanne eva multiple image urls add karanna puluvan vidihata dan
+            //api hadaganna oni e nisa api me input eka athulata denna oni multiple kiyana vachane
+
+            type="file"
             className="w-[300px] border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
+            // value={imageUrl}//meka ain karagannava meka thermk na dala
+            onChange={(e) =>
+              //console.log(e.target.files)} //change ekak unama vena deval tika api print karganna apuluvan
+              setImageFiles(e.target.files)
+            } //api metahnata denava me ena filkes okkoma tika image files vidihata okkoma save venna kiyala
+            //api files theruvama e tika pennave methanin list ekk vidihata(arrrey apata file[0],files[1] e vge enne)
+            multiple
           />
         </div>
         <div className="flex flex-col space-y-2">

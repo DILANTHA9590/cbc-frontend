@@ -91,6 +91,8 @@ export default function AdminProductsPage() {
           // console.log("runnin g");
 
           //  console.log(res.data);
+
+          //   console.log(res.data); //add karpu image url tikath dan apita methanin balana puluvan ee add karpu prodct vala
           setproducts(res.data.list);
 
           //  console.log(res.data.list);

@@ -73,14 +73,18 @@ export default function AddproductForm() {
     try {
       // api hadapu back end api route eka saha api backend ekata yavanna hdagaththa product obj ekath denava
       // ita amathara axios eka athule authorizatioion header ekath danna oni
-      await axios.post("http://localhost:3000/api/products", product, {
-        //ita amatharava api danna oni autherizatoion header eka
-        headers: {
-          Authorization: "Bearer " + token, //api backend eka hadala thiyenenne beheama token eka yavannne
-          //meken thamai backend eka adura ganne api admin kiyala api postman eke authorization
-          //vala karapu vadema thamai me
-        },
-      });
+      await axios.post(
+        import.meta.env.VITE_BACKEND_URL + "/api/products",
+        product,
+        {
+          //ita amatharava api danna oni autherizatoion header eka
+          headers: {
+            Authorization: "Bearer " + token, //api backend eka hadala thiyenenne beheama token eka yavannne
+            //meken thamai backend eka adura ganne api admin kiyala api postman eke authorization
+            //vala karapu vadema thamai me
+          },
+        }
+      );
       // navigate("/admin/products"); //api product eka add karapu gama apiva redrect venava adminproduct page ekata
       // window.location.href = "/admin/products"; api meka thama kalinuse kare meka use karanne na mokda meken page eka refresh venagaman
       // thama apiva re direct venne  eka nisa api navigate hook eka use karanava ethakota page eka refresh vimakin thorava

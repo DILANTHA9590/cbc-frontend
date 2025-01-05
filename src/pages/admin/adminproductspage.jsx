@@ -82,7 +82,7 @@ export default function AdminProductsPage() {
       // meka loard venna thama hadaganna hadanbne if nathuva get vitharak dala thibbanam meka ayee infinite loop eakata yanava
 
       axios
-        .get("http://localhost:3000/api/products")
+        .get(import.meta.env.VITE_BACKEND_URL + "/api/products")
         .then((res) => {
           //methana .then damme me deka vena venama thiyena
           //meken venne ape ustetae hook eka update karana gaman eka park refresh karana va ethakota ara pahala kiyala thiyena loop

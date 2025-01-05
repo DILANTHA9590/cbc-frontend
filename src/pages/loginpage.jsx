@@ -10,7 +10,18 @@ export default function Loginpage() {
 
   function login() {
     axios
-      .post("http://localhost:3000/api/users/login", {
+
+      //api dan me  port number eka calll karana eka methanin venathanakata daganna hdanne
+      //  .env ekkata mokda api den methana dirwectly thma backend url eka liyala thiyaggnne mamata meka host karanakota
+      //backend eka host karnnne venama thanaka front end eka host karanne venne venamathanaka
+      //front end eka host karanne venam thanaka ekama thanaka unath vena venama port dekka run karanana vei
+      //ethakota hadisiiye hari apita venama port number ekka  run karanna unoth me me 300 nathuva(vena port number ekka ) me axios call eken backend ekata
+      // call karana local host port number eka me hamathana venas karanna vena
+      //e nisa api meka .env eke dala veriable hdagena eka methanata denava ethakota eka tahanin vbenas unama hamathanama venas venava
+      //ara vidiha unama real backend url eken apata meka replace karanna venava ara vidihata dapuvbama eka lesi venas karanna
+      // mokda me url eka sthira deyak neme meka sari sare vans karanna sidda venava http://localhost:3000 venama .env ekk dagannava
+      // thiibe me vidihata  .post("http://localhost:3000/api/users/login", {
+      .post(import.meta.env.VITE_BACKEND_URL + "/api/users/login", {
         email: email, //uda thiyena email
         password: password, //uda thiyena password ekai api postman eke req eka yauva vge thama me yavanne
         //input type eke data tika aragena methanata dala userlogin eke email password ekata aragena backend ekata eyavanava

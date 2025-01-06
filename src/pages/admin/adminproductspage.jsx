@@ -229,7 +229,9 @@ export default function AdminProductsPage() {
 
                         axios
                           .delete(
-                            `http://localhost:3000/api/products/${product.productId}`,
+                            `${import.meta.env.VITE_BACKEND_URL}/api/products/${
+                              product.productId
+                            }`,
                             {
                               headers: {
                                 Authorization: `Bearer ${token}`, // Add the token to the Authorization header

@@ -2,10 +2,11 @@ import { useState } from "react";
 import Loginpage from "./pages/loginpage";
 import Homepage from "./pages/homepage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SignupPage from "./pages/signup";
-import Signup from "./pages/signup";
+
+import Signup from "./pages/Signup";
 import AdminPage from "./pages/adminhomepage";
 import { Toaster } from "react-hot-toast";
+import TestOne from "./components/testone";
 // import Fileuploadtest from "./pages/test"; me api product pic add karanna promise eka hadagatahtah eka
 
 function App() {
@@ -47,7 +48,7 @@ function App() {
           
           venne  habai <Route path="/admin/jhnkgbkj" element={<AdminPage />} /> mehema gahuvoth enne eth admioin ekata 
            apata admin kiyana vachane gahala vena onima deyak gahuvath apata admin panel ekata yanaa vidihata hadanne me pahala thiyena vidihata */}
-
+          <Route path="/testa" element={<TestOne />} />
           <Route path="/admin/*" element={<AdminPage />} />
 
           <Route path="/login" element={<Loginpage />} />

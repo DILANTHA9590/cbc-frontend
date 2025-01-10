@@ -71,11 +71,12 @@ export default function EditProducttForm() {
 
     // api methanadi
 
-    //api methandi thama ape sate eke ena image url eka pass karaganne methanata
+    //api methandi thama ape satate eke ena image url eka pass karaganne methanata
 
     let imgUrls = product.images;
 
-    // ekiyanne image ekk hri thiyenavanam dan thiyena image tika updte vela aluthtika vatenna oni
+    //ita passe ape image input filed eke image thiyeda kiyala
+    //  ekiyanne image ekk hri thiyenavanam dan thiyena image tika updte vela aluthtika vatenna oni
     if (imageFiles.length > 0) {
       for (let i = 0; i < imageFiles.length; i++) {
         //dan api me ena aena eka eka files valata adala promise ekk hadaganna api hada pu promise ekata me files value pasds karala
@@ -87,6 +88,7 @@ export default function EditProducttForm() {
         // api it udin dagannava promises arrey ekk mokda apta links enna oni meka terst karanne haduve dan api hadapu promise ekata
         //supabase tiakta image dala ethannin ena link tika thama save karanna yabnne db eke
       }
+      // ita passe methandi state en ava url tika replace vepla aluth tika add venava
 
       imgUrls = await Promise.all(promisearrey);
     }
@@ -101,8 +103,10 @@ export default function EditProducttForm() {
     //console.log(imgUrls);
 
     //ita apsse api  db eke values valin meke thiyena evata usestae values samana karagannava
-    const product = {
-      productId: product.pro,
+
+    // methandi api kalin vagema use sate veriable tika
+    const productData = {
+      productId: productId,
       productName: productName,
       altNames: altNames,
       images: imgUrls,
@@ -123,7 +127,7 @@ export default function EditProducttForm() {
       // ita amathara axios eka athule authorizatioion header ekath danna oni
       await axios.post(
         import.meta.env.VITE_BACKEND_URL + "/api/products",
-        product,
+        productData,
         {
           //ita amatharava api danna oni autherizatoion header eka
           headers: {

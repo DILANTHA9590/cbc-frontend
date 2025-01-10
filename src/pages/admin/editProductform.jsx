@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom"; //apata page athara smoothlky yanna meka oni
+import { useLocation, useNavigate } from "react-router-dom"; //apata page athara smoothlky yanna meka oni
 import uploadMedmiaToSupaBase from "../../utils/mediaUpload";
 //ape routes okkoma handle karanna api use karanne react router dom eka\
 
@@ -17,6 +17,15 @@ export default function EditProducttForm() {
   const [lastPrice, setLastPrice] = useState("");
   const [stock, setStock] = useState("");
   const [description, setDescription] = useState("");
+
+  //meken thami api edit karan na enakota thiyena product page eke data aran enne me hook eken json ekk vidihata data
+  //product ekata adala va e ena jsion eka api location kiyana vble keta dagannav
+
+  const location = useLocation();
+
+  // api ekatprint karotha pata labemne arrey eka product ekata adalava
+
+  console.log(location);
 
   const navigate = useNavigate(); //apita mekedi function ekk hamba venava eka api e function eka navigate kiyana ekata gaththa
   //ita passe me navigate eka call karala onima page ekkata yanna pulyuavan

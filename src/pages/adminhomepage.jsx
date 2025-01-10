@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { BsGraphUp, BsBox, BsCardChecklist, BsPeople } from "react-icons/bs";
 import AdminProductsPage from "./admin/adminproductspage";
 import AddproductForm from "./admin/addProductform";
+import EditProducts from "./admin/editProductform";
+import EditProducttForm from "./admin/editProductform";
 
 export default function AdminPage() {
   return (
@@ -64,6 +66,12 @@ ethakota /dashbord kiyaala avoth eyata dashbord component eka loard karala penna
               //e link eke admin eka athulata avith nisa admin danne na products addproducts athulata avama me page eka pennava
               path="/products/addProducts"
               element={<AddproductForm />}
+            />
+
+            <Route
+              //e link eke admin eka athulata avith nisa admin danne na products addproducts athulata avama me page eka pennava
+              path="/products/editProducts"
+              element={<EditProducttForm />}
             />
             <Route path="/orders" element={<h1>orders</h1>} />
             <Route path="/customers" element={<h1>customers</h1>} />

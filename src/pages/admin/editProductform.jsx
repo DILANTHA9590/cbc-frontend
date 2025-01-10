@@ -14,7 +14,17 @@ export default function EditProducttForm() {
 
   //methanqadi api location ekata api product json eke product eka gana wisthara product vble keta dagannava
   const product = location.state.product;
+
+  // api image tika daganna ba use state ekata  daggane  , valin separate karala name eken name eka join eken ven karala dagannava ita passe
+  // vname keta dala eka dennava ethanata//me vade karanne meka arrey ekk eka arrey ekk
+  const altNames = product.altNames.join(",");
   //api methandi balanava product eka nullda kiyala null nam api yavana admin  product page ekata mokda product ekk nathuva meka loard vela vadak na
+
+  // ita passe api thava deyak danaganna oni dan api methandi api
+  //  default set karana thiyena value venas karana ekane klaranne upadate eken
+  ////e venas karanakota ape id eka venas karanna denna ba mokada product id eken thama api e product eka visthra upadate karanne
+  //e nisa api eka venas karanna bari venna e product id filed api product id input filed ekata a pi dagannava disable kiyala
+  //ethakota apita eka venas karanna ba
 
   if (product == null) {
     navigate("/admin/products");
@@ -24,12 +34,10 @@ export default function EditProducttForm() {
   // /ethakota api e adala eka click karanakota ekata adla value eka methana use state eke default value eka vidihata denava
   const [productId, setProductID] = useState(product.productId);
   const [productName, setProductName] = useState(product.productName);
-  const [alterNataiveName, setAlternativeNames] = useState(
-    product.alterNataiveName
-  );
+  const [alterNataiveName, setAlternativeNames] = useState(altNames);
   //const [imageUrl, setImageUrl] = useState("");
 
-  const [imageFiles, setImageFiles] = useState([product]);
+  const [imageFiles, setImageFiles] = useState([]); //image oya vidihata thiyenna arinava
 
   const [price, setPrice] = useState(product.price);
   const [lastPrice, setLastPrice] = useState(product.lastPrice);
@@ -59,21 +67,34 @@ export default function EditProducttForm() {
 
     //  api forloop ekk use karana mokda apita enne image arrey ekk e ekineka ganna oni mokad api multiple image danne
 
-    for (let i = 0; i < imageFiles.length; i++) {
-      //dan api me ena aena eka eka files valata adala promise ekk hadaganna api hada pu promise ekata me files value pasds karala
-      promisearrey[i] = uploadMedmiaToSupaBase(imageFiles[i]); //dan apita methandi vennea api add karapu photos tika yanava
-      //api hadagathth8uu supabase promise ekata eken supasbase ekata api dena image upload vela ethanin dena imagses links tika aran
-      //e tika api promisearrey ekata dagannava dan apata ekin eka dapu pics vala links enava
-      //  console.log(imageFiles[i]);
+    //api methana product image files update karanne mehami
 
-      // api it udin dagannava promises arrey ekk mokda apta links enna oni meka terst karanne haduve dan api hadapu promise ekata
-      //supabase tiakta image dala ethannin ena link tika thama save karanna yabnne db eke
+    // api methanadi
+
+    //api methandi thama ape sate eke ena image url eka pass karaganne methanata
+
+    let imgUrls = product.images;
+
+    // ekiyanne image ekk hri thiyenavanam dan thiyena image tika updte vela aluthtika vatenna oni
+    if (imageFiles.length > 0) {
+      for (let i = 0; i < imageFiles.length; i++) {
+        //dan api me ena aena eka eka files valata adala promise ekk hadaganna api hada pu promise ekata me files value pasds karala
+        promisearrey[i] = uploadMedmiaToSupaBase(imageFiles[i]); //dan apita methandi vennea api add karapu photos tika yanava
+        //api hadagathth8uu supabase promise ekata eken supasbase ekata api dena image upload vela ethanin dena imagses links tika aran
+        //e tika api promisearrey ekata dagannava dan apata ekin eka dapu pics vala links enava
+        //  console.log(imageFiles[i]);
+
+        // api it udin dagannava promises arrey ekk mokda apta links enna oni meka terst karanne haduve dan api hadapu promise ekata
+        //supabase tiakta image dala ethannin ena link tika thama save karanna yabnne db eke
+      }
+
+      imgUrls = await Promise.all(promisearrey);
     }
 
     // console.log(promisearrey); //apita promise eka para godak run karaganna oninamapata option ekk thiyena promise kkoma ekapara run karaganan
     //ethakota uda thiyena upi upload karana promise arrey ekekn eka para promise tika run vela promise aarrey ekk denava eka karanne mehema
 
-    const imgUrls = await Promise.all(promisearrey); //meken thama apta eka para promises arrey ekkk aepa apara run karaganna
+    // imgUrls = await Promise.all(promisearrey); //meken thama apta eka para promises arrey ekkk aepa apara run karaganna
     //meka hari giyoth apta enava image url eka varadunoth ekk avath run no vi navathinava methanadi venne eka para image url tika labenava
     //uda une eka eaka arrey vala ave methandi oklkoma ekama rrey ekka enava
 
@@ -81,7 +102,7 @@ export default function EditProducttForm() {
 
     //ita apsse api  db eke values valin meke thiyena evata usestae values samana karagannava
     const product = {
-      productId: productId,
+      productId: product.pro,
       productName: productName,
       altNames: altNames,
       images: imgUrls,
@@ -150,7 +171,7 @@ export default function EditProducttForm() {
   // };
 
   return (
-    <div className="w-full h-screen flex items-center justify-center flex-col bg-gray-100">
+    <div className="w-full h-screen flex items-center justify-center flex-col bg-gray-500">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">
         Edit Product Page
       </h1>
@@ -158,6 +179,7 @@ export default function EditProducttForm() {
         <div className="flex flex-col space-y-2">
           <label className="font-semibold text-gray-700">Product ID</label>
           <input
+            disabled
             type="text"
             className="w-[300px] border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={productId}
@@ -250,7 +272,7 @@ export default function EditProducttForm() {
           onClick={handleSubmit}
         >
           {/* apata dan  add product eka click karama yanna oni datatika athulata ekat api udin function ekk hadagannava */}
-          Add Product
+          Update Product Product
         </button>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { MdModeEditOutline } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 //api me library eka insatall akaragathha meken tahamai backend ekata call
 //karala dta genna ganna ekata apata meka oni meken venne bakend ekata api call gahanava
@@ -106,6 +106,8 @@ export default function AdminProductsPage() {
 
     //methanav varahana ganath danaganna oni
   }, [productsLoaded]);
+
+  const navigate = useNavigate(); //meken thama api page athara yanne edit button eken button apiva navigate venava admin edit product valaata
 
   //use effect eka run venne ekaparai eth apita samaharaveriable valata ekasan vedi karanna pululuvan
   //danata use effect eka run venne palaveni para loard vena velave vitharai
@@ -221,6 +223,7 @@ export default function AdminProductsPage() {
                   <td className="py-3 px-6">{product.stock}</td>
                   <td className="py-3 px-6">{product.description}</td>
                   <td className="py-3 px-6 flex space-x-3">
+                    {/* -------------------------------Delete Button------------------------------- */}
                     <button
                       className="text-red-600 hover:text-red-800 "
                       onClick={() => {
@@ -252,10 +255,32 @@ export default function AdminProductsPage() {
                           });
                       }}
                     >
+                      {/* -----------------------------------Edit Butoon---------------------------------------  */}
                       <MdDelete className="w-5 h-5" />
                     </button>
                     <button className="text-blue-600 hover:text-blue-800">
-                      <MdModeEditOutline className="w-5 h-5" />
+                      <MdModeEditOutline
+                        className="w-5 h-5"
+                        onClick={() => {
+                          //dan  api product tika edit karanna yanne eth ehema edit karanna yanakota ape edit pnael  eka prila thiyenne oni e edit karannaavshya data  valin
+                          //apata e nisa navigate veddi e adala avashya data tika gnna oni e edit panel ekata
+                          //e nisa api page eka navigate veddi api meka athule data tiik dagena yanava
+                          // ekata  apata me navigate eken passe api ta json ekk daganna puluvan api eka anivaren state kiyana
+                          //eka dala thama json eka danna puluavan ita passe apita oni deyak yavvana puluvan  state eka vidihata
+                          //avshya deval dan state eka haraha yavanna
+
+                          navigate("/admin/products/editProducts", {
+                            // dan api product kiyana eka yavanna product ekk vidihata
+                            //uda kiyala thiyena vade thama dan methana kiyala thiyenne product eke data tika aragena yanna kiylala
+                            //thiyenne edit product ekata
+                            //saralavama navigate eka athulen page eka loard vena velavade api json ekk haraha state eka magin
+                            //data tikk pass karaganna
+                            //api meka satate eka dana nisa meka ta api kiyanava state data kiyala api e information
+                            //ganna editpage eken apita oni thva hook ekk api ekata use karanne use location hook eka
+                            state: { product: product },
+                          });
+                        }}
+                      />
                     </button>
                   </td>
                 </tr>

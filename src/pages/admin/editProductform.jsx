@@ -6,29 +6,47 @@ import uploadMedmiaToSupaBase from "../../utils/mediaUpload";
 //ape routes okkoma handle karanna api use karanne react router dom eka\
 
 export default function EditProducttForm() {
-  const [productId, setProductID] = useState("");
-  const [productName, setProductName] = useState("");
-  const [alterNataiveName, setAlternativeNames] = useState("");
+  //me use location ekan eken thama ape state json eken ena data tika ganne e ena tika api veriable ekkta dagena  thiyenava
+  const location = useLocation();
+
+  const navigate = useNavigate(); //apita mekedi function ekk hamba venava eka api e function eka navigate kiyana ekata gaththa
+  //ita passe me navigate eka call karala onima page ekkata yanna pulyuavan
+
+  //methanqadi api location ekata api product json eke product eka gana wisthara product vble keta dagannava
+  const product = location.state.product;
+  //api methandi balanava product eka nullda kiyala null nam api yavana admin  product page ekata mokda product ekk nathuva meka loard vela vadak na
+
+  if (product == null) {
+    navigate("/admin/products");
+  }
+
+  // /null naththam  api product eka ena data tika denava edit panel eke thiyena ustate vala defaulkt value vidihata
+  // /ethakota api e adala eka click karanakota ekata adla value eka methana use state eke default value eka vidihata denava
+  const [productId, setProductID] = useState(product.productId);
+  const [productName, setProductName] = useState(product.productName);
+  const [alterNataiveName, setAlternativeNames] = useState(
+    product.alterNataiveName
+  );
   //const [imageUrl, setImageUrl] = useState("");
 
-  const [imageFiles, setImageFiles] = useState([]);
+  const [imageFiles, setImageFiles] = useState([product]);
 
-  const [price, setPrice] = useState("");
-  const [lastPrice, setLastPrice] = useState("");
-  const [stock, setStock] = useState("");
-  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(product.price);
+  const [lastPrice, setLastPrice] = useState(product.lastPrice);
+  const [stock, setStock] = useState(product.stock);
+  const [description, setDescription] = useState(product.description);
 
   //meken thami api edit karan na enakota thiyena product page eke data aran enne me hook eken json ekk vidihata data
   //product ekata adala va e ena jsion eka api location kiyana vble keta dagannav
 
-  const location = useLocation();
+  //methanin apata location gana visthara vgema meka athule ena state eka athuole ape product ekataadala data aran ena json ekath me state eke
+  //thiyenava
+  //apata metahanin  pass wela apu data tika balaganna puluvan api react valin podi podi data aran yanneme vidihata
 
+  // const location = useLocation(); meka udinmA DAGATHTHA
   // api ekatprint karotha pata labemne arrey eka product ekata adalava
 
   console.log(location);
-
-  const navigate = useNavigate(); //apita mekedi function ekk hamba venava eka api e function eka navigate kiyana ekata gaththa
-  //ita passe me navigate eka call karala onima page ekkata yanna pulyuavan
 
   async function handleSubmit() {
     const altNames = alterNataiveName.split(","); //"," cooma valin ven karala denna //mekedi api commsa dala type karnava eva ain vela methanin arrtey ekk enava split function eka nisa

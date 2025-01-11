@@ -100,7 +100,7 @@ export default function EditProducttForm() {
     //meka hari giyoth apta enava image url eka varadunoth ekk avath run no vi navathinava methanadi venne eka para image url tika labenava
     //uda une eka eaka arrey vala ave methandi oklkoma ekama rrey ekka enava
 
-    //console.log(imgUrls);
+    console.log(imgUrls);
 
     //ita apsse api  db eke values valin meke thiyena evata usestae values samana karagannava
 
@@ -125,8 +125,13 @@ export default function EditProducttForm() {
     try {
       // api hadapu back end api route eka saha api backend ekata yavanna hdagaththa product obj ekath denava
       // ita amathara axios eka athule authorizatioion header ekath danna oni
-      await axios.post(
-        import.meta.env.VITE_BACKEND_URL + "/api/products",
+
+      // dan api edit karana nisa put kiyana eka danna oni avashaya patch daganna puluvan
+      const response = await axios.put(
+        // ita passe api product id eka methana ella ganna oni e ella ganne
+        //satet eke ena eka mokda eka venas karanna ba eka methanata ella gannava
+        // ita passe product id ekata adala kotasa update karanava
+        import.meta.env.VITE_BACKEND_URL + "/api/products/" + product.productId,
         productData,
         {
           //ita amatharava api danna oni autherizatoion header eka
@@ -143,11 +148,13 @@ export default function EditProducttForm() {
       //page athra redirect venna puluvan
 
       navigate("/admin/products");
+      const getRes = response.data.message;
 
-      toast.success("Product Added Successfully");
+      toast.success(getRes);
     } catch (err) {
       console.log(err);
-      toast.error("fail to add product");
+
+      toast.error("Fail to add product");
       // window.location.href = "/admin/products";
     }
     //
@@ -276,7 +283,7 @@ export default function EditProducttForm() {
           onClick={handleSubmit}
         >
           {/* apata dan  add product eka click karama yanna oni datatika athulata ekat api udin function ekk hadagannava */}
-          Update Product Product
+          Update Product
         </button>
       </div>
     </div>

@@ -167,7 +167,7 @@ export default function AdminProductsPage() {
   //dan backeend eke dhadala
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen relative">
+    <div className="p-6 bg-gray-600 min-h-screen relative">
       <Link
         to={"/admin/products/addProducts"}
         className="absolute right-4 bottom-5 border  rounded-[10px] text-[30px] bg-[#5b6de6]  text-white p-[25px] 

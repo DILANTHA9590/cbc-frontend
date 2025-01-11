@@ -97,6 +97,7 @@ export default function AddproductForm() {
       console.log(err);
       toast.error("fail to add product");
       // window.location.href = "/admin/products";
+      // me thami ape gedara api hathrak mehe jeevath venava
     }
     //
     //me function eka haduve api submit eka ebuvama  api dapu data tika db ekata save venmna
@@ -123,7 +124,7 @@ export default function AddproductForm() {
   // };
 
   return (
-    <div className="w-full h-screen flex items-center justify-center flex-col bg-gray-100">
+    <div className="w-full h-screen flex items-center justify-center flex-col bg-gray-600">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">
         Add Product Panel
       </h1>

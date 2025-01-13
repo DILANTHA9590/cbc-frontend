@@ -2,6 +2,8 @@ import { Link, Route, Routes } from "react-router-dom"; //limk use karaddi e kiy
 import Header from "../components/header";
 
 import ProductOverview from "./home/productOverview";
+import Loginpage from "./loginpage";
+import ProductPage from "./home/product";
 //import karaganna oni
 
 export default function Homepage() {
@@ -18,7 +20,10 @@ export default function Homepage() {
           // data tika apata retrive karala denava */}
           {/* dan methana id  vble eken meka loard vena velavat adala id eka backe ekata yavala apta eken deta 
           retrive karala gannava .id   data eka pass vela enakota api eka gannava aran e vada tika karanne product overview page eken 
+
           gannava  Product overviiew page eken itapasse e pr */}
+          <Route path="/login" element={<Loginpage />} />
+          <Route path="/products" element={<ProductPage />} />
           <Route path="/productInfo/:id" element={<ProductOverview />} />
 
           {/* <Route path="/dashboard" element={<h1>Dashbord</h1>} /> */}

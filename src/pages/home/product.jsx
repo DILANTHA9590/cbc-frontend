@@ -30,7 +30,7 @@ export default function ProductPage() {
   }, []);
 
   return (
-    <div className="w-full h-full overflow-y-scroll">
+    <div className="w-full h-full overflow-y-scroll flex flex-wrap justify-center">
       <h1>Product page</h1>
       {products.map((product) => (
         // api methana product tika penna a eka haddanne nathuva methana kalin hadpu eka thama yata thiyenne

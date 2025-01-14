@@ -11,7 +11,7 @@ export default function Homepage() {
     <div className="h-screen w-screen">
       <Header />
 
-      <div className="w-full h-[calc(100vh-12vh)] bg-slate-800">
+      <div className="w-full h-[calc(100vh-12vh)] bg-primary">
         <Routes path="/">
           <Route path="/dashboard" element={<h1>Dashbord</h1>} />
 

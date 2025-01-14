@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductNotFound from "./productNotFound";
 import ImageSlider from "../../components/imageSlider";
+import { addToCard } from "../../utils/cartfunction";
+import toast from "react-hot-toast";
 //api ai mevage page ekk hadanne product eke id ekk dala adala product eke mevage page
 // ekk ai  api hadala denne customer apita meke vatinakama thamai mehema karama apata
 //e adla prodcut eka customerta share karanna puluvan udaharanayak vidihata api daraz eke apita avshya product ekk hambunama api eka customerta yavanne
@@ -62,6 +64,16 @@ export default function ProductOverview() {
       });
   }, []);
 
+  /* api me function eke addtocart btn eka ebuvamavenna oni eka 
+    add to cart eka ebuvama api me product overwiev page eke usesatet ek thiyena values vala
+    product id tika api yavanava ape cart page ekata add crt btneka ebuvama */
+
+  function onAddtoCartClick() {
+    addToCard(product.productId, 1);
+
+    toast.success(product.productId + "Added to Cart");
+  }
+
   return (
     <div className="w-full h-[calc(100vh-12vh)]">
       {
@@ -120,7 +132,10 @@ export default function ProductOverview() {
                 <button className=" px-3 py-1 bg-fuchsia-400 rounded">
                   Buy Now
                 </button>
-                <button className="px-3 py-1 bg-green-600 rounded">
+                <button
+                  className="px-3 py-1 bg-green-600 rounded"
+                  onClick={onAddtoCartClick}
+                >
                   Add to Card
                 </button>
               </div>

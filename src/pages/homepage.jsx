@@ -4,6 +4,7 @@ import Header from "../components/header";
 import ProductOverview from "./home/productOverview";
 import Loginpage from "./loginpage";
 import ProductPage from "./home/product";
+import Cart from "./home/cart";
 //import karaganna oni
 
 export default function Homepage() {
@@ -24,6 +25,8 @@ export default function Homepage() {
           gannava  Product overviiew page eken itapasse e pr */}
           <Route path="/login" element={<Loginpage />} />
           <Route path="/products" element={<ProductPage />} />
+          <Route path="/Cart" element={<Cart />} />
+
           <Route path="/productInfo/:id" element={<ProductOverview />} />
 
           {/* <Route path="/dashboard" element={<h1>Dashbord</h1>} /> */}

@@ -2,13 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductNotFound from "./productNotFound";
+import ImageSlider from "../../components/imageSlider";
 //api ai mevage page ekk hadanne product eke id ekk dala adala product eke mevage page
 // ekk ai  api hadala denne customer apita meke vatinakama thamai mehema karama apata
 //e adla prodcut eka customerta share karanna puluvan udaharanayak vidihata api daraz eke apita avshya product ekk hambunama api eka customerta yavanne
-// ethakota e adala product eka loard venava e vge thamamekaqthj kar ala thiyemnme e adla product ekata adla link 
+// ethakota e adala product eka loard venava e vge thamamekaqthj kar ala thiyemnme e adla product ekata adla link
 // eka ta anuva loard venava katahari yauvoth
 export default function ProductOverview() {
-
   //dan api methana thava hook eka dagannava eka nama useParams
   //eken apata venne ape api request ekath ekka ena parameter gana vistharayak enava
   //api me const param  ekata dala thiyenne param ekk ena json eke vithara tika
@@ -43,13 +43,11 @@ export default function ProductOverview() {
     axios
       .get(import.meta.env.VITE_BACKEND_URL + "/api/products/" + productId)
       .then((res) => {
-       console.log(res.data.product);
-
-       
+        console.log(res.data.product);
 
         //api dan methana karala thiyenne backeend eken api evana id ekataa
         //adala backend eken apta ena data nullnam api use state ekata denaava not-found kiyala ethakota default value eken meka
-        // replace venava 
+        // replace venava
 
         if (res.data.product == null) {
           setStatus("not-found");
@@ -57,14 +55,11 @@ export default function ProductOverview() {
 
         // ape data eka naull naththam ape state value eka product found vidihata hadanava ita passe eka value eka found nam
         //ita adala div eka pemnnnava
-        if (res.data.product != null ) {
-          setProduct(res.data.product)
+        if (res.data.product != null) {
+          setProduct(res.data.product);
           setStatus("product-found");
         }
-
-
-
-      })
+      });
   }, []);
 
   return (
@@ -73,7 +68,7 @@ export default function ProductOverview() {
         //    methana dan api eka eka use starte valata dala deval venna thama karala thiyenne
         // methana  true unoth me kotasa
         //status eka loading kiyana ekata samana nam me vidihta pennanana e kyanne h1 eke thiyena eka
-        status == "loading"&& (
+        status == "loading" && (
           <div className="w-full h-full flex items-center justify-center">
             <div className="animate-spin rounded-full h-32 w-32 border-2 border-b-accent border-b-4 border-gray-900"></div>
           </div>
@@ -81,43 +76,57 @@ export default function ProductOverview() {
       }
       {
         // methana  true unoth me kotasa
-        status == "not-found" && (
-          <ProductNotFound/>
-        
-        )
+        status == "not-found" && <ProductNotFound />
       }
 
       {
         // product eka found anm me kotasa
-        status == "product-found" && <div className="w-full h-full flex bg-gray-500 items-center
-        justify-center">
+        status == "product-found" && (
+          <div
+            className="w-full h-full flex bg-gray-500 items-center
+        justify-center"
+          >
+            <div className="w-[35%] h-full">
+              {/* <img src={product.images[0]} alt="" className="w-full h-[300px] object-covers rounded-lg"/> */}
 
-          <div className="w-[35%] h-full">
-            <img src={product.images[0]} alt="" className="w-full h-[300px] object-covers rounded-lg"/>
-            
+              {/* api dan mehema yavanne nathuva api ahdagaththa slider component ekata image tika yavana props vidihata
+               */}
+
+              <ImageSlider images={product.images} />
+            </div>
+            <div className="w-[65%] h-full p-4">
+              <h1 className="text-3xl font-bold text-gray-800">
+                {product.productName}
+              </h1>
+
+              <h2 className="text-3xl font-bold text-gray-700">
+                {product.altNames.join("|")}
+              </h2>
+
+              <p className="text-xl text-gray-600">
+                {product.price > product.lastPrice && (
+                  <span className="line-through text-red-600">
+                    ${product.price}
+                  </span>
+                )}
+                <span> ${product.lastPrice}</span>
+              </p>
+
+              <p className="text-lg text-gray-600 line-clamp-3">
+                {product.description}
+              </p>
+
+              <div className=" flex gap-3">
+                <button className=" px-3 py-1 bg-fuchsia-400 rounded">
+                  Buy Now
+                </button>
+                <button className="px-3 py-1 bg-green-600 rounded">
+                  Add to Card
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="w-[65%] h-full p-4">
-
-          <h1 className="text-3xl font-bold text-gray-800">{product.productName}</h1>
-
-          <h2 className="text-3xl font-bold text-gray-700">{product.altNames.join("|")}</h2>
-
-
-
-<p className="text-xl text-gray-600">{
-(product.price>product.lastPrice)&&
-  <span className="line-through text-red-600">${product.price}</span>
-      }<span>${product.lastPrice}</span></p>
-
-
-
-
-<p className="text-lg text-gray-600 line-clamp-3">{product.description}</p>
-          
-          </div>
-
-        </div>
-  
+        )
       }
     </div>
   );

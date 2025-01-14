@@ -19,14 +19,14 @@ export default function Header() {
         </Link>
 
         <Link
-          to="/"
+          to="/products"
           className=" text-accent font-bold text-xl hover:border-b border-b-accent"
         >
           Products
         </Link>
 
         <Link
-          to="/"
+          to=""
           className=" text-accent font-bold text-xl  hover:border-b border-b-accent"
         >
           About Us

@@ -39,6 +39,7 @@ export function addToCard(productId, qty) {
   //api udat hiyenav function eke thiyena card eka loard karagannava
 
   const cart = loardCard();
+  // console.log(cart);
 
   //meya karnne me cart eke thiyena hama itemekama dada test krala balanaava eke pid eka
   //api dimpupid ekatga samanda kiyala balanava samananam eka thibba e are eka location eka return karla denava
@@ -68,11 +69,13 @@ ethakota earrye eka adala  location eka return karla me index eka athulata dagan
   //eka 3ehema thama mokda e item eka meke nane e nisa methanin dena agaya -1 kiyanne e item eka
   // meke na  ehema nathi unot venne oni eka thama api if index==-1 nam eka cart ekata dagannava
   const index = cart.findIndex((item) => {
-    item.productId == productId;
+    return item.productId == productId;
   });
 
   if (index == -1) {
     cart.push({ productId, qty });
+
+    // console.log(index);
 
     // dan  me else part ekedi lkarala thiyene danatamath ehema product ekk thiyenavanam
     // e cart eke 0 position eke quantyty ekata api dena quantity eka ekathu karla penna kiyala
@@ -149,7 +152,7 @@ Issues when displaying cart items */
   saveCart(cart);
 }
 
-export function saveCart() {
+export function saveCart(cart) {
   // ita passe  api eva loacl storage ekata save karagannava
   localStorage.setItem("cart", JSON.stringify(cart));
 }
@@ -296,3 +299,7 @@ export function saveCart() {
 // Fourth push -> index 3
 // And so on...
 //  CopyRetryClaude does not have the ability to run the code it generates yet.Claude can make mistakes. Please double-check responses.
+// export function clearCart() {
+localStorage.removeItem("cart");
+
+// clearCart();

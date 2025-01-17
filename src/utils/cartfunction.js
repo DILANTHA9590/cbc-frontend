@@ -300,6 +300,6 @@ export function saveCart(cart) {
 // And so on...
 //  CopyRetryClaude does not have the ability to run the code it generates yet.Claude can make mistakes. Please double-check responses.
 // export function clearCart() {
-localStorage.removeItem("cart");
+// localStorage.removeItem("cart");
 
 // clearCart();

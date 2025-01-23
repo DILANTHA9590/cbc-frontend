@@ -1,7 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import { MdDelete } from "react-icons/md";
 export default function CartCard(props) {
+  //dabn  apata metahanin enne pid ekai qty ekk vitharai e avata passe thama methani api axios cl ekk gahala
+  // e id ekata adala data  card eken ekata disply venna hadala thiyenne apata oninam parana details valin enna hadanne
+  // nathuva mehema hadana eken
+  // user  item ekk add karanavelave e product eka sambanda thiyena lastestma details methanata  enava
+  //e kiyanne api update karaoth e produc ekata samnadava methanata e latestma details enava
+  // /ekai methana vasiya aravidiyata  karama update venne anene ekai mehema karala pid eka save karan
+  //methanin data tika gaththe
   const productId = props.productId;
   const qty = props.qty;
 
@@ -67,6 +74,10 @@ export default function CartCard(props) {
       <td className="text-xl text-red-500 text-center">
         {product?.lastPrice * qty}
       </td>
+
+      <button className="mx-auto">
+        <MdDelete className="w-5 h-5 " />
+      </button>
     </tr>
   );
 }

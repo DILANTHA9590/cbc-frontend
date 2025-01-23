@@ -5,12 +5,14 @@ import ProductOverview from "./home/productOverview";
 import Loginpage from "./loginpage";
 import ProductPage from "./home/product";
 import Cart from "./home/cart";
+import NavigationBar from "../components/navigationbar";
 //import karaganna oni
 
 export default function Homepage() {
   return (
-    <div className="h-screen w-screen">
+    <div className="w-screen h-screen">
       <Header />
+      {/* <NavigationBar /> */}
 
       <div className="w-full h-[calc(100vh-12vh)] bg-primary">
         <Routes path="/">

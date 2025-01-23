@@ -75,14 +75,14 @@ export default function ProductOverview() {
   }
 
   return (
-    <div className="w-full h-[calc(100vh-12vh)]">
+    <div className="w-full h-full">
       {
         //    methana dan api eka eka use starte valata dala deval venna thama karala thiyenne
         // methana  true unoth me kotasa
         //status eka loading kiyana ekata samana nam me vidihta pennanana e kyanne h1 eke thiyena eka
         status == "loading" && (
-          <div className="w-full h-full flex items-center justify-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-2 border-b-accent border-b-4 border-gray-900"></div>
+          <div className="flex items-center justify-center w-full h-full">
+            <div className="w-32 h-32 border-2 border-b-4 border-gray-900 rounded-full animate-spin border-b-accent"></div>
           </div>
         )
       }
@@ -94,11 +94,20 @@ export default function ProductOverview() {
       {
         // product eka found anm me kotasa
         status == "product-found" && (
-          <div
-            className="w-full h-full flex bg-gray-500 items-center
-        justify-center"
-          >
-            <div className="w-[35%] h-full">
+          <div className="flex flex-col items-center justify-center w-full h-full overflow-hidden sm:flex-row">
+            <h1 className="block text-2xl font-bold text-gray-800 sm:hidden">
+              {product.productName}
+            </h1>
+
+            <p className="block text-xl text-gray-600 xl:text-3xl sm:hidden">
+              {product.price > product.lastPrice && (
+                <span className="text-red-600 line-through">
+                  ${product.price}
+                </span>
+              )}
+              <span> ${product.lastPrice}</span>
+            </p>
+            <div className="w-[100%] sm:w-[35%] h-full flex flex-col justify-center">
               {/* <img src={product.images[0]} alt="" className="w-full h-[300px] object-covers rounded-lg"/> */}
 
               {/* api dan mehema yavanne nathuva api ahdagaththa slider component ekata image tika yavana props vidihata
@@ -106,30 +115,30 @@ export default function ProductOverview() {
 
               <ImageSlider images={product.images} />
             </div>
-            <div className="w-[65%] h-full p-4">
-              <h1 className="text-3xl font-bold text-gray-800">
+            <div className="sm:w-[65%] w-[100%] h-full p-4 flex flex-col justify-center gap-y-2">
+              <h1 className="text-3xl font-bold text-gray-800 xl:text-6xl">
                 {product.productName}
               </h1>
 
-              <h2 className="text-3xl font-bold text-gray-700">
+              <h2 className="text-2xl font-bold text-gray-700 sm:text-3xl xl:text-5xl">
                 {product.altNames.join("|")}
               </h2>
 
-              <p className="text-xl text-gray-600">
+              <p className="hidden text-xl text-gray-600 xl:text-3xl sm:block">
                 {product.price > product.lastPrice && (
-                  <span className="line-through text-red-600">
+                  <span className="text-red-600 line-through">
                     ${product.price}
                   </span>
                 )}
                 <span> ${product.lastPrice}</span>
               </p>
 
-              <p className="text-lg text-gray-600 line-clamp-3">
+              <p className="text-lg text-gray-600 line-clamp-3 xl:text-2xl">
                 {product.description}
               </p>
 
-              <div className=" flex gap-3">
-                <button className=" px-3 py-1 bg-fuchsia-400 rounded">
+              <div className="flex gap-3 ">
+                <button className="px-3 py-1 rounded bg-fuchsia-400">
                   Buy Now
                 </button>
                 <button

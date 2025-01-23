@@ -6,6 +6,7 @@ import axios from "axios";
 export default function Cart() {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
+  const [labeledTotal, setLabeledTotal] = useState(0);
 
   useEffect(() => {
     setCart(loardCard());
@@ -32,8 +33,42 @@ export default function Cart() {
       .then((res) => {
         setTotal(res.data);
         console.log(res.data);
+        setTotal(res.data.total);
+        setLabeledTotal(res.data.labeldTotal);
       });
   }, []);
+
+  //meka hadala thiyenne checkout btn eka ebuvama venna oni de e tika order db ekatra yanva e api
+  ///order karapau item valatamorderid ekk create karala e ti order db eke save venava//ketiyemma kiuvoth order list eka api yavanava
+  //  order db ekata ethakota eya e yavana ekata order id ekk creqtate karan db ekes ave venava
+
+  function onOrderCheckoutClick() {
+    const token = localStorage.getItem("token");
+    if (token == null) {
+      return;
+    }
+    axios
+      .post(
+        import.meta.env.VITE_BACKEND_URL + "/api/orders",
+        {
+          // meke order database eke ordeid emails me tika backend ekenma api hada[pu eken assign assign venava
+          //methanin api  orderitesms  tika yavana va e vagema api name phoneno saha adress dala yanna hdala thiyenne e nisa
+          // thavakalikava methnanin dala ynnava  e tika danata
+          orderedItems: cart, //me yavanne ape cart eke save vela thiyena orderd items tika
+          name: "dilantha",
+          address: "ampara",
+          phone: "ffffff",
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+      });
+  }
 
   return (
     <div className="w-full h-full overflow-y-scroll flex flex-col ">
@@ -56,9 +91,22 @@ export default function Cart() {
           );
         })}
       </table>
+      <div className="flex justify-center flex-col items-end ">
+        <h1 className="text-3xl font-bold text-accent">
+          Total: LKR. {labeledTotal}
+        </h1>
+        <h1 className="text-3xl font-bold text-accent">
+          Discount: LKR. {labeledTotal - total}
+        </h1>
+        <h1 className="text-3xl font-bold text-accent">
+          Grand Total: LKR. {total}
+        </h1>
+      </div>
+
       <div className="flex justify-end ">
         {/* //dan me btn eka click karanama order eka plce venn ahadmu */}
         <button
+          onClick={onOrderCheckoutClick}
           className="bg-orange-500 w-[300px] p-2 rounded mt-2 hover:bg-orange-400
         "
         >

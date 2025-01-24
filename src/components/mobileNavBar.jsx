@@ -5,7 +5,7 @@ export default function MobileNavBar(props) {
   const navBarClose = props.clickCloseBtn;
   return (
     <>
-      <div className="fixed w-full bg-[#00000080] h-full z-[100] sm:hidden">
+      <div className="fixed w-full bg-[#00000080] h-full z-[100] sm:hidden ">
         <div className=" h-full bg-white w-[300px] relative">
           <div className="flex items-center">
             <img src="/logo_.png" alt="" className="w-[100px] h-[100px]" />
@@ -14,8 +14,8 @@ export default function MobileNavBar(props) {
               onClick={navBarClose}
             />
           </div>
-          <div className="flex backdrop-blur-">
-            <ul className="flex flex-col gap-y-3 ">
+          <div className="flex ">
+            <ul className="flex flex-col pl-4 gap-y-3">
               <li>
                 <Link to="/">Home</Link>
               </li>

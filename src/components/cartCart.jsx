@@ -60,7 +60,7 @@ export default function CartCard(props) {
   }, []);
   // itapaasse eloard vechcha data valin methana hadagannav
   return (
-    <tr className="hover:bg-accent hover:text-white">
+    <tr className="border-b hover:bg-accent hover:text-white">
       <td>
         <img
           src={product?.images[0]} // Assuming product has an 'images' array
@@ -68,16 +68,14 @@ export default function CartCard(props) {
         />
       </td>
       <td className="text-center">{product?.productName}</td>
-      <td className="text-lg font-semibold text-center">{productId}</td>
+      <td className="hidden text-lg font-semibold text-center sm:block">
+        {productId}
+      </td>
       <td className="text-lg text-center">{qty}</td>
-      <td className="text-xl text-red-500 text-center">LKR:{product?.price}</td>
-      <td className="text-xl text-red-500 text-center">
+      <td className="text-xl text-center text-red-500">LKR:{product?.price}</td>
+      <td className="text-xl text-center text-red-500">
         {product?.lastPrice * qty}
       </td>
-
-      <button className="mx-auto">
-        <MdDelete className="w-5 h-5 " />
-      </button>
     </tr>
   );
 }
@@ -98,7 +96,7 @@ export default function CartCard(props) {
 //   const qty = props.qty;
 
 //   return (
-//     <div className=" border flex justify-between items-center p-2 space-x-4">
+//     <div className="flex items-center justify-between p-2 space-x-4 border ">
 //       <td className="text-lg font-semibold">{productId}</td>
 //       <td className="text-xl text-red-500">X</td>
 //       <td className="text-lg">{qty}</td>

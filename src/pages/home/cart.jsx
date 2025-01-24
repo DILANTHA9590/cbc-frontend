@@ -71,14 +71,14 @@ export default function Cart() {
   }
 
   return (
-    <div className="w-full h-full overflow-y-scroll flex flex-col ">
+    <div className="flex flex-col w-full h-full overflow-y-scroll ">
       <table className="w-full ">
         <th>Product Image</th>
         <th>Product Name</th>
-        <th>Product Id</th>
+        <th className="hidden sm:block">Product Id</th>
         <th>Product qty</th>
         <th>Product Price</th>
-        <th>ToTal</th>
+        <th>Total</th>
 
         <td className="text-center"></td>
         {cart.map((item) => {
@@ -91,23 +91,15 @@ export default function Cart() {
           );
         })}
       </table>
-      <div className="flex justify-center flex-col items-end ">
-        <h1 className="text-3xl font-bold text-accent">
-          Total: LKR. {labeledTotal}
-        </h1>
-        <h1 className="text-3xl font-bold text-accent">
+      <div className="flex flex-col items-end justify-center p-1 text-xl sm:text-3xl">
+        <h1 className="font-bold text-accent">Total: LKR. {labeledTotal}</h1>
+        <h1 className="font-bold text-accent">
           Discount: LKR. {labeledTotal - total}
         </h1>
-        <h1 className="text-3xl font-bold text-accent">
-          Grand Total: LKR. {total}
-        </h1>
-      </div>
-
-      <div className="flex justify-end ">
-        {/* //dan me btn eka click karanama order eka plce venn ahadmu */}
+        <h1 className="font-bold text-accent">Grand Total: LKR. {total}</h1>
         <button
           onClick={onOrderCheckoutClick}
-          className="bg-orange-500 w-[300px] p-2 rounded mt-2 hover:bg-orange-400
+          className="bg-orange-500 sm:w-[300px] max-w p-2 rounded mt-2 hover:bg-orange-400
         "
         >
           Checkout
@@ -118,7 +110,7 @@ export default function Cart() {
 }
 
 // return (
-//   <div className="w-full h-full overflow-y-scroll flex flex-col  items-center">
+//   <div className="flex flex-col items-center w-full h-full overflow-y-scroll">
 //     {cart.map((item) => {
 //       return (
 //         <span className="borde">

@@ -1,5 +1,5 @@
 import { FaShippingFast } from "react-icons/fa";
-import { FaFacebookF } from "react-icons/fa";
+
 import { FaPinterestP } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
@@ -10,10 +10,28 @@ import { FaUserCircle } from "react-icons/fa";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
 import { IoMdMenu } from "react-icons/io";
 import { BsSearch } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import { IoCloseOutline } from "react-icons/io5";
+import { useState } from "react";
+import MobileNavBar from "./mobileNavBar";
 export default function NavigationBar() {
+  const [isNavBarOpen, setIsNavBarOpen] = useState(false);
   return (
     <>
-      <div className="w-full max-w-screen-lg mx-auto">
+      {/* Mobile Responsive Nav bar */}
+      {isNavBarOpen && (
+        <MobileNavBar
+          clickCloseBtn={() => {
+            setIsNavBarOpen(false);
+          }}
+        />
+      )}
+      {/* End Mobile Responsive Nav Bar */}
+
+      {/* lg Screen Nav Section */}
+
+      <div className="w-full  sm:h-[25vh] ">
+        {/* first bar  */}
         <div className="flex items-center justify-between py-2 list-none">
           <div>
             <ul className="flex items-center text-base">
@@ -26,9 +44,8 @@ export default function NavigationBar() {
               </li>
             </ul>
           </div>
-
           <div>
-            <ul className="flex items-center cursor-pointer gap-x-2 style:">
+            <ul className="flex items-center pr-3 cursor-pointer gap-x-2">
               <li className="p-1 rounded-full hover:bg-blue-400">
                 <a href="">
                   <BiLogoFacebook className="hover:text-white" />
@@ -63,8 +80,8 @@ export default function NavigationBar() {
           </div>
         </div>
 
-        {/* second section  -------------------------------------------------                    */}
-        <div className="flex items-center justify-between">
+        {/* second bar  -------------------------------------------------                    */}
+        <div className="flex items-center justify-between pr-2">
           {/* logo  */}
           <div>
             <img src="/logo_.png" alt="" className="w-[100px] h-[100px]" />
@@ -75,15 +92,14 @@ export default function NavigationBar() {
             <input
               type="text"
               placeholder="Search For Product ...."
-              className="px-3 grow focus:outline-none"
+              className="w-full px-3 grow focus:outline-none"
             />
 
             <a href="">
               <BsSearch />
             </a>
-
-            {/* login section */}
           </div>
+          {/* login section */}
           <div className="hidden list-none md:block">
             <ul className="flex items-center">
               <li>
@@ -99,16 +115,45 @@ export default function NavigationBar() {
             </ul>
           </div>
 
-          {/* // mobile navbar */}
-          <div>
+          {/* NOBLE VIEW HAMBURGER MENU  */}
+          <div className="md:hidden">
             <ul>
               <li>
-                <a href="">
-                  <IoMdMenu className="w-[50px] h-[30px] md:hidden" />
-                </a>
+                <Link
+                  to="/"
+                  className="text-xl font-bold text-accent hover:border-b border-b-accent"
+                >
+                  <IoMdMenu
+                    className="w-[50px] h-[30px] "
+                    onClick={() => {
+                      setIsNavBarOpen(true);
+                    }}
+                  />
+                </Link>
               </li>
             </ul>
           </div>
+        </div>
+
+        <div className="items-center justify-center hidden md:flex">
+          <ul className="items-center md:flex gap-x-4 sm:gap-x-10 sm:text-2xl">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/">About Us</Link>
+            </li>
+            <li>
+              <Link to="/">Contact Us</Link>
+            </li>
+            <li>
+              <Link to="/">Cart</Link>
+            </li>
+
+            <li>
+              <Link to="/products">Products</Link>
+            </li>
+          </ul>
         </div>
       </div>
     </>

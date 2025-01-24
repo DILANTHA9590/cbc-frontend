@@ -42,7 +42,7 @@ nisa me npm eke kiyla thiyenava api meken webs ekama wrap karaganna oni kiyala e
 
         {/* e vgema  meka nikan dala hariyanna e na api copy karagaththa client id ekath methanta daganna oni dan ape mulu site ekama meken wrap vela thiyenne
          */}
-        <GoogleOAuthProvider clientId="http://1063592002846-3029fm707o7bdjg1rn98ktnhesm4o6s7.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId="1063592002846-3029fm707o7bdjg1rn98ktnhesm4o6s7.apps.googleusercontent.com">
           {/* <ProductCard name="Mechanical keybord" price="LKR 100000" image="https://www.bing.com/ck/a?!&&p=9eef03445c1eddc40b45a2a5fb51e6aaa92361cc6f881f5ff55358b894fb181fJmltdHM9MTczNDgyNTYwMA&ptn=3&ver=2&hsh=4&fclid=3a0d9fda-7305-69d7-377b-8c737204686d&u=a1L2ltYWdlcy9zZWFyY2g_cT1tZWNoYW5pY2FsK2tleWJvYXJkJmlkPURBOUE4RkY4QTY0QkI3OTY2Nzk2MTgwODU1MjcyMzIyODg5MURDMkEmRk9STT1JUUZSQkE&ntb=1" />
       <ProductCard name="Rtx 260" price="LKR 150000" image="https://www.bing.com/ck/a?!&&p=397996c5d958f47127f6f4894c908cb8d88be4708d15f2ce35ec9f108f8f886bJmltdHM9MTczNDgyNTYwMA&ptn=3&ver=2&hsh=4&fclid=3a0d9fda-7305-69d7-377b-8c737204686d&u=a1L2ltYWdlcy9zZWFyY2g_cT1ydHgrMjYwK3ZnYSZpZD0zMUNCMzM4RDM5MTY1REZBRjk5QjQ3NTJGQTRBNThGRkI5NTU1MUE4JkZPUk09SVFGUkJB&ntb=1 " />
       <ProductCard name="i5 13th Gen Proccesor" price="LKR 75000" image=" https://th.bing.com/th/id/OIP.Imgl42hGepiGlmmZKI6mggHaHk?rs=1&pid=ImgDetMain" /> */}

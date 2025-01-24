@@ -2,10 +2,50 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function Loginpage() {
+  //mw hook eka api use karannne ape google login btn eka ebbuvama venna oni de
+  //meka apita katapadn karaganna oni na document eke thiye meka google auth eke npm doc vala
+  //eka kiyavannna
+
+  //apata me use google login hoiok eken labenne function ekk api eka dagaththa google loginvbkle kkata
+  const googleLogin = useGoogleLogin({
+    // me function eka  api athulata denava json ekk
+    // login eka sucess unama ena response eka print karala denna kiyala
+    // dan api me function eka run karaganna oni google btn eka click karata passe
+    //e nisa api oncl;ick denna  oni  ggole btn ekata
+    // ita passe api log vela   api me page eken ma inspect baluvoth apata enava
+    //google eken  e ujsrta adala acces token ekak apta meken usrge visthara tika danagganna pulkuvan
+    // api etoken eka ekata ape bckend keat yavanna oni ekata api ekk hadaganna oni ape backend eke4
+    onSuccess: (res) => {
+      console.log(res);
+      axios
+        .post(import.meta.env.VITE_BACKEND_URL + "/api/users/google", {
+          //api meyage data tika yavana back ekata eka enne ape token eke acces token eke
+          token: token.access_token,
+        })
+        .then((res) => {
+          if (res.data.message == "User   created") {
+            toast.success(
+              "Your account is created now you can login via google"
+            );
+          } else {
+            localStorage.setItem("token", res.data.token);
+
+            if (res.data.user.type == "admin") {
+              window.location.href = "/admin";
+            } else {
+              window.location.href = "/";
+            }
+          }
+        });
+    },
+  });
+
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
+
   const [value, Setvalue] = useState();
 
   function login() {
@@ -86,10 +126,10 @@ export default function Loginpage() {
   // oni
   return (
     <>
-      <div className="w-full h-screen bg-lime-600 flex items-center justify-center ">
+      <div className="flex items-center justify-center w-full h-screen bg-lime-600 ">
         <div className="w-[600px] h-[600px] bg-blue-500 flex items-center justify-center flex-col gap-5 ">
           <img className="w-[100px]" src="\logo.png" alt="" />
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col items-center justify-center">
             <span>Email</span>
             {/* methana default value eka venne api inpute field ekata enter karana eka  use state hook ekata yanava ita passe use
              state email ekata giya  ekata  value eken methana filed eka update karanava*/}
@@ -122,7 +162,7 @@ export default function Loginpage() {
                 uda thiyena usesate veriable eken */}
           </div>
 
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col items-center justify-center">
             <span>Password</span>
 
             <input
@@ -144,6 +184,17 @@ export default function Loginpage() {
             </button>
             {/* api function call karanakota() danne na */}
           </div>
+          {/* //api meka damma app .jsx site eka cover karala vagema ggogle ouath npm eka 
+// insatall karala. dan apata meka click karama venna oni karanna apata hook ekk enava eka apata enne google aouth ekenamai*/}
+          {/* e vagema  meka run karama ape uda google login hook eka run venava ita passe apata login
+          google page eka open venava */}
+          <button
+            onClick={() => {
+              googleLogin();
+            }}
+          >
+            Login with Google
+          </button>
 
           <div>
             <Link className="underline text-amber-400">Fogotten Password</Link>

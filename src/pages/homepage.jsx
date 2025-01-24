@@ -10,11 +10,11 @@ import NavigationBar from "../components/navigationbar";
 
 export default function Homepage() {
   return (
-    <div className="w-screen h-screen">
-      <Header />
-      {/* <NavigationBar /> */}
+    <div className="h-screen max-w-screen ">
+      {/* <Header /> */}
+      <NavigationBar />
 
-      <div className="w-full h-[calc(100vh-12vh)] bg-primary">
+      <div className="w-full h-[calc(100vh-12vh)] bg-primary ">
         <Routes path="/">
           <Route path="/dashboard" element={<h1>Dashbord</h1>} />
 

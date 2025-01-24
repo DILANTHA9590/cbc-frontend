@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import AdminPage from "./pages/adminhomepage";
 import { Toaster } from "react-hot-toast";
 import TestOne from "./components/testone";
+
 // import Fileuploadtest from "./pages/test"; me api product pic add karanna promise eka hadagatahtah eka
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
 
           <Route path="/login" element={<Loginpage />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/sign" element={<EnterData />} />
           {/* <Route path="/test" element={<Fileuploadtest />} /> me api product pic add karanna promise eka hadagatahtah route eka */}
 
           {/* <Route path="/*" element={<h1>404 error</h1>} /> */}

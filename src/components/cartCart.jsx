@@ -50,6 +50,10 @@ export default function CartCard(props) {
             // apita ena pid eka axios call eken null venava ethakota api e add karanna yana iktem eka delete karanava
             // me okkom a karanne prop eken adala id eka pass unama
             // ita pase e loard una data valin thama ape page kea purava ganne
+
+            // product eka id ekata adlava lord une naththam api e cart eke thiyena item eka delete karanava
+            //uda null venne api e product eka upadate karala ahri remove karala hari
+            //ethakota eka cart ekata dd velanam cart eken eka remove vlea yanava
             deleteItem(productId);
           }
         })
@@ -60,23 +64,31 @@ export default function CartCard(props) {
   }, []);
   // itapaasse eloard vechcha data valin methana hadagannav
   return (
-    <tr className="border-b hover:bg-accent hover:text-white">
-      <td>
-        <img
-          src={product?.images[0]} // Assuming product has an 'images' array
-          className="w-[100px] h-[100px] mx-auto"
-        />
-      </td>
-      <td className="text-center">{product?.productName}</td>
-      <td className="hidden text-lg font-semibold text-center sm:block">
-        {productId}
-      </td>
-      <td className="text-lg text-center">{qty}</td>
-      <td className="text-xl text-center text-red-500">LKR:{product?.price}</td>
-      <td className="text-xl text-center text-red-500">
-        {product?.lastPrice * qty}
-      </td>
-    </tr>
+    <>
+      {!loaded ? (
+        <tr>loading</tr>
+      ) : (
+        <tr className="border-b hover:bg-accent hover:text-white">
+          <td>
+            <img
+              src={product?.images[0]} // Assuming product has an 'images' array
+              className="w-[100px] h-[100px] mx-auto"
+            />
+          </td>
+          <td className="text-center">{product?.productName}</td>
+          <td className="hidden text-lg font-semibold text-center sm:block">
+            {productId}
+          </td>
+          <td className="text-lg text-center">{qty}</td>
+          <td className="text-xl text-center text-red-500">
+            LKR:{product?.price}
+          </td>
+          <td className="text-xl text-center text-red-500">
+            {product?.lastPrice * qty}
+          </td>
+        </tr>
+      )}
+    </>
   );
 }
 

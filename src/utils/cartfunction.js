@@ -157,6 +157,28 @@ export function saveCart(cart) {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+export function clearCart() {
+  localStorage.removeItem("cart");
+}
+
+export function deleteItem(productId) {
+  // apata  item ekk delete karanna oni nam
+  //  methandi api  evana item eka cart eke thiyeda balanava eka thiyenam apta adla index eka return karanava
+  // ehema nathatham  -1 enne
+  const index = cart.findIndex((item) => {
+    return item.productId == productId;
+  });
+  //api methanin karanna yanne product eka ape local stioprage eke natyhjtyham delete akraggana ekata api dan udin pass vela apu item eke index eka
+
+  // cart eken e adla find index eken adla item ekata adla index eka delete delete karanava
+  // apata  index eken product eke index eka return karama api e product eka delete karanava
+  // e delete karanne  index eka -1 asmananam -1 nam, delete karanna deyak anne product eka eke nane
+  if (index != -1) {
+    // e adla item eka methnanin delete akranava
+    const newcart = cart.splice(index, 1);
+    saveCart(newcart);
+  }
+}
 // Let me break down this code and explain how it works. This appears to be a shopping cart implementation using local storage.
 // Shopping Cart Implementation with Local StorageClick to open code
 // Let me explain how this shopping cart system works step by step:
@@ -300,6 +322,5 @@ export function saveCart(cart) {
 // And so on...
 //  CopyRetryClaude does not have the ability to run the code it generates yet.Claude can make mistakes. Please double-check responses.
 // export function clearCart() {
-// localStorage.removeItem("cart");
 
 // clearCart();

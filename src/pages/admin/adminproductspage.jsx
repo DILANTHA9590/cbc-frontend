@@ -167,7 +167,7 @@ export default function AdminProductsPage() {
   //dan backeend eke dhadala
 
   return (
-    <div className="p-6 bg-gray-600 min-h-screen relative">
+    <div className="relative min-h-screen p-6 bg-gray-600">
       <Link
         to={"/admin/products/addProducts"}
         className="absolute right-4 bottom-5 border  rounded-[10px] text-[30px] bg-[#5b6de6]  text-white p-[25px] 
@@ -190,7 +190,7 @@ export default function AdminProductsPage() {
         {test}
       </button> */}
 
-      <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+      <h1 className="mb-6 text-3xl font-bold text-center text-gray-800">
         Admin Product Page
       </h1>
 
@@ -200,14 +200,14 @@ export default function AdminProductsPage() {
         productsLoaded ? ( //true nampennana oni component eka
           <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
             <thead>
-              <tr className="text-left text-sm font-medium text-gray-600 bg-gray-100">
-                <th className="py-3 px-6">Product ID</th>
-                <th className="py-3 px-6">Product Name</th>
-                <th className="py-3 px-6">Price</th>
-                <th className="py-3 px-6">Last Price</th>
-                <th className="py-3 px-6">Stock</th>
-                <th className="py-3 px-6">Description</th>
-                <th className="py-3 px-6">Action</th>
+              <tr className="text-sm font-medium text-left text-gray-600 bg-gray-100">
+                <th className="px-6 py-3">Product ID</th>
+                <th className="px-6 py-3">Product Name</th>
+                <th className="px-6 py-3">Price</th>
+                <th className="px-6 py-3">Last Price</th>
+                <th className="px-6 py-3">Stock</th>
+                <th className="px-6 py-3">Description</th>
+                <th className="px-6 py-3">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -216,13 +216,13 @@ export default function AdminProductsPage() {
                   key={product._id}
                   className="border-b border-gray-200 hover:bg-gray-50"
                 >
-                  <td className="py-3 px-6">{product.productId}</td>
-                  <td className="py-3 px-6">{product.productName}</td>
-                  <td className="py-3 px-6">${product.price}</td>
-                  <td className="py-3 px-6">${product.lastPrice}</td>
-                  <td className="py-3 px-6">{product.stock}</td>
-                  <td className="py-3 px-6">{product.description}</td>
-                  <td className="py-3 px-6 flex space-x-3">
+                  <td className="px-6 py-3">{product.productId}</td>
+                  <td className="px-6 py-3">{product.productName}</td>
+                  <td className="px-6 py-3">${product.price}</td>
+                  <td className="px-6 py-3">${product.lastPrice}</td>
+                  <td className="px-6 py-3">{product.stock}</td>
+                  <td className="px-6 py-3">{product.description}</td>
+                  <td className="flex px-6 py-3 space-x-3">
                     {/* -------------------------------Delete Button------------------------------- */}
                     <button
                       className="text-red-600 hover:text-red-800 "
@@ -289,7 +289,7 @@ export default function AdminProductsPage() {
           </table>
         ) : (
           //loard vela naththam ape bufffer eka penna va//if elas eka vagema thama
-          <div className="w-full h-full flex justify-center items-center">
+          <div className="flex items-center justify-center w-full h-full">
             <div
               className="w-[60px] h-[60px] border-[5px] border-gray-200 animate-spin border-b-blue-700
      

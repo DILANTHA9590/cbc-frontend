@@ -8,9 +8,9 @@ export default function Loginpage() {
   //mw hook eka api use karannne ape google login btn eka ebbuvama venna oni de
   //meka apita katapadn karaganna oni na document eke thiye meka google auth eke npm doc vala
   //eka kiyavannna
-
-  //apata me use google login hoiok eken labenne function ekk api eka dagaththa google loginvbkle kkata
   const googleLogin = useGoogleLogin({
+    //apata me use google login hoiok eken labenne function ekk api eka dagaththa google loginvbkle kkata
+
     // me function eka  api athulata denava json ekk
     // login eka sucess unama ena response eka print karala denna kiyala
     // dan api me function eka run karaganna oni google btn eka click karata passe
@@ -23,20 +23,25 @@ export default function Loginpage() {
       axios
         .post(import.meta.env.VITE_BACKEND_URL + "/api/users/google", {
           //api meyage data tika yavana back ekata eka enne ape token eke acces token eke
-          token: token.access_token,
+          token: res.access_token,
         })
+
         .then((res) => {
-          if (res.data.message == "User   created") {
+          console.log("Backend response:", res.data);
+          if (res.data.message == "User created") {
             toast.success(
-              "Your account is created now you can login via google"
+              "Your account is created now you can login via google",
+              console.log(res.data)
             );
           } else {
             localStorage.setItem("token", res.data.token);
 
             if (res.data.user.type == "admin") {
               window.location.href = "/admin";
+              console.log("User type:", res.data.user.type);
             } else {
-              window.location.href = "/";
+              window.location.href = "/products";
+              console.log("User type:", res.data.user.type);
             }
           }
         });
@@ -49,33 +54,34 @@ export default function Loginpage() {
   const [value, Setvalue] = useState();
 
   function login() {
+    //api dan me  port number eka calll karana eka methanin venathanakata daganna hdanne
+    //  .env ekkata mokda api den methana dirwectly thma backend url eka liyala thiyaggnne mamata meka host karanakota
+    //backend eka host karnnne venama thanaka front end eka host karanne venne venamathanaka
+    //front end eka host karanne venam thanaka ekama thanaka unath vena venama port dekka run karanana vei
+    //ethakota hadisiiye hari apita venama port number ekka  run karanna unoth me me 300 nathuva(vena port number ekka ) me axios call eken backend ekata
+    // call karana local host port number eka me hamathana venas karanna vena
+    //e nisa api meka .env eke dala veriable hdagena eka methanata denava ethakota eka tahanin vbenas unama hamathanama venas venava
+    //ara vidiha unama real backend url eken apata meka replace karanna venava ara vidihata dapuvbama eka lesi venas karanna
+    // mokda me url eka sthira deyak neme meka sari sare vans karanna sidda venava http://localhost:3000 venama .env ekk dagannava
+    // thiibe me vidihata  .post("http://localhost:3000/api/users/login", {
+    //dssas
     axios
 
-      //api dan me  port number eka calll karana eka methanin venathanakata daganna hdanne
-      //  .env ekkata mokda api den methana dirwectly thma backend url eka liyala thiyaggnne mamata meka host karanakota
-      //backend eka host karnnne venama thanaka front end eka host karanne venne venamathanaka
-      //front end eka host karanne venam thanaka ekama thanaka unath vena venama port dekka run karanana vei
-      //ethakota hadisiiye hari apita venama port number ekka  run karanna unoth me me 300 nathuva(vena port number ekka ) me axios call eken backend ekata
-      // call karana local host port number eka me hamathana venas karanna vena
-      //e nisa api meka .env eke dala veriable hdagena eka methanata denava ethakota eka tahanin vbenas unama hamathanama venas venava
-      //ara vidiha unama real backend url eken apata meka replace karanna venava ara vidihata dapuvbama eka lesi venas karanna
-      // mokda me url eka sthira deyak neme meka sari sare vans karanna sidda venava http://localhost:3000 venama .env ekk dagannava
-      // thiibe me vidihata  .post("http://localhost:3000/api/users/login", {
-      //dssas
       .post(import.meta.env.VITE_BACKEND_URL + "/api/users/login", {
         email: email, //uda thiyena email
-        password: password, //uda thiyena password ekai api postman eke req eka yauva vge thama me yavanne
+        password: password,
+
+        //uda thiyena password ekai api postman eke req eka yauva vge thama me yavanne
         //input type eke data tika aragena methanata dala userlogin eke email password ekata aragena backend ekata eyavanava
       })
       .then((res) => {
         //ita passe ena res eka methanin balanava
         console.log(res);
-
         // methandi balanava issella  user null da kiyala null nam eka navathinava natghtham phala kotasa exute karanava
 
         if (res.data.user == null) {
           //methandi user kenek naththam apata backekend res eke eva tyika ganana puluvan  alert ekk viodihata
-          //naththama apata avashya ekeka daggnath puluvan
+          //naththama apata avashya ekeka daggnath puluva
           Setvalue(res.data.message);
 
           //  naththam apata alert ekk denanath puluvan
@@ -97,6 +103,7 @@ export default function Loginpage() {
 
         //api  me token eka local storage eke meka save karaganna me local storage eke ape crash eka save karanna puluvan ape web
         //site ekata adalava
+
         localStorage.setItem("token", res.data.token);
 
         //apiata browser eke token eka enne reponse eke data vala ena token eka api save kargannava token kiyana namin
@@ -113,7 +120,6 @@ export default function Loginpage() {
           window.location.href = "/home";
         }
       });
-
     // console.log("pressloginbtn");
 
     // console.log(email)//dan api baluvgoth avith thiyenne realtime update una email eka eka balnna puluvan
@@ -124,6 +130,7 @@ export default function Loginpage() {
   //dan api meke obeject ekk vifdihata api dan balanava mokda api meke me component eke vanas vena attribute diha
   // baluivoth email eka password keai meke vensa venava mokda api e vens vena hma ekkatama use state hadaganna
   // oni
+
   return (
     <>
       <div className="flex items-center justify-center w-full h-screen bg-lime-600 ">
@@ -133,6 +140,7 @@ export default function Loginpage() {
             <span>Email</span>
             {/* methana default value eka venne api inpute field ekata enter karana eka  use state hook ekata yanava ita passe use
              state email ekata giya  ekata  value eken methana filed eka update karanava*/}
+
             <input
               type="text"
               placeholder="Email"
@@ -148,7 +156,8 @@ export default function Loginpage() {
                 // eke athule tika print venava
 
                 //dan api kiyanava e vachne vena venavanam e venas vena vachane uda veriable ekeata dagannav
-                setemail(e.target.value); // meka thama sampurna core keaform ekath ekka vada karanakota
+                setemail(e.target.value);
+                // meka thama sampurna core keaform ekath ekka vada karanakota
                 ///meken uda thiyena veriable eka udtae eke thiya ganava methana vena changes valin
               }}
             />
@@ -184,10 +193,12 @@ export default function Loginpage() {
             </button>
             {/* api function call karanakota() danne na */}
           </div>
+
           {/* //api meka damma app .jsx site eka cover karala vagema ggogle ouath npm eka 
 // insatall karala. dan apata meka click karama venna oni karanna apata hook ekk enava eka apata enne google aouth ekenamai*/}
           {/* e vagema  meka run karama ape uda google login hook eka run venava ita passe apata login
           google page eka open venava */}
+
           <button
             onClick={() => {
               googleLogin();

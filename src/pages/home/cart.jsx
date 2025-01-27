@@ -59,6 +59,8 @@ export default function Cart() {
       },
     });
 
+    // api metika danna eha paththgta aran giya e kiyanne shipping ekata aran gioya
+
     // const token = localStorage.getItem("token");
     // if (token == null) {
     //   return;

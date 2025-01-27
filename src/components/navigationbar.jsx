@@ -147,7 +147,7 @@ export default function NavigationBar() {
               <Link to="/">Contact Us</Link>
             </li>
             <li>
-              <Link to="/">Cart</Link>
+              <Link to="/Cart">Cart</Link>
             </li>
 
             <li>

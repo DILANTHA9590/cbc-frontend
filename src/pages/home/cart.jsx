@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { loardCard } from "../../utils/cartfunction";
 import CartCard from "../../components/cartCart";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
   const [labeledTotal, setLabeledTotal] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setCart(loardCard());
@@ -33,8 +35,12 @@ export default function Cart() {
       .then((res) => {
         setTotal(res.data);
         console.log(res.data);
-        setTotal(res.data.total);
-        setLabeledTotal(res.data.labeldTotal);
+        // api methanadi kare product eka null naththam vitharak toaotal ekai label totola keai set karanna kiyala
+        //ethakota ape code eka ekapara godak nikan riuun vena eka aduvenava
+        if (res.data.total != null) {
+          setTotal(res.data.total);
+          setLabeledTotal(res.data.labeldTotal);
+        }
       });
   }, []);
 
@@ -43,31 +49,41 @@ export default function Cart() {
   //  order db ekata ethakota eya e yavana ekata order id ekk creqtate karan db ekes ave venava
 
   function onOrderCheckoutClick() {
-    const token = localStorage.getItem("token");
-    if (token == null) {
-      return;
-    }
-    axios
-      .post(
-        import.meta.env.VITE_BACKEND_URL + "/api/orders",
-        {
-          // meke order database eke ordeid emails me tika backend ekenma api hada[pu eken assign assign venava
-          //methanin api  orderitesms  tika yavana va e vagema api name phoneno saha adress dala yanna hdala thiyenne e nisa
-          // thavakalikava methnanin dala ynnava  e tika danata
-          orderedItems: cart, //me yavanne ape cart eke save vela thiyena orderd items tika
-          name: "dilantha",
-          address: "ampara",
-          phone: "ffffff",
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-      });
+    // dan  api kalin methana check out venna dummy vidihata hdagaththe ehema hariyanne na check out ebuvama  venama page ekkin
+    // check out venna api hdaganna oni api ethakota krala thiyennemethana danata card eke add vela thiyena visthrathaRA ekka
+    //state eke dala yavanava shipping page ekata apita ethakota shippen page ekata ayanakota ape cart ekthiyena item checkout
+    //  karaganna puluvan
+    navigate("/shipping", {
+      state: {
+        items: loardCard(),
+      },
+    });
+
+    // const token = localStorage.getItem("token");
+    // if (token == null) {
+    //   return;
+    // }
+    // axios
+    //   .post(
+    //     import.meta.env.VITE_BACKEND_URL + "/api/orders",
+    //     {
+    //       // meke order database eke ordeid emails me tika backend ekenma api hada[pu eken assign assign venava
+    //       //methanin api  orderitesms  tika yavana va e vagema api name phoneno saha adress dala yanna hdala thiyenne e nisa
+    //       // thavakalikava methnanin dala ynnava  e tika danata
+    //       orderedItems: cart, //me yavanne ape cart eke save vela thiyena orderd items tika
+    //       name: "dilantha",
+    //       address: "ampara",
+    //       phone: "ffffff",
+    //     },
+    //     {
+    //       headers: {
+    //         Authorization: "Bearer " + token,
+    //       },
+    //     }
+    //   )
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   });
   }
 
   return (

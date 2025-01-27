@@ -6,6 +6,8 @@ import Loginpage from "./loginpage";
 import ProductPage from "./home/product";
 import Cart from "./home/cart";
 import NavigationBar from "../components/navigationbar";
+import ShippingPage from "./home/SHIPPING.JSX";
+
 //import karaganna oni
 
 export default function Homepage() {
@@ -14,7 +16,7 @@ export default function Homepage() {
       {/* <Header /> */}
       <NavigationBar />
 
-      <div className="w-full h-[calc(100vh-12vh)] bg-primary ">
+      <div className="w-full sm:h-[calc(100vh-25vh)] h-full bg-primary ">
         <Routes path="/">
           <Route path="/dashboard" element={<h1>Dashbord</h1>} />
 
@@ -32,6 +34,7 @@ export default function Homepage() {
           <Route path="/productInfo/:id" element={<ProductOverview />} />
 
           {/* <Route path="/dashboard" element={<h1>Dashbord</h1>} /> */}
+          <Route path="/shipping/" element={<ShippingPage />} />
         </Routes>
       </div>
     </div>

@@ -5,17 +5,19 @@ import AdminProductsPage from "./admin/adminproductspage";
 import AddproductForm from "./admin/addProductform";
 import EditProducts from "./admin/editProductform";
 import EditProducttForm from "./admin/editProductform";
+import MyOrderPage from "./home/order";
+import AdminOrderPage from "./admin/adminOrderpage";
 
 export default function AdminPage() {
   return (
     <>
       {/* Full-width container with flex layout */}
-      <div className="bg-slate-700 w-full h-screen flex">
+      <div className="flex w-full h-screen bg-slate-700">
         {/* Sidebar */}
         <div className="w-[20%] h-screen bg-blue-800 flex flex-col items-center text-white">
           {/* Dashboard Link */}
           <Link
-            className="flex items-center gap-2 py-2 px-4 hover:bg-blue-600 rounded w-full justify-start"
+            className="flex items-center justify-start w-full gap-2 px-4 py-2 rounded hover:bg-blue-600"
             to="/admin/dashboard"
           >
             <BsGraphUp />
@@ -23,7 +25,7 @@ export default function AdminPage() {
           </Link>
           {/* Products Link */}
           <Link
-            className="flex items-center gap-2 py-2 px-4 hover:bg-blue-600 rounded w-full justify-start"
+            className="flex items-center justify-start w-full gap-2 px-4 py-2 rounded hover:bg-blue-600"
             to="/admin/products"
           >
             <BsBox />
@@ -31,7 +33,7 @@ export default function AdminPage() {
           </Link>
           {/* Orders Link */}
           <Link
-            className="flex items-center gap-2 py-2 px-4 hover:bg-blue-600 rounded w-full justify-start"
+            className="flex items-center justify-start w-full gap-2 px-4 py-2 rounded hover:bg-blue-600"
             to="/admin/orders"
           >
             <BsCardChecklist />
@@ -39,7 +41,7 @@ export default function AdminPage() {
           </Link>
           {/* Customers Link */}
           <Link
-            className="flex items-center gap-2 py-2 px-4 hover:bg-blue-600 rounded w-full justify-start"
+            className="flex items-center justify-start w-full gap-2 px-4 py-2 rounded hover:bg-blue-600"
             to="/admin/customers"
           >
             <BsPeople />
@@ -73,7 +75,7 @@ ethakota /dashbord kiyaala avoth eyata dashbord component eka loard karala penna
               path="/products/editProducts"
               element={<EditProducttForm />}
             />
-            <Route path="/orders" element={<h1>orders</h1>} />
+            <Route path="/orders" element={<AdminOrderPage />} />
             <Route path="/customers" element={<h1>customers</h1>} />
             <Route path="/*" element={<h1>404 Not Found Page</h1>} />
           </Routes>

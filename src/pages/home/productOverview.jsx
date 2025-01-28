@@ -4,12 +4,14 @@ import { useParams } from "react-router-dom";
 import ProductNotFound from "./productNotFound";
 import ImageSlider from "../../components/imageSlider";
 import { addToCard } from "../../utils/cartfunction";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 //api ai mevage page ekk hadanne product eke id ekk dala adala product eke mevage page
 // ekk ai  api hadala denne customer apita meke vatinakama thamai mehema karama apata
 //e adla prodcut eka customerta share karanna puluvan udaharanayak vidihata api daraz eke apita avshya product ekk hambunama api eka customerta yavanne
 // ethakota e adala product eka loard venava e vge thamamekaqthj kar ala thiyemnme e adla product ekata adla link
 // eka ta anuva loard venava katahari yauvoth
+
 export default function ProductOverview() {
   //dan api methana thava hook eka dagannava eka nama useParams
   //eken apata venne ape api request ekath ekka ena parameter gana vistharayak enava
@@ -21,6 +23,7 @@ export default function ProductOverview() {
 
   //ilagata pi use effect  hook eka pavichi karanava api meka pavichi karanne ape compoonent eka loard vena velave yam kisi
   // deyak vena oni nam api me hook  ekae us ekaranava
+  const navigate = useNavigate();
   const params = useParams();
 
   const productId = params.id;
@@ -72,6 +75,30 @@ export default function ProductOverview() {
     addToCard(product.productId, 1);
 
     toast.success(product.productId + "Added to Cart");
+  }
+
+  function onBuyNowClick() {
+    // api dan methana hadala thiyenne
+    //cysmer cart ekata items add nokara eyata ekaparama buy karanna oninam
+    //eyata e vadeta thma meka hadala thiyyene eya buy now eka obapu gaman
+
+    navigate("/shipping", {
+      // api  methgana item kiyala arrey ekk hadala ekata product eke id ekai qty ekai dagannava navigate venakota me tika yanava
+      //api methana eka elemenrt ekk thiyena arrey ekkk thama hadakla thiyenne
+
+      // itapasse  api buy now click karma userva naviga te venna hdanava
+      // e product eke id eka saha api qty 1 dagannava ehema danname product eke buy click karamayanne i item
+      // ekai e nisa qty 1  one kiyala dala api e tika ape shipping page ekata kelinma checkout venna ahdanava cart ekata noya
+
+      state: {
+        items: [
+          {
+            productId: product.productId,
+            qty: 1,
+          },
+        ],
+      },
+    });
   }
 
   return (
@@ -138,14 +165,18 @@ export default function ProductOverview() {
               </p>
 
               <div className="flex gap-3 ">
-                <button className="px-3 py-1 rounded bg-fuchsia-400">
-                  Buy Now
-                </button>
                 <button
-                  className="px-3 py-1 bg-green-600 rounded"
+                  className="px-3 py-1 text-white rounded bg-accent sm:min-w-[150px]"
                   onClick={onAddtoCartClick}
                 >
                   Add to Card
+                </button>
+
+                <button
+                  className="px-3 py-1 rounded-lg  border-accent border-[3px]  sm:min-w-[150px] "
+                  onClick={onBuyNowClick}
+                >
+                  Buy Now
                 </button>
               </div>
             </div>

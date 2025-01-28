@@ -81,10 +81,10 @@ export default function CartCard(props) {
           </td>
           <td className="text-lg text-center">{qty}</td>
           <td className="text-xl text-center text-red-500">
-            LKR:{product?.price}
+            LKR:{product?.price.toFixed(2)}
           </td>
           <td className="text-xl text-center text-red-500">
-            {product?.lastPrice * qty}
+            LKR:{(product?.lastPrice * qty).toFixed(2)}
           </td>
         </tr>
       )}

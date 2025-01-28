@@ -110,11 +110,15 @@ export default function Cart() {
         })}
       </table>
       <div className="flex flex-col items-end justify-center p-1 text-xl sm:text-3xl">
-        <h1 className="font-bold text-accent">Total: LKR. {labeledTotal}</h1>
         <h1 className="font-bold text-accent">
-          Discount: LKR. {labeledTotal - total}
+          Total: LKR. {labeledTotal.toFixed(2)}
         </h1>
-        <h1 className="font-bold text-accent">Grand Total: LKR. {total}</h1>
+        <h1 className="font-bold text-accent">
+          Discount: LKR. {(labeledTotal - total).toFixed(2)}
+        </h1>
+        <h1 className="font-bold text-accent">
+          Grand Total: LKR. {total.toFixed(2)}
+        </h1>
         <button
           onClick={onOrderCheckoutClick}
           className="bg-orange-500 sm:w-[300px] max-w p-2 rounded mt-2 hover:bg-orange-400

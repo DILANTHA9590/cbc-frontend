@@ -77,7 +77,8 @@ export default function ShippingPage() {
       )
       .then((res) => {
         toast.success("Order placed successfully");
-        navigate("/order-success", { state: { orderId: res.data.orderId } });
+        // navigate("/order-success", { state: { orderId: res.data.orderId } });
+        navigate("/orders");
       })
       .catch((err) => {
         toast.error("Failed to place order");

@@ -35,43 +35,42 @@ export function ProductCard(props) {
         me link eken api product info roooute ekata yanakota api datath ellan yana nisa apata e  adala id 
         ekata adala product overview eka pennava
          */}
-      <Link to={`/productInfo/${props.product.productId}`}>
+      <Link
+        to={`/productInfo/${props.product.productId}`}
+        className="w-[300px] h-[450px] m-[70px] rounded-xl shadow-lg shadow-gray-600 hover:shadow-primary 
+       hover:border-[3px]  overflow-hidden flex flex-col "
+      >
         {/* //e ena props valin api div ekk dala eken eka gannava crd eken eka */}
 
-        <div
-          className="w-[300px] h-[450px] m-[70px] rounded-xl shadow-lg shadow-gray-600 hover:shadow-primary 
-       hover:border-[3px]  overflow-hidden flex flex-col "
-        >
-          <img
-            src={props.product.images[0]}
-            alt=""
-            className="h-[65%] w-full object-cover "
-          />
+        <img
+          src={props.product.images[0]}
+          alt=""
+          className="h-[65%] w-full object-cover "
+        />
 
-          <div className=" h-[35%] min-h-[35%]:">
-            <h1 className="text-2xl font-bold text-center text-accent ">
-              {props.product.productName}
-            </h1>
+        <div className=" h-[35%] min-h-[35%]:">
+          <h1 className="text-2xl font-bold text-center text-accent ">
+            {props.product.productName}
+          </h1>
 
-            <h2 className="text-2xl font-bold text-center text-accent">
-              {props.product.productId}
-            </h2>
+          <h2 className="text-2xl font-bold text-center text-accent">
+            {props.product.productId}
+          </h2>
 
-            <p className="text-left text-lg font-semibold">
-              {/* to fix eken apta avshya bindu gazna daganna puluavan */}
-              LKR.{props.product.lastPrice.toFixed(2)}
-            </p>
+          <p className="text-lg font-semibold text-left">
+            {/* to fix eken apta avshya bindu gazna daganna puluavan */}
+            LKR.{props.product.lastPrice.toFixed(2)}
+          </p>
 
-            {/* methana api karala thiyenne last price eka producct price ekatavada kudai nam vitharak me ira dala pruct 
+          {/* methana api karala thiyenne last price eka producct price ekatavada kudai nam vitharak me ira dala pruct 
             price eka pennane samana nam eth penane na
             samana nam penane na */}
 
-            {props.product.lastPrice < props.product.price && (
-              <p className="text-left text-xl text-gray-500 font-semibold line-through">
-                LKR {props.product.price.toFixed(2)}
-              </p>
-            )}
-          </div>
+          {props.product.lastPrice < props.product.price && (
+            <p className="text-xl font-semibold text-left text-gray-500 line-through">
+              LKR {props.product.price.toFixed(2)}
+            </p>
+          )}
         </div>
       </Link>
     </div>

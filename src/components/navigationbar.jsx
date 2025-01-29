@@ -10,12 +10,44 @@ import { FaUserCircle } from "react-icons/fa";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
 import { IoMdMenu } from "react-icons/io";
 import { BsSearch } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MobileNavBar from "./mobileNavBar";
+import axios from "axios";
 export default function NavigationBar() {
   const [isNavBarOpen, setIsNavBarOpen] = useState(false);
+
+  const navigate = useNavigate();
+  const [image, setImage] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    console.log(token);
+
+    if (!token) {
+      return;
+    }
+
+    axios
+      .get(import.meta.env.VITE_BACKEND_URL + "/api/users/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        if (res.data.type !== "customer") {
+          return;
+        } else {
+          console.log(res.data.profilePic);
+          setImage(res.data.profilePic);
+          console.log(image);
+        }
+      })
+      .catch((erorr) => {
+        console.log(erorr);
+      });
+  }, []);
   return (
     <>
       {/* Mobile Responsive Nav bar */}
@@ -113,11 +145,25 @@ export default function NavigationBar() {
           {/* login section */}
           <div className="hidden list-none md:block">
             <ul className="flex items-center">
-              <li>
-                <a href="">
-                  <FaUserCircle className="w-[40px] h-[40px]" />
-                </a>
-              </li>
+              {/* user image */}
+              {image ? (
+                <li>
+                  <a href="">
+                    <img
+                      src={image}
+                      alt="User Profile"
+                      className="w-[50px] h-[50px] rounded-full"
+                    />
+                  </a>
+                </li>
+              ) : (
+                <li>
+                  <a href="">
+                    <FaUserCircle className="w-[40px] h-[40px]" />
+                  </a>
+                </li>
+              )}
+
               <li>
                 <a href="">
                   <PiShoppingCartSimpleFill className="w-[40px] h-[40px]" />

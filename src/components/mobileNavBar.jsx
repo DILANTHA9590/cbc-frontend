@@ -13,7 +13,12 @@ export default function MobileNavBar(props) {
               className="absolute text-3xl right-5 text-accent"
               onClick={navBarClose}
             />
+            {/* //testing 3 add feature branch */}
+            {/* testing commit 4 */}
           </div>
+
+          {/* //testing  */}
+
           <div className="flex ">
             <ul className="flex flex-col pl-4 gap-y-3">
               <li>

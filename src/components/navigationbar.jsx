@@ -88,17 +88,28 @@ export default function NavigationBar() {
           </div>
 
           {/* search bar  */}
-          <div className="flex items-center w-full h-10 max-w-xl border">
-            <input
-              type="text"
-              placeholder="Search For Product ...."
-              className="w-full px-3 grow focus:outline-none"
-            />
 
-            <a href="">
-              <BsSearch />
-            </a>
+          <div className="items-center justify-center hidden md:flex">
+            <ul className="items-center md:flex gap-x-4 sm:gap-x-10 sm:text-2xl">
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/">About Us</Link>
+              </li>
+              <li>
+                <Link to="/">Contact Us</Link>
+              </li>
+              <li>
+                <Link to="/Cart">Cart</Link>
+              </li>
+
+              <li>
+                <Link to="/products">Products</Link>
+              </li>
+            </ul>
           </div>
+
           {/* login section */}
           <div className="hidden list-none md:block">
             <ul className="flex items-center">
@@ -133,27 +144,6 @@ export default function NavigationBar() {
               </li>
             </ul>
           </div>
-        </div>
-
-        <div className="items-center justify-center hidden md:flex">
-          <ul className="items-center md:flex gap-x-4 sm:gap-x-10 sm:text-2xl">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/">About Us</Link>
-            </li>
-            <li>
-              <Link to="/">Contact Us</Link>
-            </li>
-            <li>
-              <Link to="/Cart">Cart</Link>
-            </li>
-
-            <li>
-              <Link to="/products">Products</Link>
-            </li>
-          </ul>
         </div>
       </div>
     </>

@@ -14,6 +14,8 @@ export default function MobileNavBar(props) {
               onClick={navBarClose}
             />
           </div>
+
+          {/* //testing  */}
           <div className="flex ">
             <ul className="flex flex-col pl-4 gap-y-3">
               <li>

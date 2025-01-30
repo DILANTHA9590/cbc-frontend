@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
+import { FaUserCircle } from "react-icons/fa";
 
 export default function MobileNavBar(props) {
   const navBarClose = props.clickCloseBtn;
+  const image = props.setImage;
+  const email = props.email;
+
+  console.log(email);
+  console.log(image);
+  const clickImage = props.clickUserImage;
+
   return (
     <>
       <div className="fixed w-full bg-[#00000080] h-full z-[100] sm:hidden ">
@@ -21,6 +29,27 @@ export default function MobileNavBar(props) {
 
           <div className="flex ">
             <ul className="flex flex-col pl-4 gap-y-3">
+              {image ? (
+                <li>
+                  <a href="">
+                    <img
+                      src={image}
+                      alt="User Profile"
+                      className="w-[50px] h-[50px] rounded-full "
+                      onClick={clickImage}
+                    />
+                  </a>
+                  <p>{email}</p>
+                </li>
+              ) : (
+                <li>
+                  <a href="">
+                    <FaUserCircle className="w-[40px] h-[40px]" />
+                    <p className="font-bold">{email}</p>
+                  </a>
+                </li>
+              )}
+
               <li>
                 <Link to="/">Home</Link>
               </li>

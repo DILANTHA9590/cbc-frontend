@@ -20,10 +20,10 @@ export default function NavigationBar() {
 
   const navigate = useNavigate();
   const [image, setImage] = useState("");
+  const [email, setemail] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log(token);
 
     if (!token) {
       return;
@@ -42,6 +42,7 @@ export default function NavigationBar() {
           console.log(res.data.profilePic);
           setImage(res.data.profilePic);
           console.log(image);
+          setemail(res.data.email);
         }
       })
       .catch((erorr) => {
@@ -57,9 +58,10 @@ export default function NavigationBar() {
       {/* Mobile Responsive Nav bar */}
       {isNavBarOpen && (
         <MobileNavBar
-          clickCloseBtn={() => {
-            setIsNavBarOpen(false);
-          }}
+          image={image} // ✅ Correct way to pass the image URL
+          email={email}
+          clickUserImage={clickUserImage} // ✅ Correctly passing the function
+          clickCloseBtn={() => setIsNavBarOpen(false)} // ✅ This works corre
         />
       )}
       {/* End Mobile Responsive Nav Bar */}
@@ -157,7 +159,7 @@ export default function NavigationBar() {
                       src={image}
                       alt="User Profile"
                       className="w-[50px] h-[50px] rounded-full "
-                      onClick={clickUserImage()}
+                      onClick={clickUserImage}
                     />
                   </a>
                 </li>

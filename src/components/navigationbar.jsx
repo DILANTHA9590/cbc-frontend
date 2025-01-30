@@ -48,6 +48,10 @@ export default function NavigationBar() {
         console.log(erorr);
       });
   }, []);
+
+  function clickUserImage() {
+    navigate("/customeraccount");
+  }
   return (
     <>
       {/* Mobile Responsive Nav bar */}
@@ -152,7 +156,8 @@ export default function NavigationBar() {
                     <img
                       src={image}
                       alt="User Profile"
-                      className="w-[50px] h-[50px] rounded-full"
+                      className="w-[50px] h-[50px] rounded-full "
+                      onClick={clickUserImage()}
                     />
                   </a>
                 </li>

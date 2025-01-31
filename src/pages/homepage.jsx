@@ -9,7 +9,7 @@ import NavigationBar from "../components/navigationbar";
 
 import MyOrderPage from "./home/order";
 import ShippingPage from "./home/shipping";
-import { CustomerHomePage } from "./customer/customerHomePage";
+import { CustomerHomePage } from "./customerHomePage";
 
 //import karaganna oni
 

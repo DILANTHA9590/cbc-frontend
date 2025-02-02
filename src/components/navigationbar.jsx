@@ -9,19 +9,21 @@ import { BiLogoFacebook } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
 import { IoMdMenu } from "react-icons/io";
-import { BsSearch } from "react-icons/bs";
+
 import { Link, useNavigate } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import MobileNavBar from "./mobileNavBar";
 import axios from "axios";
+import { ImSad } from "react-icons/im";
 export default function NavigationBar() {
   const [isNavBarOpen, setIsNavBarOpen] = useState(false);
 
   const navigate = useNavigate();
-  const [image, setImage] = useState("");
-  const [email, setemail] = useState("");
 
+  const [customer, setCustomer] = useState("");
+  console.log("llll", customer.email);
+  console.log("kk", customer.profilePic);
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -39,10 +41,7 @@ export default function NavigationBar() {
         if (res.data.type !== "customer") {
           return;
         } else {
-          console.log(res.data.profilePic);
-          setImage(res.data.profilePic);
-          console.log(image);
-          setemail(res.data.email);
+          setCustomer(res.data);
         }
       })
       .catch((erorr) => {
@@ -50,7 +49,7 @@ export default function NavigationBar() {
       });
   }, []);
 
-  function clickUserImage() {
+  function clickcustomerImage() {
     navigate("/customeraccount");
   }
   return (
@@ -58,10 +57,10 @@ export default function NavigationBar() {
       {/* Mobile Responsive Nav bar */}
       {isNavBarOpen && (
         <MobileNavBar
-          image={image} // ✅ Correct way to pass the image URL
-          email={email}
-          clickUserImage={clickUserImage} // ✅ Correctly passing the function
-          clickCloseBtn={() => setIsNavBarOpen(false)} // ✅ This works corre
+          image={customer.profilePic}
+          email={customer.email}
+          clickcustomerImage={clickcustomerImage}
+          clickCloseBtn={() => setIsNavBarOpen(false)}
         />
       )}
       {/* End Mobile Responsive Nav Bar */}
@@ -145,21 +144,25 @@ export default function NavigationBar() {
               <li>
                 <Link to="/products">Products</Link>
               </li>
+
+              <li>
+                <Link to="/orders">my orders</Link>
+              </li>
             </ul>
           </div>
 
           {/* login section */}
           <div className="hidden list-none md:block">
             <ul className="flex items-center">
-              {/* user image */}
-              {image ? (
+              {/* customer image */}
+              {customer.profilePic ? (
                 <li>
                   <a href="">
                     <img
-                      src={image}
-                      alt="User Profile"
+                      src={customer.profilePic}
+                      alt="customer Profile"
                       className="w-[50px] h-[50px] rounded-full "
-                      onClick={clickUserImage}
+                      onClick={clickcustomerImage}
                     />
                   </a>
                 </li>

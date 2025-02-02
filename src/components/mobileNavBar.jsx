@@ -3,13 +3,16 @@ import { IoCloseOutline } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 
 export default function MobileNavBar(props) {
+  console.log(props);
   const navBarClose = props.clickCloseBtn;
-  const image = props.setImage;
+  const image = props.image;
   const email = props.email;
+  const clickImage = props.clickcustomerImage;
 
   console.log(email);
   console.log(image);
-  const clickImage = props.clickUserImage;
+
+  console.log("mobilenavbar", props);
 
   return (
     <>
@@ -38,14 +41,13 @@ export default function MobileNavBar(props) {
                       className="w-[50px] h-[50px] rounded-full "
                       onClick={clickImage}
                     />
+                    <p>{email}</p>
                   </a>
-                  <p>{email}</p>
                 </li>
               ) : (
                 <li>
                   <a href="">
                     <FaUserCircle className="w-[40px] h-[40px]" />
-                    <p className="font-bold">{email}</p>
                   </a>
                 </li>
               )}

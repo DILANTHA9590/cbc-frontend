@@ -10,6 +10,7 @@ import NavigationBar from "../components/navigationbar";
 import MyOrderPage from "./home/order";
 import ShippingPage from "./home/shipping";
 import { CustomerHomePage } from "./customerHomePage";
+import CustomerEditPage from "../components/customerEdit";
 
 //import karaganna oni
 
@@ -41,6 +42,7 @@ export default function Homepage() {
           <Route path="/shipping/" element={<ShippingPage />} />
           <Route path="/order/" element={<MyOrderPage />} />
           <Route path="customeraccount/" element={<CustomerHomePage />} />
+          <Route path="customereditaccount/" element={<CustomerEditPage />} />
         </Routes>
       </div>
     </div>

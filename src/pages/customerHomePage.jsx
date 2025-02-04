@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export function CustomerHomePage() {
-  const [customer, setCustomer] = useState("");
+  const [customer, setCustomer] = useState({});
+
   const [loaded, setLoaded] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -27,10 +29,18 @@ export function CustomerHomePage() {
           setCustomer(res.data);
 
           setLoaded(true);
+        })
+        .catch((error) => {
+          toast.error("Eroor");
         });
     }
   }, []);
 
+  const clickEditBtn = () => {
+    navigate("/customereditaccount", {
+      state: { customer },
+    });
+  };
   return (
     <>
       <div className="max-w-4xl p-8 mx-auto space-y-8 bg-white rounded-lg shadow-xl">
@@ -99,7 +109,7 @@ export function CustomerHomePage() {
         <div className="mt-8 text-center">
           <button
             className="w-full px-6 py-3 font-semibold text-white transition duration-300 ease-in-out bg-blue-600 rounded-lg md:w-auto hover:bg-blue-700"
-            onClick={() => alert("Edit functionality to be added here")}
+            onClick={clickEditBtn}
           >
             Edit Profile
           </button>

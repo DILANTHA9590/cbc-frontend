@@ -22,8 +22,7 @@ export default function NavigationBar() {
   const navigate = useNavigate();
 
   const [customer, setCustomer] = useState("");
-  console.log("llll", customer.email);
-  console.log("kk", customer.profilePic);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -50,7 +49,12 @@ export default function NavigationBar() {
   }, []);
 
   function clickcustomerImage() {
-    navigate("/customeraccount");
+    const email = customer.email;
+    console.log(email);
+
+    console.log("navbaremail", email);
+
+    navigate("/customeraccount", { state: { email } });
   }
   return (
     <>
@@ -157,14 +161,12 @@ export default function NavigationBar() {
               {/* customer image */}
               {customer.profilePic ? (
                 <li>
-                  <a href="">
-                    <img
-                      src={customer.profilePic}
-                      alt="customer Profile"
-                      className="w-[50px] h-[50px] rounded-full "
-                      onClick={clickcustomerImage}
-                    />
-                  </a>
+                  <img
+                    src={customer.profilePic}
+                    alt="customer Profile"
+                    className="w-[50px] h-[50px] rounded-full "
+                    onClick={clickcustomerImage}
+                  />
                 </li>
               ) : (
                 <li>

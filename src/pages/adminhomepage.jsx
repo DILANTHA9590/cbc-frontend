@@ -10,6 +10,7 @@ import AdminOrderPage from "./admin/adminOrderpage";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { AdminCustomerPage } from "./admin/adminCustomer";
 
 export default function AdminPage() {
   const navigate = useNavigate();
@@ -45,8 +46,8 @@ export default function AdminPage() {
         },
       })
       .then((res) => {
-        console.log(res.data);
-        setuser(res.data);
+        // console.log(res.data);
+        // setuser(res.data);
         //api balanava backeken data davalin type eka admin da
         // kiyala  mekat api venama route ekk hdagaththa methanin aai axios ekk gahanne
         // apata  front eken enne token eka vitharane ek athula inne admin kiyala balaganna api backend ekata token eka yavala
@@ -136,7 +137,7 @@ ethakota /dashbord kiyaala avoth eyata dashbord component eka loard karala penna
                 element={<EditProducttForm />}
               />
               <Route path="/orders" element={<AdminOrderPage />} />
-              <Route path="/customers" element={<h1>customers</h1>} />
+              <Route path="/customers" element={<AdminCustomerPage />} />
               <Route path="/*" element={<h1>404 Not Found Page</h1>} />
             </Routes>
           )}

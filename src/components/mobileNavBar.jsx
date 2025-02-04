@@ -34,15 +34,13 @@ export default function MobileNavBar(props) {
             <ul className="flex flex-col pl-4 gap-y-3">
               {image ? (
                 <li>
-                  <a href="">
-                    <img
-                      src={image}
-                      alt="User Profile"
-                      className="w-[50px] h-[50px] rounded-full "
-                      onClick={clickImage}
-                    />
-                    <p>{email}</p>
-                  </a>
+                  <img
+                    src={image}
+                    alt="User Profile"
+                    className="w-[50px] h-[50px] rounded-full "
+                    onClick={clickImage}
+                  />
+                  <p>{email}</p>
                 </li>
               ) : (
                 <li>

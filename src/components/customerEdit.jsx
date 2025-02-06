@@ -1,23 +1,26 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import uploadMedmiaToSupaBase from "../utils/mediaUpload";
+import axios from "axios";
 
 export default function CustomerEditPage() {
+  const navigate = useNavigate();
   const customer = useLocation().state.customer;
   useLocation;
   console.log(location.email);
 
   const [email, setEmail] = useState(customer.email);
-  const [password, setPassword] = useState("updateuser");
-  const [confirmPassword, setConfirmPassword] = useState("updateuser");
+  const [password, setPassword] = useState(customer.password);
+  const [confirmPassword, setConfirmPassword] = useState(customer.password);
+  console.log("hashone", password);
 
   const [firstName, setFirstName] = useState(customer.firstName);
   const [LastName, setLastName] = useState(customer.lastName);
-  const [profilePic, setProfilePic] = useState([]);
-  console.log("fuckj;lj;", customer.profilePic);
+  const [profilePic, setProfilePic] = useState();
+  console.log("fuckj;lj;", profilePic);
 
-  console.log("dddd", LastName);
+  // console.log("dddd", LastName);
 
   async function clickUpdateBtn() {
     const token = localStorage.getItem("token");
@@ -36,12 +39,41 @@ export default function CustomerEditPage() {
 
     let imgUrl = customer.profilePic;
     console.log("new image", profilePic);
-    const newImg = [];
-    if (profilePic.length > 0) {
-      for (let i = 0; i < profilePic.length; i++) {
-        newImg[i] = uploadMedmiaToSupaBase(profilePic[i]);
+
+    try {
+      if (profilePic) {
+        const newImagUrl = await uploadMedmiaToSupaBase(profilePic);
+        console.log("ss", newImagUrl);
+        imgUrl = newImagUrl;
       }
+    } catch (error) {
+      console.log(error);
     }
+
+    const updateUserData = {
+      email: email,
+
+      firstName: firstName,
+      lastName: LastName,
+      profilePic: imgUrl,
+    };
+
+    if (password !== customer.password) {
+      updateUserData.password = password;
+    }
+    console.log("buttonClick", imgUrl);
+    const response = await axios.put(
+      import.meta.env.VITE_BACKEND_URL + "/api/users/" + customer.email,
+      updateUserData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    navigate("/login");
+    console.log("response", response);
   }
 
   return (
@@ -115,7 +147,7 @@ export default function CustomerEditPage() {
           <input
             type="file"
             onChange={(e) => setProfilePic(e.target.files[0])}
-            className="w-full p-2 mt-1 border rounded-md focus:ring focus:ring-blue-300"
+            className="w-full p-2 mt-1 border rounded-md focus:ring focus:ring-blue- 300"
           />
         </div>
 

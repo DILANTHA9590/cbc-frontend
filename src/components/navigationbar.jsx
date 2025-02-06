@@ -51,6 +51,7 @@ export default function NavigationBar() {
   function clickcustomerImage() {
     const email = customer.email;
     console.log(email);
+    console.log(customer);
 
     console.log("navbaremail", email);
 
@@ -71,7 +72,7 @@ export default function NavigationBar() {
 
       {/* lg Screen Nav Section */}
 
-      <div className="w-full  sm:h-[25vh] ">
+      <div className="w-full h-[20vh] sm:h-[20vh] ">
         {/* first bar  */}
         <div className="flex items-center justify-between py-2 list-none">
           <div>
@@ -133,7 +134,7 @@ export default function NavigationBar() {
           <div className="items-center justify-center hidden md:flex">
             <ul className="items-center md:flex gap-x-4 sm:gap-x-10 sm:text-2xl">
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/homepage">Home</Link>
               </li>
               <li>
                 <Link to="/">About Us</Link>
@@ -150,7 +151,7 @@ export default function NavigationBar() {
               </li>
 
               <li>
-                <Link to="/orders">my orders</Link>
+                <Link to="/order">my orders</Link>
               </li>
             </ul>
           </div>
@@ -164,7 +165,7 @@ export default function NavigationBar() {
                   <img
                     src={customer.profilePic}
                     alt="customer Profile"
-                    className="w-[50px] h-[50px] rounded-full "
+                    className="w-[50px] h-[50px] rounded-full cursor-pointer "
                     onClick={clickcustomerImage}
                   />
                 </li>

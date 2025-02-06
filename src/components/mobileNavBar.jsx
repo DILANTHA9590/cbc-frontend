@@ -51,7 +51,7 @@ export default function MobileNavBar(props) {
               )}
 
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/homepage">Home</Link>
               </li>
               <li>
                 <Link to="/">About Us</Link>
@@ -63,10 +63,10 @@ export default function MobileNavBar(props) {
                 <Link to="/Cart">Cart</Link>
               </li>
               <li>
-                <Link to="/"></Link>
+                <Link to="/products"></Link>
               </li>
               <li>
-                <Link to="/products">Products</Link>
+                <Link to="/order">Products</Link>
               </li>
             </ul>
           </div>

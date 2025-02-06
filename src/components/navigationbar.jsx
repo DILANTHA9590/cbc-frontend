@@ -9,21 +9,22 @@ import { BiLogoFacebook } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
 import { IoMdMenu } from "react-icons/io";
-import { BsSearch } from "react-icons/bs";
+
 import { Link, useNavigate } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import MobileNavBar from "./mobileNavBar";
 import axios from "axios";
+import { ImSad } from "react-icons/im";
 export default function NavigationBar() {
   const [isNavBarOpen, setIsNavBarOpen] = useState(false);
 
   const navigate = useNavigate();
-  const [image, setImage] = useState("");
+
+  const [customer, setCustomer] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log(token);
 
     if (!token) {
       return;
@@ -39,30 +40,39 @@ export default function NavigationBar() {
         if (res.data.type !== "customer") {
           return;
         } else {
-          console.log(res.data.profilePic);
-          setImage(res.data.profilePic);
-          console.log(image);
+          setCustomer(res.data);
         }
       })
       .catch((erorr) => {
         console.log(erorr);
       });
   }, []);
+
+  function clickcustomerImage() {
+    const email = customer.email;
+    console.log(email);
+    console.log(customer);
+
+    console.log("navbaremail", email);
+
+    navigate("/customeraccount", { state: { email } });
+  }
   return (
     <>
       {/* Mobile Responsive Nav bar */}
       {isNavBarOpen && (
         <MobileNavBar
-          clickCloseBtn={() => {
-            setIsNavBarOpen(false);
-          }}
+          image={customer.profilePic}
+          email={customer.email}
+          clickcustomerImage={clickcustomerImage}
+          clickCloseBtn={() => setIsNavBarOpen(false)}
         />
       )}
       {/* End Mobile Responsive Nav Bar */}
 
       {/* lg Screen Nav Section */}
 
-      <div className="w-full  sm:h-[25vh] ">
+      <div className="w-full h-[20vh] sm:h-[20vh] ">
         {/* first bar  */}
         <div className="flex items-center justify-between py-2 list-none">
           <div>
@@ -124,7 +134,7 @@ export default function NavigationBar() {
           <div className="items-center justify-center hidden md:flex">
             <ul className="items-center md:flex gap-x-4 sm:gap-x-10 sm:text-2xl">
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/homepage">Home</Link>
               </li>
               <li>
                 <Link to="/">About Us</Link>
@@ -139,22 +149,25 @@ export default function NavigationBar() {
               <li>
                 <Link to="/products">Products</Link>
               </li>
+
+              <li>
+                <Link to="/order">my orders</Link>
+              </li>
             </ul>
           </div>
 
           {/* login section */}
           <div className="hidden list-none md:block">
             <ul className="flex items-center">
-              {/* user image */}
-              {image ? (
+              {/* customer image */}
+              {customer.profilePic ? (
                 <li>
-                  <a href="">
-                    <img
-                      src={image}
-                      alt="User Profile"
-                      className="w-[50px] h-[50px] rounded-full"
-                    />
-                  </a>
+                  <img
+                    src={customer.profilePic}
+                    alt="customer Profile"
+                    className="w-[50px] h-[50px] rounded-full cursor-pointer "
+                    onClick={clickcustomerImage}
+                  />
                 </li>
               ) : (
                 <li>

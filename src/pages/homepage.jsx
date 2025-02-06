@@ -9,6 +9,8 @@ import NavigationBar from "../components/navigationbar";
 
 import MyOrderPage from "./home/order";
 import ShippingPage from "./home/shipping";
+import { CustomerHomePage } from "./customerHomePage";
+import CustomerEditPage from "../components/customerEdit";
 
 //import karaganna oni
 
@@ -18,7 +20,7 @@ export default function Homepage() {
       {/* <Header /> */}
       <NavigationBar />
 
-      <div className="w-full sm:h-[calc(100vh-25vh)] h-full bg-primary ">
+      <div className="w-full sm:h-[calc(100vh-20vh)] h-full bg-primary ">
         <Routes path="/">
           <Route path="/dashboard" element={<h1>Dashbord</h1>} />
 
@@ -33,12 +35,18 @@ export default function Homepage() {
           <Route path="/products" element={<ProductPage />} />
           <Route path="/Cart" element={<Cart />} />
 
-          <Route path="/productInfo/:id" element={<ProductOverview />} />
+          <Route
+            path="/productInfo/:id"
+            element={<ProductOverview className="" />}
+          />
 
           {/* <Route path="/dashboard" element={<h1>Dashbord</h1>} /> */}
 
           <Route path="/shipping/" element={<ShippingPage />} />
           <Route path="/order/" element={<MyOrderPage />} />
+          <Route path="customeraccount/" element={<CustomerHomePage />} />
+          <Route path="customereditaccount/" element={<CustomerEditPage />} />
+          <Route path="homepage/" element={<Header />} />
         </Routes>
       </div>
     </div>

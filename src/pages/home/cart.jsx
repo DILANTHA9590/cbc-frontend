@@ -3,6 +3,7 @@ import { loardCard } from "../../utils/cartfunction";
 import CartCard from "../../components/cartCart";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { GiToken } from "react-icons/gi";
 
 export default function Cart() {
   const [cart, setCart] = useState([]);
@@ -23,7 +24,11 @@ export default function Cart() {
     // e tika api gannava e tika api save karala thiyenne local storage eke uda set loard card kiyala set
     // karan thiyenneth e tika api ethakota e function eka api pass karana ava api eke for loop eka
     //ordered Oteme kata ethakota eya e adala item vala prices okkoma ekathu karala api total
+
     // price eka denava
+
+    const token = localStorage.getItem("token");
+
     axios
       .post(import.meta.env.VITE_BACKEND_URL + "/api/orders/quote", {
         //api get eka post ekkata maru kara

@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 // eka ta anuva loard venava katahari yauvoth
 
 export default function ProductOverview() {
+  const [count, setCount] = useState(1);
   //dan api methana thava hook eka dagannava eka nama useParams
   //eken apata venne ape api request ekath ekka ena parameter gana vistharayak enava
   //api me const param  ekata dala thiyenne param ekk ena json eke vithara tika
@@ -72,7 +73,7 @@ export default function ProductOverview() {
     product id tika api yavanava ape cart page ekata add crt btneka ebuvama */
 
   function onAddtoCartClick() {
-    addToCard(product.productId, 1);
+    addToCard(product.productId, count);
 
     toast.success(product.productId + "Added to Cart");
   }
@@ -94,7 +95,7 @@ export default function ProductOverview() {
         items: [
           {
             productId: product.productId,
-            qty: 1,
+            qty: count,
           },
         ],
       },
@@ -102,7 +103,7 @@ export default function ProductOverview() {
   }
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-auto sm:h-full bg-primary">
       {
         //    methana dan api eka eka use starte valata dala deval venna thama karala thiyenne
         // methana  true unoth me kotasa
@@ -163,6 +164,35 @@ export default function ProductOverview() {
               <p className="text-lg text-gray-600 line-clamp-3 xl:text-2xl">
                 {product.description}
               </p>
+              <div className="flex gap-3">
+                <button
+                  className="px-2 border border-black"
+                  onClick={() => {
+                    if (count > 1) {
+                      setCount(count - 1);
+                    }
+                  }}
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  className="px-2 max-w-10"
+                  value={count}
+                  onChange={(e) => setCount(e.target.value)}
+                />
+
+                <button
+                  className="px-2 border border-black"
+                  onClick={() => {
+                    if (count <= 9) {
+                      setCount(count + 1);
+                    }
+                  }}
+                >
+                  +
+                </button>
+              </div>
 
               <div className="flex gap-3 ">
                 <button

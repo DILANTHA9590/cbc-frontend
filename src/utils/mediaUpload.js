@@ -47,10 +47,13 @@ export default async function uploadMedmiaToSupaBase(file) {
         // api kiyanava superbase eken  ena url eka thiyenne data.publicurl eken ganna kiayala
         const publicUrl = supabase.storage.from("images").getPublicUrl(fileName)
           .data.publicUrl;
+
         // meka harigiyoth api eliayata denava public url eka
         resolve(publicUrl);
 
         //hari giye nathtahm
+
+        console.log(publicUrl);
       })
       .catch((error) => {
         reject(error);

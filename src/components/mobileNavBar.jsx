@@ -8,6 +8,7 @@ export default function MobileNavBar(props) {
   const image = props.image;
   const email = props.email;
   const clickImage = props.clickcustomerImage;
+  const clickUserIcon = props.clickUserIcon;
 
   console.log(email);
   console.log(image);
@@ -45,7 +46,10 @@ export default function MobileNavBar(props) {
               ) : (
                 <li>
                   <a href="">
-                    <FaUserCircle className="w-[40px] h-[40px]" />
+                    <FaUserCircle
+                      className="w-[40px] h-[40px]"
+                      onClick={clickUserIcon}
+                    />
                   </a>
                 </li>
               )}

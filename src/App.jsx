@@ -54,6 +54,7 @@ nisa me npm eke kiyla thiyenava api meken webs ekama wrap karaganna oni kiyala e
             {/* me router vala route athu athule thama api path eka saha pennvana commponnetnt eka denne()page eka
              */}
             <Route path="/*" element={<Homepage />} />
+
             {/* uda home page eka hadala thiyenne monava gahan avath home page ekata yana vidihata ekai /* dana eken 
           
           venne  habai <Route path="/admin/jhnkgbkj" element={<AdminPage />} /> mehema gahuvoth enne eth admioin ekata 

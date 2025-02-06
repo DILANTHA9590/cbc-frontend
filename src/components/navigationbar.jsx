@@ -57,6 +57,10 @@ export default function NavigationBar() {
 
     navigate("/customeraccount", { state: { email } });
   }
+
+  function clickUserIcon() {
+    navigate("/login");
+  }
   return (
     <>
       {/* Mobile Responsive Nav bar */}
@@ -65,6 +69,7 @@ export default function NavigationBar() {
           image={customer.profilePic}
           email={customer.email}
           clickcustomerImage={clickcustomerImage}
+          clickUserIcon={clickUserIcon}
           clickCloseBtn={() => setIsNavBarOpen(false)}
         />
       )}

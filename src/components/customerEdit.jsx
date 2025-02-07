@@ -38,7 +38,7 @@ export default function CustomerEditPage() {
     }
 
     let imgUrl = customer.profilePic;
-    console.log("new image", profilePic);
+    console.log("old image", customer.profilePic);
 
     try {
       if (profilePic) {

@@ -89,7 +89,7 @@ export default function AdminOrderPage() {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 h-[100vh] overflow-y-scroll overflow-hidden">
       <h1 className="mb-4 text-2xl font-bold">My Orders</h1>
       {orders.length > 0 ? (
         <table className="w-full border border-collapse border-gray-300">

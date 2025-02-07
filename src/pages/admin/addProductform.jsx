@@ -124,11 +124,11 @@ export default function AddproductForm() {
   // };
 
   return (
-    <div className="w-full h-screen flex items-center justify-center flex-col bg-gray-600">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">
+    <div className="flex flex-col items-center justify-center w-full h-screen bg-gray-600">
+      <h1 className="mb-6 text-3xl font-bold text-gray-800">
         Add Product Panel
       </h1>
-      <div className="flex flex-col border border-gray-300 shadow-lg rounded-lg bg-white p-10 space-y-4">
+      <div className="flex flex-col p-10 space-y-4 bg-white border border-gray-300 rounded-lg shadow-lg">
         <div className="flex flex-col space-y-2">
           <label className="font-semibold text-gray-700">Product ID</label>
           <input
@@ -202,7 +202,7 @@ export default function AddproductForm() {
             onChange={(e) => setStock(e.target.value)}
           />
         </div>
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-2 ">
           <label className="font-semibold text-gray-700">Description</label>
           <textarea
             className="w-[300px] h-[100px] border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"

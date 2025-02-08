@@ -177,7 +177,10 @@ export default function NavigationBar() {
               ) : (
                 <li>
                   <a href="">
-                    <FaUserCircle className="w-[40px] h-[40px]" />
+                    <FaUserCircle
+                      className="w-[40px] h-[40px]"
+                      onClick={clickUserIcon}
+                    />
                   </a>
                 </li>
               )}

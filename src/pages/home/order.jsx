@@ -78,6 +78,7 @@ export default function MyOrderPage() {
                 <td className="p-2 border border-gray-300">
                   LKR{calculateTotalBill(order.orderedItems).toFixed(2)}
                 </td>
+                {order.reviews == "Delivered" && <td>{order.reviews}</td>}
               </tr>
             ))}
           </tbody>

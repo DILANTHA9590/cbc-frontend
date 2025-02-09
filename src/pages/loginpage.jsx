@@ -112,10 +112,6 @@ export default function Loginpage() {
         //ekata adala eva string ekkin save venava strin ekkin haby
 
         // dan api methana balanava user type eka balala eyalava page valata redirect venna
-        if (req.data.user.isBlock == true) {
-          toast.error("block user");
-          return;
-        }
 
         if (res.data.user.type == "admin") {
           // type eka admin nam admin page ekata yavanava

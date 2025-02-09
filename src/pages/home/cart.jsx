@@ -57,6 +57,7 @@ export default function Cart() {
     // dan  api kalin methana check out venna dummy vidihata hdagaththe ehema hariyanne na check out ebuvama  venama page ekkin
     // check out venna api hdaganna oni api ethakota krala thiyennemethana danata card eke add vela thiyena visthrathaRA ekka
     //state eke dala yavanava shipping page ekata apita ethakota shippen page ekata ayanakota ape cart ekthiyena item checkout
+
     //  karaganna puluvan
     navigate("/shipping", {
       state: {

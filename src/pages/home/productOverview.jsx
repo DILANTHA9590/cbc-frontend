@@ -147,11 +147,9 @@ export default function ProductOverview() {
               <h1 className="text-3xl font-bold text-gray-800 xl:text-6xl">
                 {product.productName}
               </h1>
-
               <h2 className="text-2xl font-bold text-gray-700 sm:text-3xl xl:text-5xl">
                 {product.altNames.join("|")}
               </h2>
-
               <p className="hidden text-xl text-gray-600 xl:text-3xl sm:block">
                 {product.price > product.lastPrice && (
                   <span className="text-red-600 line-through">
@@ -160,7 +158,6 @@ export default function ProductOverview() {
                 )}
                 <span> ${product.lastPrice}</span>
               </p>
-
               <p className="text-lg text-gray-600 line-clamp-3 xl:text-2xl">
                 {product.description}
               </p>
@@ -193,7 +190,6 @@ export default function ProductOverview() {
                   +
                 </button>
               </div>
-
               <div className="flex gap-3 ">
                 <button
                   className="px-3 py-1 text-white rounded bg-accent sm:min-w-[150px]"
@@ -208,6 +204,27 @@ export default function ProductOverview() {
                 >
                   Buy Now
                 </button>
+              </div>
+
+              <div className="talkwind-reviews">
+                <h3 className="review-title">What Our Customers Say:</h3>
+                <div className="max-w-4xl p-6 mx-auto shadow-lg bg-blue-50 rounded-xl">
+                  <h3 className="mb-6 text-2xl text-center text-blue-600">
+                    What Our Customers Say:
+                  </h3>
+                  {product.reviews && product.reviews.length > 0 ? (
+                    product.reviews.map((review, index) => (
+                      <div className="bg-white p-4 mb-4 rounded-xl shadow-md relative max-w-[90%] mx-auto">
+                        <p>{review}</p>
+                        <div className="absolute left-4 top-[-12px] w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-white"></div>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="p-4 text-lg italic text-center text-gray-600">
+                      No reviews yet! Be the first to share your thoughts.
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           </div>

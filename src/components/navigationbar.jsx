@@ -15,7 +15,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import MobileNavBar from "./mobileNavBar";
 import axios from "axios";
-import { ImSad } from "react-icons/im";
+
 export default function NavigationBar() {
   const [isNavBarOpen, setIsNavBarOpen] = useState(false);
 
@@ -155,20 +155,24 @@ export default function NavigationBar() {
                 <Link to="/products">Products</Link>
               </li>
 
-              <li>
-                <Link to="/order">my orders</Link>
-              </li>
+              {customer && (
+                <li>
+                  <Link to="/order">my orders</Link>
+                </li>
+              )}
             </ul>
           </div>
 
           {/* login section */}
           <div className="hidden list-none md:block">
-            <ul className="flex items-center">
+            <ul className="flex items-center gap-3">
               {/* customer image */}
+              <button className="bg-primary">Loging</button>
               {customer.profilePic ? (
                 <li>
                   <img
                     src={customer.profilePic}
+                    title="Go your profile"
                     alt="customer Profile"
                     className="w-[50px] h-[50px] rounded-full cursor-pointer "
                     onClick={clickcustomerImage}
@@ -178,7 +182,8 @@ export default function NavigationBar() {
                 <li>
                   <a href="">
                     <FaUserCircle
-                      className="w-[40px] h-[40px]"
+                      title="Login"
+                      className="w-[40px] h-[40px] "
                       onClick={clickUserIcon}
                     />
                   </a>

@@ -206,7 +206,12 @@ export default function Loginpage() {
           >
             Login with Google
           </button>
-
+          <Link
+            className="flex items-center justify-start w-full gap-2 px-4 py-2 rounded hover:bg-blue-600"
+            to="/signup/"
+          >
+            singup
+          </Link>
           <div>
             <Link className="underline text-amber-400">Fogotten Password</Link>
           </div>

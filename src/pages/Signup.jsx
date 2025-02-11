@@ -25,8 +25,6 @@ export default function SignUpUser() {
       });
   }, []);
 
-  console.log(user.type);
-
   function clickSignUpButton() {
     if (!firstName.trim()) {
       toast.error("Please enter your first name");
@@ -59,9 +57,18 @@ export default function SignUpUser() {
       );
       return;
     }
-
+    //i set this default type is customer
     let type = "customer";
     console.log("defaulttype", type);
+
+    //check state veribale
+    //it help full for if  user is admin and set type admin
+    // Then the admin account is created.
+
+    //  user is customer and set type customer
+    // Then the customer account is created.
+
+    //if user state is null set type cutomer
 
     if (user) {
       type = user.type;
@@ -77,20 +84,20 @@ export default function SignUpUser() {
       type: type,
     };
 
-    toast.promise(
-      axios.post(import.meta.env.VITE_BACKEND_URL + "/api/users/", userData, {
+    axios
+      .post(import.meta.env.VITE_BACKEND_URL + "/api/users/", userData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }),
-      {
-        loading: "Creating user...",
-        success: (res) => res.data.message || "User created successfully!",
-        error: (error) =>
-          error.response?.data?.message ||
-          "An error occurred while creating the user.",
-      }
-    );
+      })
+      .then(() => {
+        toast.success("Account created successfully");
+
+        setTimeout(() => {}, 5000);
+      })
+      .catch((error) => {
+        toast.error("Error");
+      });
   }
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">

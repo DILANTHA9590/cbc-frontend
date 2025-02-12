@@ -17,9 +17,12 @@ import MobileNavBar from "./mobileNavBar";
 import { MdKeyboardDoubleArrowUp } from "react-icons/md";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import axios from "axios";
+import NavBarProfilePictureDropDownMenu from "./navbarprofiledropdownmenu";
 
 export default function NavigationBar() {
   const [isNavBarOpen, setIsNavBarOpen] = useState(false);
+
+  const [profileDropDown, setProfileDropDown] = useState(false);
 
   const navigate = useNavigate();
 
@@ -179,24 +182,19 @@ export default function NavigationBar() {
                     title="Go to your profile"
                     alt="Customer Profile"
                     className="w-[50px] h-[50px] rounded-full cursor-pointer"
+                    //User click profile btn showing drop down menu
+                    onClick={() => {
+                      setProfileDropDown(true);
+                    }}
                   />
 
-                  <div className="absolute w-[95px] h-[90px] top-[51px]  flex flex-col justify-center items-center bg-slate-300 rounded-md ">
-                    <div className="absolute top-0 right-0 cursor-pointer ">
-                      {/* <MdKeyboardDoubleArrowUp /> */}
-                      <MdKeyboardArrowUp />
-                    </div>
-                    <Link className="w-full h-full mt-[11px] text-center hover:bg-slate-500 rounded-sm font-bold">
-                      Profile{" "}
-                    </Link>
-
-                    <Link className="w-full h-full pt-0 font-bold text-center rounded-sm hover:bg-slate-500">
-                      Login
-                    </Link>
-                    <Link className="w-full h-full font-bold text-center rounded-sm hover:bg-slate-500">
-                      Log Out
-                    </Link>
-                  </div>
+                  {profileDropDown && (
+                    <NavBarProfilePictureDropDownMenu
+                      clickToggleBtn={() => {
+                        setProfileDropDown(false);
+                      }}
+                    />
+                  )}
                 </li>
               ) : (
                 <li>

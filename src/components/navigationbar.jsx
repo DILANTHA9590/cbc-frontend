@@ -14,6 +14,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import MobileNavBar from "./mobileNavBar";
+import { MdKeyboardDoubleArrowUp } from "react-icons/md";
+import { MdKeyboardArrowUp } from "react-icons/md";
 import axios from "axios";
 
 export default function NavigationBar() {
@@ -165,18 +167,36 @@ export default function NavigationBar() {
 
           {/* login section */}
           <div className="hidden list-none md:block">
-            <ul className="flex items-center gap-3">
+            <ul className="flex items-center justify-center gap-3">
               {/* customer image */}
-              <button className="bg-primary">Loging</button>
+
+              {/* desk to navbar ------------------------------------------ */}
+
               {customer.profilePic ? (
-                <li>
+                <li className="relative flex flex-col items-center justify-center group">
                   <img
                     src={customer.profilePic}
-                    title="Go your profile"
-                    alt="customer Profile"
-                    className="w-[50px] h-[50px] rounded-full cursor-pointer "
-                    onClick={clickcustomerImage}
+                    title="Go to your profile"
+                    alt="Customer Profile"
+                    className="w-[50px] h-[50px] rounded-full cursor-pointer"
                   />
+
+                  <div className="absolute w-[95px] h-[90px] top-[51px]  flex flex-col justify-center items-center bg-slate-300 rounded-md ">
+                    <div className="absolute top-0 right-0 cursor-pointer ">
+                      {/* <MdKeyboardDoubleArrowUp /> */}
+                      <MdKeyboardArrowUp />
+                    </div>
+                    <Link className="w-full h-full mt-[11px] text-center hover:bg-slate-500 rounded-sm font-bold">
+                      Profile{" "}
+                    </Link>
+
+                    <Link className="w-full h-full pt-0 font-bold text-center rounded-sm hover:bg-slate-500">
+                      Login
+                    </Link>
+                    <Link className="w-full h-full font-bold text-center rounded-sm hover:bg-slate-500">
+                      Log Out
+                    </Link>
+                  </div>
                 </li>
               ) : (
                 <li>

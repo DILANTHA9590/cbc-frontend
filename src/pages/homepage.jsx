@@ -11,6 +11,10 @@ import MyOrderPage from "./home/order";
 import ShippingPage from "./home/shipping";
 import { CustomerHomePage } from "./customerHomePage";
 import CustomerEditPage from "../components/customerEdit";
+import Signup from "./signup";
+import SignUpUser from "./signup";
+import About from "../components/About";
+import Contact from "../components/contact";
 
 //import karaganna oni
 
@@ -21,7 +25,8 @@ export default function Homepage() {
       <NavigationBar />
 
       <div className="w-full sm:h-[calc(100vh-20vh)] h-full bg-primary ">
-        <Routes path="/">
+        <Routes>
+          <Route path="/" element={<Header />} />
           <Route path="/dashboard" element={<h1>Dashbord</h1>} />
 
           {/* // api packend eken param use karala id e kata adala eva baluva vage api methana product ekata adaala
@@ -34,6 +39,8 @@ export default function Homepage() {
           <Route path="/login" element={<Loginpage />} />
           <Route path="/products" element={<ProductPage />} />
           <Route path="/Cart" element={<Cart />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
 
           <Route
             path="/productInfo/:id"
@@ -44,6 +51,7 @@ export default function Homepage() {
 
           <Route path="/shipping/" element={<ShippingPage />} />
           <Route path="/order/" element={<MyOrderPage />} />
+          <Route path="/signup/" element={<SignUpUser />} />
           <Route path="customeraccount/" element={<CustomerHomePage />} />
           <Route path="customereditaccount/" element={<CustomerEditPage />} />
           <Route path="homepage/" element={<Header />} />

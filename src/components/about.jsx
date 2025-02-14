@@ -1,5 +1,5 @@
 import React from "react";
-import AboutSection from "./learnmore";
+
 import Footer from "./footer";
 
 export default function About() {
@@ -28,13 +28,6 @@ export default function About() {
           </p>
 
           {/* Image or Icon */}
-          <div className="flex justify-center mb-8">
-            <img
-              className="object-cover w-1/2 rounded-lg shadow-lg lg:w-1/4"
-              src="https://images.unsplash.com/photo-1603052871071-c9db70f1992b?crop=entropy&cs=tinysrgb&fit=max&ixid=MXwyMDg2OXwwfDF8c2VhY3J8MXx8Y29zbWV0aWMlMkNzaG9wZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&q=80&w=1080"
-              alt="Cosmetics Products"
-            />
-          </div>
 
           {/* Call-to-Action Button */}
           <div className="flex justify-center">

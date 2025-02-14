@@ -207,7 +207,7 @@ export default function Loginpage() {
           </button>
           <Link
             className="flex items-center justify-start w-full gap-2 px-4 py-2 rounded hover:bg-blue-600"
-            to="/signup/"
+            to="/signup"
           >
             singup
           </Link>

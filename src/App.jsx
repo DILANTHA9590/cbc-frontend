@@ -3,11 +3,11 @@ import Loginpage from "./pages/loginpage";
 import Homepage from "./pages/homepage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Signup from "./pages/Signup";
 import AdminPage from "./pages/adminhomepage";
 import { Toaster } from "react-hot-toast";
 import TestOne from "./components/testone";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import SignUpUser from "./pages/signup";
 
 // import Fileuploadtest from "./pages/test"; me api product pic add karanna promise eka hadagatahtah eka
 
@@ -49,7 +49,7 @@ nisa me npm eke kiyla thiyenava api meken webs ekama wrap karaganna oni kiyala e
 
           {/* <TestOne />   routes path eke /* lakunen kiyanne name eka nathuvva enna puluvan
        puluvan home page eka */}
-
+          {/* <Routes path="/*"></Routes> */}
           <Routes path="/*">
             {/* me router vala route athu athule thama api path eka saha pennvana commponnetnt eka denne()page eka
              */}
@@ -59,11 +59,11 @@ nisa me npm eke kiyla thiyenava api meken webs ekama wrap karaganna oni kiyala e
           
           venne  habai <Route path="/admin/jhnkgbkj" element={<AdminPage />} /> mehema gahuvoth enne eth admioin ekata 
            apata admin kiyana vachane gahala vena onima deyak gahuvath apata admin panel ekata yanaa vidihata hadanne me pahala thiyena vidihata */}
-            <Route path="/testa" element={<TestOne />} />
+
             <Route path="/admin/*" element={<AdminPage />} />
 
             <Route path="/login" element={<Loginpage />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route path="/signup" element={<SignUpUser />} />
 
             {/* <Route path="/test" element={<Fileuploadtest />} /> me api product pic add karanna promise eka hadagatahtah route eka */}
 

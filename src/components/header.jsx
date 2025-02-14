@@ -1,23 +1,43 @@
+import Loginpage from "../pages/loginpage";
+import About from "./About";
+import Footer from "./footer";
+
 export default function Header() {
   return (
-    <div
-      className="flex items-center w-full h-full sm:h-[calc(100vh-20vh)]  mb-4 overflow-hidden bg-center bg-cover "
-      style={{ backgroundImage: "url('/header.jpg')" }}
-      id="Header "
-    >
-      <div className="container px-6 py-4 mx-auto text-center text-white md:px-20 lg:px-32 ">
-        <h2 className="inline-block text-5xl text-center text-transparent duration-700 sm:text-7xl animate-bounce bg-gradient-to-tr from-purple-800 to-red-500 via-amber-500 bg-clip-text">
-          Explore homes that fit your dreams
-        </h2>
-        <div className="mt-6 space-x-6">
-          <a href="#Projects" className="px-8 py-3 border border-white rounded">
-            Projects
-          </a>
-          <a href="#Context" className="px-8 py-3 bg-blue-500 rounded ">
-            Contact Us
-          </a>
+    <>
+      {/* Hero Section */}
+      <section className="px-4 py-10 bg-gradient-to-r from-[#eeebec] to-[#444343] lg:py-20">
+        <div className="grid items-center gap-10 lg:grid-cols-2 justify-items-center">
+          <div className="flex flex-col items-center justify-center order-2 space-y-5 text-center lg:order-1 lg:text-left">
+            <h1 className="text-5xl font-extrabold text-[#cd7225] md:text-7xl">
+              Beauty Awaits You
+            </h1>
+            <p className="text-3xl font-semibold text-[#444343] md:text-4xl">
+              Discover premium cosmetics and skincare
+            </p>
+            <p className="text-lg text-[#444343] md:text-xl mt-4">
+              Find the perfect products to elevate your beauty routine with
+              natural ingredients.
+            </p>
+            <button className="text-lg md:text-2xl bg-[#cd7225] text-white py-3 px-6 mt-10 hover:bg-[#cd722590] transition duration-300 rounded-full shadow-lg">
+              Explore Our Collection
+            </button>
+          </div>
+          <div className="order-1 lg:order-2">
+            <img
+              className="h-80 w-80 object-cover lg:w-[500px] lg:h-[500px] rounded-lg shadow-lg"
+              src="https://images.pexels.com/photos/3018845/pexels-photo-3018845.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Cosmetics Products"
+            />
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      {/* About Section */}
+      <About />
+
+      {/* Footer Section */}
+      <Footer />
+    </>
   );
 }

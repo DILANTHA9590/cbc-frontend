@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function CustomerHomePage() {
   const [customer, setCustomer] = useState({});
@@ -41,6 +41,13 @@ export function CustomerHomePage() {
       state: { customer },
     });
   };
+
+  function clickLogOutButton() {
+    localStorage.removeItem("token");
+    window.location.reload();
+    navigate("/products");
+  }
+
   return (
     <>
       <div className="max-w-4xl p-8 mx-auto space-y-8 bg-white rounded-lg shadow-xl">
@@ -106,12 +113,19 @@ export function CustomerHomePage() {
           </div>
         </div>
 
-        <div className="mt-8 text-center">
+        <div className="flex flex-col mt-8 text-center gap-y-3">
           <button
             className="w-full px-6 py-3 font-semibold text-white transition duration-300 ease-in-out bg-blue-600 rounded-lg md:w-auto hover:bg-blue-700"
             onClick={clickEditBtn}
           >
             Edit Profile
+          </button>
+
+          <button
+            className="w-full px-6 py-3 font-semibold text-white transition duration-300 ease-in-out bg-blue-600 rounded-lg md:w-auto hover:bg-blue-700"
+            onClick={clickLogOutButton}
+          >
+            Log Out
           </button>
         </div>
       </div>

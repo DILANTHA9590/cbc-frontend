@@ -117,7 +117,7 @@ export default function Loginpage() {
           // type eka admin nam admin page ekata yavanava
           window.location.href = "/admin";
         } else {
-          window.location.href = "/home";
+          window.location.href = "/";
         }
       });
     // console.log("pressloginbtn");
@@ -135,7 +135,6 @@ export default function Loginpage() {
     <>
       <div className="flex items-center justify-center w-full h-screen bg-lime-600 ">
         <div className="w-[600px] h-[600px] bg-blue-500 flex items-center justify-center flex-col gap-5 ">
-          <img className="w-[100px]" src="\logo.png" alt="" />
           <div className="flex flex-col items-center justify-center">
             <span>Email</span>
             {/* methana default value eka venne api inpute field ekata enter karana eka  use state hook ekata yanava ita passe use

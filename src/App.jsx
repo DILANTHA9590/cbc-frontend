@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminPage from "./pages/adminhomepage";
 import { Toaster } from "react-hot-toast";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import SignUpUser from "./pages/signup";
+// import SignUpUser from "./pages/signup";
 
 // import Fileuploadtest from "./pages/test"; me api product pic add karanna promise eka hadagatahtah eka
 
@@ -61,7 +61,7 @@ nisa me npm eke kiyla thiyenava api meken webs ekama wrap karaganna oni kiyala e
             <Route path="/admin/*" element={<AdminPage />} />
 
             <Route path="/login" element={<Loginpage />} />
-            <Route path="/singup" element={<SignUpUser />} />
+            {/* <Route path="/singup" element={<SignUpUser />} /> */}
 
             {/* <Route path="/test" element={<Fileuploadtest />} /> me api product pic add karanna promise eka hadagatahtah route eka */}
 

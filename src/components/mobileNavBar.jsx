@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 
 export default function MobileNavBar(props) {
+  const navigate = useNavigate();
   console.log(props);
   const navBarClose = props.clickCloseBtn;
   const image = props.image;
@@ -14,6 +15,17 @@ export default function MobileNavBar(props) {
   console.log(image);
 
   console.log("mobilenavbar", props);
+
+  function navigateLoginForm() {
+    navigate("/login");
+  }
+
+  function logOut() {
+    localStorage.clear("token");
+
+    window.location.href = "/products";
+    navBarClose;
+  }
 
   return (
     <>
@@ -35,23 +47,40 @@ export default function MobileNavBar(props) {
             <ul className="flex flex-col pl-4 gap-y-3">
               {image ? (
                 <li>
-                  <img
-                    src={image}
-                    alt="User Profile"
-                    className="w-[50px] h-[50px] rounded-full "
-                    onClick={clickImage}
-                  />
+                  <button onClick={navigateLoginForm}>
+                    <img
+                      src={image}
+                      alt="User Profile"
+                      className="w-[50px] h-[50px] rounded-full"
+                    />
+                  </button>
                   <p>{email}</p>
                 </li>
               ) : (
                 <li>
-                  <a href="">
-                    <FaUserCircle
-                      className="w-[40px] h-[40px]"
-                      onClick={clickUserIcon}
-                    />
-                  </a>
+                  <button onClick={clickUserIcon}>
+                    <FaUserCircle className="w-[40px] h-[40px]" />
+                  </button>
                 </li>
+              )}
+
+              <li>
+                <button onClick={navigateLoginForm}>Login</button>
+              </li>
+
+              {email && (
+                <>
+                  <li>
+                    <button onClick={logOut}>LogOut</button>
+                  </li>
+
+                  <li>
+                    <Link to="/homepage">Go to profile</Link>
+                  </li>
+                  <li>
+                    <Link to="/order">My Orders</Link>
+                  </li>
+                </>
               )}
 
               <li>
@@ -68,9 +97,6 @@ export default function MobileNavBar(props) {
               </li>
               <li>
                 <Link to="/products">Products</Link>
-              </li>
-              <li>
-                <Link to="/order">My Orders</Link>
               </li>
             </ul>
           </div>

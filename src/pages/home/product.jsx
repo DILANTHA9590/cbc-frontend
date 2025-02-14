@@ -105,7 +105,7 @@ export default function ProductPage() {
       {LoadingStatus == "loaded" ? (
         <>
           <div className="flex flex-wrap justify-center w-full h-full">
-            <h1>Product page</h1>
+            <h1>Product Not Found</h1>
             {products.map((product) => (
               <ProductCard product={product} />
             ))}

@@ -106,6 +106,14 @@ export default function AdminPage() {
             <BsPeople />
             Customers
           </Link>
+
+          <Link
+            className="flex items-center justify-start w-full gap-2 px-4 py-2 rounded hover:bg-blue-600"
+            to="/signup"
+          >
+            <BsPeople />
+            Create Admin Account
+          </Link>
         </div>
 
         {/* Main Content */}

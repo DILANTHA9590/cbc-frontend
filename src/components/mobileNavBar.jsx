@@ -4,99 +4,142 @@ import { FaUserCircle } from "react-icons/fa";
 
 export default function MobileNavBar(props) {
   const navigate = useNavigate();
-  console.log(props);
   const navBarClose = props.clickCloseBtn;
   const image = props.image;
   const email = props.email;
   const clickImage = props.clickcustomerImage;
   const clickUserIcon = props.clickUserIcon;
 
-  console.log(email);
-  console.log(image);
-
-  console.log("mobilenavbar", props);
+  function logOut() {
+    localStorage.clear("token");
+    window.location.href = "/products";
+    navBarClose();
+  }
 
   function navigateLoginForm() {
     navigate("/login");
   }
 
-  function logOut() {
-    localStorage.clear("token");
-
-    window.location.href = "/products";
-    navBarClose;
-  }
-
   return (
     <>
-      <div className="fixed w-full bg-[#00000080] h-full z-[100] sm:hidden ">
-        <div className=" h-full bg-white w-[300px] relative">
-          <div className="flex items-center">
-            <img src="/logo_.png" alt="" className="w-[100px] h-[100px]" />
+      <div className="fixed top-0 left-0 w-full h-full bg-[#00000080] z-[100] sm:hidden">
+        <div className="w-[300px] h-full bg-white relative">
+          <div className="flex items-center justify-between p-4">
+            <img src="/logo_.png" alt="Logo" className="w-[100px] h-[100px]" />
             <IoCloseOutline
-              className="absolute text-3xl right-5 text-accent"
+              className="text-3xl cursor-pointer text-accent"
               onClick={navBarClose}
             />
-            {/* //testing 3 add feature branch */}
-            {/* testing commit 4 */}
           </div>
 
-          {/* //testing  */}
+          <div className="flex flex-col pl-4 gap-y-4">
+            {/* User Profile */}
+            {image ? (
+              <div className="flex items-center mb-4 gap-x-3">
+                <button onClick={clickImage}>
+                  <img
+                    src={image}
+                    alt="User Profile"
+                    className="w-[50px] h-[50px] rounded-full border-2 border-accent"
+                  />
+                </button>
+                <p className="text-sm text-gray-700">{email}</p>
+              </div>
+            ) : (
+              <div className="mb-4">
+                <button onClick={navigateLoginForm}>
+                  <FaUserCircle className="w-[40px] h-[40px] text-gray-700" />
+                </button>
+              </div>
+            )}
 
-          <div className="flex ">
-            <ul className="flex flex-col pl-4 gap-y-3">
-              {image ? (
-                <li>
-                  <button onClick={navigateLoginForm}>
-                    <img
-                      src={image}
-                      alt="User Profile"
-                      className="w-[50px] h-[50px] rounded-full"
-                    />
-                  </button>
-                  <p>{email}</p>
-                </li>
-              ) : (
-                <li>
-                  <button onClick={clickUserIcon}>
-                    <FaUserCircle className="w-[40px] h-[40px]" />
-                  </button>
-                </li>
-              )}
-
+            {/* Links */}
+            <ul className="space-y-3">
               <li>
-                <button onClick={navigateLoginForm}>Login</button>
+                <button
+                  onClick={navigateLoginForm}
+                  className="font-medium text-gray-800 transition-colors duration-300 hover:text-blue-600"
+                >
+                  Login
+                </button>
               </li>
 
               {email && (
                 <>
                   <li>
-                    <button onClick={logOut}>LogOut</button>
+                    <button
+                      onClick={logOut}
+                      className="font-medium text-gray-800 transition-colors duration-300 hover:text-blue-600"
+                    >
+                      LogOut
+                    </button>
                   </li>
 
                   <li>
-                    <Link to="/homepage">Go to profile</Link>
+                    <Link
+                      to="/homepage"
+                      className="font-medium text-gray-800 transition-colors duration-300 hover:text-blue-600"
+                      onClick={navBarClose}
+                    >
+                      Go to profile
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/order">My Orders</Link>
+                    <Link
+                      to="/order"
+                      className="font-medium text-gray-800 transition-colors duration-300 hover:text-blue-600"
+                      onClick={navBarClose}
+                    >
+                      My Orders
+                    </Link>
                   </li>
                 </>
               )}
 
               <li>
-                <Link to="/homepage">Home</Link>
+                <Link
+                  to="/homepage"
+                  className="font-medium text-gray-800 transition-colors duration-300 hover:text-blue-600"
+                  onClick={navBarClose}
+                >
+                  Home
+                </Link>
               </li>
               <li>
-                <Link to="/">About Us</Link>
+                <Link
+                  to="/"
+                  className="font-medium text-gray-800 transition-colors duration-300 hover:text-blue-600"
+                  onClick={navBarClose}
+                >
+                  About Us
+                </Link>
               </li>
               <li>
-                <Link to="/">Contact Us</Link>
+                <Link
+                  to="/"
+                  className="font-medium text-gray-800 transition-colors duration-300 hover:text-blue-600"
+                  onClick={navBarClose}
+                >
+                  Contact Us
+                </Link>
               </li>
               <li>
-                <Link to="/Cart">Cart</Link>
+                <Link
+                  to="/Cart"
+                  className="font-medium text-gray-800 transition-colors duration-300 hover:text-blue-600"
+                  onClick={navBarClose}
+                >
+                  Cart
+                </Link>
               </li>
               <li>
-                <Link to="/products">Products</Link>
+                <Link
+                  to="/products"
+                  className="font-medium text-gray-800 transition-colors duration-300 hover:text-blue-600"
+                  onClick={navBarClose}
+                >
+                  Products
+                </Link>
               </li>
             </ul>
           </div>

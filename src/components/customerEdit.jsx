@@ -7,7 +7,7 @@ import axios from "axios";
 export default function CustomerEditPage() {
   const navigate = useNavigate();
   const customer = useLocation().state.customer;
-  useLocation;
+
   console.log(location.email);
 
   const [email, setEmail] = useState(customer.email);
@@ -18,6 +18,7 @@ export default function CustomerEditPage() {
   const [firstName, setFirstName] = useState(customer.firstName);
   const [LastName, setLastName] = useState(customer.lastName);
   const [profilePic, setProfilePic] = useState();
+
   console.log("fuckj;lj;", profilePic);
 
   // console.log("dddd", LastName);
@@ -62,18 +63,27 @@ export default function CustomerEditPage() {
       updateUserData.password = password;
     }
     console.log("buttonClick", imgUrl);
-    const response = await axios.put(
-      import.meta.env.VITE_BACKEND_URL + "/api/users/" + customer.email,
-      updateUserData,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    navigate("/login");
-    console.log("response", response);
+    axios
+      .put(
+        import.meta.env.VITE_BACKEND_URL + "/api/users/" + customer.email,
+        updateUserData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log("Success:", response.data);
+        toast.success("User updated successfully!");
+        // alert("User updated successfully!");
+        navigate("/login");
+        console.log("response", response);
+      })
+      .catch((error) => {
+        console.error("Error:", error.response?.data || error.message);
+        toast.error("Failed to update user!");
+      });
   }
 
   return (

@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminPage from "./pages/adminhomepage";
 import { Toaster } from "react-hot-toast";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import SignUpUser from "./pages/signup";
+import SignUpUser from "./pages/Signup";
 
 // import Fileuploadtest from "./pages/test"; me api product pic add karanna promise eka hadagatahtah eka
 

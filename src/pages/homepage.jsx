@@ -11,11 +11,9 @@ import MyOrderPage from "./home/order";
 import ShippingPage from "./home/shipping";
 import { CustomerHomePage } from "./customerHomePage";
 import CustomerEditPage from "../components/customerEdit";
-// import Signup from "./signup";
-// import SignUpUser from "./signup";
 
 import Contact from "../components/contact";
-import About from "../components/about";
+import About from "../components/About";
 
 //import karaganna oni
 
@@ -50,9 +48,8 @@ export default function Homepage() {
 
           {/* <Route path="/dashboard" element={<h1>Dashbord</h1>} /> */}
 
-          <Route path="/shipping/" element={<ShippingPage />} />
           <Route path="/order/" element={<MyOrderPage />} />
-          {/* <Route path="/signup/" element={<SignUpUser />} /> */}
+
           <Route path="customeraccount/" element={<CustomerHomePage />} />
           <Route path="customereditaccount/" element={<CustomerEditPage />} />
           <Route path="homepage/" element={<Header />} />

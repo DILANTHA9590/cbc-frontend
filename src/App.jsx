@@ -59,7 +59,6 @@ nisa me npm eke kiyla thiyenava api meken webs ekama wrap karaganna oni kiyala e
             <Route path="/admin/*" element={<AdminPage />} />
 
             <Route path="/login" element={<Loginpage />} />
-
             <Route path="/signup" element={<SignUpUser />} />
 
             {/* <Route path="/test" element={<Fileuploadtest />} /> me api product pic add karanna promise eka hadagatahtah route eka */}

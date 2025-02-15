@@ -77,7 +77,7 @@ export default function MobileNavBar(props) {
 
                   <li>
                     <Link
-                      to="/homepage"
+                      to="/customeraccount"
                       className="font-medium text-gray-800 transition-colors duration-300 hover:text-blue-600"
                       onClick={navBarClose}
                     >

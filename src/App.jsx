@@ -10,8 +10,6 @@ import SignUpUser from "./pages/signup";
 // import Fileuploadtest from "./pages/test"; me api product pic add karanna promise eka hadagatahtah eka
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       {/* me browser routes valin thama apata avshay page val;ata ayanna hasuruvanna meyage athule thava thiye routes , route, path

@@ -92,8 +92,6 @@ export default function SignUpUser() {
       })
       .then(() => {
         toast.success("Account created successfully");
-
-        setTimeout(() => {}, 5000);
       })
       .catch((error) => {
         toast.error("Error");

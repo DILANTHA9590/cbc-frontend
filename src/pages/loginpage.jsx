@@ -48,8 +48,8 @@ export default function Loginpage() {
     },
   });
 
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const [value, Setvalue] = useState();
 
@@ -132,95 +132,72 @@ export default function Loginpage() {
   // oni
 
   return (
-    <>
-      <div className="flex items-center justify-center w-full h-screen bg-lime-600 ">
-        <div className="w-[600px] h-[600px] bg-blue-500 flex items-center justify-center flex-col gap-5 ">
-          <div className="flex flex-col items-center justify-center">
-            <span>Email</span>
-            {/* methana default value eka venne api inpute field ekata enter karana eka  use state hook ekata yanava ita passe use
-             state email ekata giya  ekata  value eken methana filed eka update karanava*/}
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <Toaster />
+      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
+        <h2 className="text-2xl font-bold text-center">
+          Login to your account
+        </h2>
+        <p className="text-center text-gray-600">
+          Don't have an account? <Link to="/signup">Signup</Link>
+        </p>
 
-            <input
-              type="text"
-              placeholder="Email"
-              defaultValue={email}
-              onChange={(e) => {
-                //e kiyala pass venne
-                //vechcha onchnage event eke visthara tika eke di onchnage kiyalama thiyennne chnage vechcha eka
-                //gana
-
-                // console.log("email is change");
-                // console.log(e.target.value);
-                // me ken apata brower eken balanna puluvan  input filed type karaama pennava e adla velavae
-                // eke athule tika print venava
-
-                //dan api kiyanava e vachne vena venavanam e venas vena vachane uda veriable ekeata dagannav
-                setemail(e.target.value);
-                // meka thama sampurna core keaform ekath ekka vada karanakota
-                ///meken uda thiyena veriable eka udtae eke thiya ganava methana vena changes valin
-              }}
-            />
-            {/* api dan udahadapu use stante veriable deka dunna email emai text field ekata \
-                password text field ekatai  e use state hadala dunne apata real time meva venas karanna vena nisa
-                ita passe api on change ekk liyagena thiyenava eken venne eken venne kme email eke kotasata adla deval
-                type vela e kotasa change venavam me input panel eke thiyena eva monahri ni sa change venavanam
-                e chnage ekata adala visthara tika e kiyala gannav ethakota api akurak delete karath akurak type karath e 
-                function eka run venava eka apiata check karaganna puluvan conlog ekk gahala broser eke balnna puluvan
-                e vagema methana email  e kiyanne me input field eke venasak una ganmn api eka update karaganna oni
-                uda thiyena usesate veriable eken */}
-          </div>
-
-          <div className="flex flex-col items-center justify-center">
-            <span>Password</span>
-
-            <input
-              type="text"
-              placeholder="password"
-              defaultValue={password}
-              onChange={(e) => {
-                setpassword(e.target.value);
-              }}
-            />
-          </div>
-
-          <div>
-            <button
-              className="border border-black p-[20px 20px ]"
-              onClick={login}
-            >
-              Login
-            </button>
-            {/* api function call karanakota() danne na */}
-          </div>
-
-          {/* //api meka damma app .jsx site eka cover karala vagema ggogle ouath npm eka 
-// insatall karala. dan apata meka click karama venna oni karanna apata hook ekk enava eka apata enne google aouth ekenamai*/}
-          {/* e vagema  meka run karama ape uda google login hook eka run venava ita passe apata login
-          google page eka open venava */}
-
+        {/* Social Login Buttons */}
+        <div className="mt-6">
           <button
-            onClick={() => {
-              googleLogin();
-            }}
+            className="flex items-center justify-center w-full p-3 mb-3 border rounded-lg"
+            onClick={() => googleLogin()}
           >
-            Login with Google
+            <img src="google-icon.png" alt="Google" className="w-5 h-5 mr-2" />
+            Sign in with Google
           </button>
-          <Link
-            to="/signup"
-            className="flex items-center justify-start w-full gap-2 px-4 py-2 rounded hover:bg-blue-600"
-          >
-            singup
-          </Link>
-          <div>
-            <Link className="underline text-amber-400">Fogotten Password</Link>
-          </div>
-
-          <div>
-            <p>{value}</p>
-          </div>
         </div>
+
+        {/* Divider */}
+        <div className="flex items-center my-4">
+          <hr className="w-full border-gray-300" />
+          <span className="mx-2 text-gray-500">OR</span>
+          <hr className="w-full border-gray-300" />
+        </div>
+
+        {/* Email Input */}
+        <input
+          type="email"
+          placeholder="Enter your email"
+          className="w-full p-3 mb-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        {/* Password Input */}
+        <input
+          type="password"
+          placeholder="Password"
+          className="w-full p-3 mb-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        {/* Remember Me & Forgot Password */}
+        <div className="flex items-center justify-between mb-4 text-sm text-gray-600">
+          <label className="flex items-center">
+            <input type="checkbox" className="mr-2" />
+            Remember me
+          </label>
+          <a href="#" className="text-blue-500">
+            Forgot Password?
+          </a>
+        </div>
+
+        {/* Login Button */}
+        <button
+          className="w-full p-3 text-white transition bg-black rounded-lg hover:bg-gray-800"
+          onClick={login}
+        >
+          Login
+        </button>
       </div>
-    </>
+    </div>
   );
 }
 

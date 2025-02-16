@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Loginpage from "../pages/loginpage";
 import About from "./about";
 import Footer from "./footer";
@@ -19,9 +20,13 @@ export default function Header() {
               Find the perfect products to elevate your beauty routine with
               natural ingredients.
             </p>
-            <button className="text-lg md:text-2xl bg-[#cd7225] text-white py-3 px-6 mt-10 hover:bg-[#cd722590] transition duration-300 rounded-full shadow-lg">
+            <Link
+              to="/products"
+              className="text-lg md:text-2xl bg-[#cd7225] text-white py-3 px-6 mt-10 hover:bg-[#cd722590] transition duration-300 rounded-full shadow-lg"
+            >
+              {" "}
               Explore Our Collection
-            </button>
+            </Link>
           </div>
           <div className="order-1 lg:order-2">
             <img

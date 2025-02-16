@@ -13,7 +13,7 @@ import { CustomerHomePage } from "./customerHomePage";
 import CustomerEditPage from "../components/customerEdit";
 
 import Contact from "../components/contact";
-import About from "../components/About";
+import About from "../components/about";
 
 //import karaganna oni
 

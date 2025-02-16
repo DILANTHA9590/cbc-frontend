@@ -1,5 +1,5 @@
 import Loginpage from "../pages/loginpage";
-import About from "./About";
+import About from "./about";
 import Footer from "./footer";
 
 export default function Header() {

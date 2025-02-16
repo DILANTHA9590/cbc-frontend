@@ -85,34 +85,39 @@ export default function ProductPage() {
   }
 
   return (
-    // api me search function eka eliyata damma mokada
-    // api search unama set product loaded una gaman ape  component eka refesh venava api type akrann a
-    // kalin e nisa pi eka eliyen hadagannavaethakota ape e pahala tika refresh unata search bar eka raefresh venne na
     <>
-      <div className="flex items-center w-full h-10 max-w-xl mx-auto border">
+      {/* Search Bar */}
+      <div className="flex items-center w-full h-12 max-w-4xl px-3 mx-auto mb-8 border rounded-lg ">
         <input
           type="text"
-          placeholder="Search For Product ...."
-          className="w-full px-3 grow focus:outline-none"
+          placeholder="Search For Product..."
+          className="w-full px-4 py-2 text-lg border-r-0 rounded-l-lg focus:outline-none"
           onChange={search}
           value={query}
         />
-        <a href="">
-          <BsSearch />
+        <a
+          href="#"
+          className="p-2 text-white transition-all rounded-r-lg bg-accent hover:bg-primary"
+        >
+          <BsSearch size={20} />
         </a>
       </div>
 
-      {LoadingStatus == "loaded" ? (
+      {/* Product Display */}
+      {LoadingStatus === "loaded" ? (
         <>
-          <div className="flex flex-wrap justify-center w-full h-full">
-            <h1>Product Not Found</h1>
-            {products.map((product) => (
-              <ProductCard product={product} />
-            ))}
+          <div className="flex flex-wrap justify-center w-full gap-6 bg-primary">
+            {products.length === 0 ? (
+              <h1 className="text-xl text-gray-500">Product Not Found</h1>
+            ) : (
+              products.map((product) => (
+                <ProductCard key={product.productId} product={product} />
+              ))
+            )}
           </div>
         </>
       ) : (
-        <div className="flex items-center justify-center w-full h-screen">
+        <div className="flex items-center justify-center w-full h-screen bg-primary">
           <div className="w-12 h-12 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
         </div>
       )}

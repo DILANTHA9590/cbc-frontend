@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUpUser() {
   const [firstName, setFirstName] = useState("");
@@ -8,6 +9,7 @@ export default function SignUpUser() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
 
   const [user, setuser] = useState();
 
@@ -92,6 +94,7 @@ export default function SignUpUser() {
       })
       .then(() => {
         toast.success("Account created successfully");
+        navigate("/login");
       })
       .catch((error) => {
         toast.error("Error");

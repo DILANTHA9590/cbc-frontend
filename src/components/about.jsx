@@ -1,6 +1,7 @@
 import React from "react";
 
 import Footer from "./footer";
+import { Link } from "react-router-dom";
 
 export default function About() {
   return (
@@ -31,9 +32,12 @@ export default function About() {
 
           {/* Call-to-Action Button */}
           <div className="flex justify-center">
-            <button className="text-lg md:text-2xl bg-[#cd7225] text-white py-3 px-8 hover:bg-[#cd722590] transition duration-300 rounded-full shadow-lg transform hover:scale-105">
+            <Link
+              to="/about"
+              className="text-lg md:text-2xl bg-[#cd7225] text-white py-3 px-8 hover:bg-[#cd722590] transition duration-300 rounded-full shadow-lg transform hover:scale-105"
+            >
               Learn More
-            </button>
+            </Link>
           </div>
         </div>
       </section>

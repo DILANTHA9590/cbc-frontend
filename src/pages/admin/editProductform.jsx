@@ -183,9 +183,7 @@ export default function EditProducttForm() {
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-screen bg-gray-500">
-      <h1 className="mb-6 text-3xl font-bold text-gray-800">
-        Edit Product Page
-      </h1>
+      <h1 className="mb-6 text-3xl font-bold text-gray-800"></h1>
       <div className="flex flex-col p-10 space-y-4 bg-white border border-gray-300 rounded-lg shadow-lg">
         <div className="flex flex-col space-y-2">
           <label className="font-semibold text-gray-700">Product ID</label>

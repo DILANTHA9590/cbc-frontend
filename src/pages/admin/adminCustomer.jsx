@@ -2,26 +2,33 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
+import { MdDelete } from "react-icons/md";
+
 export function AdminCustomerPage() {
   const [users, setUsers] = useState([]);
+
   const [loaded, setLoaded] = useState(false);
+
+  let index = 0;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    axios
-      .get(import.meta.env.VITE_BACKEND_URL + "/api/users/getusers", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        setUsers(res.data.users);
-        setLoaded(true);
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoaded(true);
-      });
-  }, []);
+    if (!loaded) {
+      axios
+        .get(import.meta.env.VITE_BACKEND_URL + "/api/users/getusers", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          setUsers(res.data.users);
+          setLoaded(true);
+        })
+        .catch((error) => {
+          console.log(error);
+          setLoaded(true);
+        });
+    }
+  }, [loaded]);
 
   // Function to block/unblock a user
   const updateUserStatus = (userId, newStatus) => {
@@ -70,22 +77,28 @@ export function AdminCustomerPage() {
         <table className="w-full border border-collapse border-gray-300">
           <thead>
             <tr className="bg-gray-200">
+              <th className="p-2 border border-gray-300">count</th>
               <th className="p-2 border border-gray-300">Email</th>
               <th className="p-2 border border-gray-300">Status</th>
               <th className="p-2 border border-gray-300">First Name</th>
               <th className="p-2 border border-gray-300">Last Name</th>
+              <th className="p-2 border border-gray-300">type</th>
               <th className="p-2 border border-gray-300">Actions</th>
+              <th className="p-2 border border-gray-300">Delete</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user) => (
               <tr key={user._id} className="text-center">
+                <td className="p-2 border border-gray-300">{(index += 1)}</td>
+
                 <td className="p-2 border border-gray-300">{user.email}</td>
                 <td className="p-2 border border-gray-300">
                   {user.isBlock ? "Blocked" : "Active"}
                 </td>
                 <td className="p-2 border border-gray-300">{user.firstName}</td>
                 <td className="p-2 border border-gray-300">{user.lastName}</td>
+                <td className="p-2 border border-gray-300">{user.type}</td>
                 <td className="p-2 border border-gray-300">
                   <button
                     //methana karala thiyenne  ape user is block false kiyala balanava false nam true karanava true nam flase vidihata ape function ekata e adla userge id ekai e usege e velave thiye
@@ -99,6 +112,42 @@ export function AdminCustomerPage() {
                     }`}
                   >
                     {user.isBlock ? "Unblock" : "Block"}
+                  </button>
+                </td>
+
+                <td className="p-2 border border-gray-300">
+                  <button
+                    onClick={() => {
+                      let istrue = confirm(
+                        `You trying to delete  ${user.email}`
+                      );
+
+                      const token = localStorage.getItem("token");
+                      if (istrue) {
+                        axios
+                          .delete(
+                            import.meta.env.VITE_BACKEND_URL +
+                              "/api/users/" +
+                              user._id,
+                            {
+                              headers: {
+                                headers: {
+                                  Authorization: `Bearer ${token}`, // Add the token to the Authorization header
+                                },
+                              },
+                            }
+                          )
+                          .then((res) => {
+                            toast.success(res.data.message);
+                            setLoaded(false);
+                          })
+                          .catch(() => {
+                            toast.error("Failed to delete user");
+                          });
+                      }
+                    }}
+                  >
+                    <MdDelete className="w-5 h-5 text-[#96171f]" />
                   </button>
                 </td>
               </tr>

@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { AdminCustomerPage } from "./admin/adminCustomer";
+import AdminDashboard from "./admin/adminDashBord";
 
 export default function AdminPage() {
   const navigate = useNavigate();
@@ -128,7 +129,7 @@ ethakota /dashbord kiyaala avoth eyata dashbord component eka loard karala penna
           {/* e vagema me route ek display karanna hoda na anvshaya ayata ekata usrva null naththam thama metika pennane */}
           {user != null && (
             <Routes path="/*">
-              <Route path="/dashboard" element={<h1>Dashbord</h1>} />
+              <Route path="/dashboard" element={<AdminDashboard />} />
 
               <Route path="/products" element={<AdminProductsPage />} />
 

@@ -111,7 +111,7 @@ export default function ProductPage() {
               <h1 className="text-xl text-gray-500">Product Not Found</h1>
             ) : (
               products.map((product) => (
-                <ProductCard key={product.productId} product={product} />
+                <ProductCard key={product.productId} {...product} />
               ))
             )}
           </div>

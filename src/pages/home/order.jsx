@@ -135,100 +135,132 @@ export default function MyOrderPage() {
       )}
 
       {isModalOpen && selectedOrder && (
-        <div className="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
-          <div className="w-3/4 p bg-white h-[80vh] rounded-lg overflow-hidden overflow-y-auto">
-            <h2 className="mb-4 text-xl font-bold">Order Details</h2>
+        <div className="fixed inset-0 flex items-center justify-center w-full h-full p-4 bg-black bg-opacity-50">
+          {/* ✅ Modal Wrapper with Full Height & Scrollbar */}
+          <div className="w-full max-w-4xl h-[80vh] bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+            {/* ✅ Scrollable Content Area */}
+            <div className="flex-1 p-6 overflow-y-auto">
+              {/* ✅ Centered Title */}
+              <h2 className="mb-4 text-xl font-bold text-center text-gray-800">
+                Order Details
+              </h2>
 
-            <p>
-              <strong>Order ID:</strong> {selectedOrder.orderId}
-            </p>
-            <p>
-              <strong>Status:</strong> {selectedOrder.status}
-            </p>
-            <p>
-              <strong>Date:</strong>{" "}
-              {new Date(selectedOrder.date).toLocaleDateString()}
-            </p>
-            <p>
-              <strong>Name:</strong> {selectedOrder.name}
-            </p>
-            <p>
-              <strong>Address:</strong> {selectedOrder.address}
-            </p>
-            <p>
-              <strong>Phone:</strong> {selectedOrder.phone}
-            </p>
+              {/* ✅ Order Info */}
+              <div className="space-y-2 text-gray-700">
+                <p>
+                  <strong>Order ID:</strong> {selectedOrder.orderId}
+                </p>
+                <p>
+                  <strong>Status:</strong> {selectedOrder.status}
+                </p>
+                <p>
+                  <strong>Date:</strong>{" "}
+                  {new Date(selectedOrder.date).toLocaleDateString()}
+                </p>
+                <p>
+                  <strong>Name:</strong> {selectedOrder.name}
+                </p>
+                <p>
+                  <strong>Address:</strong> {selectedOrder.address}
+                </p>
+                <p>
+                  <strong>Phone:</strong> {selectedOrder.phone}
+                </p>
+              </div>
 
-            <h3 className="mt-4 text-lg font-semibold">Ordered Items</h3>
-            <table className="w-full mt-2 border border-collapse border-gray-300">
-              <thead>
-                <tr className="bg-gray-100">
-                  <th className="p-2 border border-gray-300">Name</th>
+              <h3 className="mt-4 text-lg font-semibold text-gray-800">
+                Ordered Items
+              </h3>
 
-                  <th className="p-2 border border-gray-300">Image</th>
-
-                  <th className="p-2 border border-gray-300">Price</th>
-                  <th className="p-2 border border-gray-300">Quantity</th>
-                  <th className="p-2 border border-gray-300">Total</th>
-                  <th className="p-2 border border-gray-300">Reviews</th>
-                </tr>
-              </thead>
-              <tbody>
-                {selectedOrder.orderedItems.map((item, index) => (
-                  <tr key={index}>
-                    <td className="p-2 border border-gray-300">{item.name}</td>
-                    <td className="h-auto p-2 border border-gray-300">
-                      <center>
-                        <img
-                          src={item.image}
-                          alt=""
-                          className="w-[200px] h-[100px]"
-                        />
-                      </center>
-                    </td>
-                    <td className="p-2 border border-gray-300">
-                      {item.productId}
-                    </td>
-                    <td className="p-2 border border-gray-300">
-                      LKR{parseFloat(item.price).toFixed(2)}
-                    </td>
-                    <td className="p-2 border border-gray-300">
-                      {item.quantity}
-                    </td>
-                    <td className="p-2 border border-gray-300">
-                      LKR{(parseFloat(item.price) * item.quantity).toFixed(2)}
-                    </td>
-                    <td className="w-[200px]">
-                      {selectedOrder.status === "delivered" ? (
-                        <div className="relative p-2 border border-gray-300">
-                          <textarea
-                            className="w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            value={textArea[item.productId] || ""} // Get review for the specific item
-                            onChange={(e) =>
-                              handleReviewChange(item.productId, e.target.value)
-                            }
-                            rows="5"
+              {/* ✅ Table Wrapper with Scrollable X-Axis */}
+              <div className="w-full overflow-x-auto">
+                <table className="w-full mt-2 border border-collapse border-gray-300">
+                  <thead>
+                    <tr className="text-gray-700 bg-gray-100">
+                      <th className="p-3 text-left border border-gray-300">
+                        Name
+                      </th>
+                      <th className="p-3 text-left border border-gray-300">
+                        Image
+                      </th>
+                      <th className="p-3 text-left border border-gray-300">
+                        Price
+                      </th>
+                      <th className="p-3 text-left border border-gray-300">
+                        Quantity
+                      </th>
+                      <th className="p-3 text-left border border-gray-300">
+                        Total
+                      </th>
+                      <th className="p-3 text-left border border-gray-300">
+                        Reviews
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {selectedOrder.orderedItems.map((item, index) => (
+                      <tr key={index} className="border-t border-gray-200">
+                        <td className="p-3 border border-gray-300">
+                          {item.name}
+                        </td>
+                        <td className="p-3 border border-gray-300">
+                          <img
+                            src={item.image}
+                            alt=""
+                            className="object-cover w-20 h-12 mx-auto rounded-md"
                           />
-                          <center>
-                            <button
-                              className="px-1 bg-green-500 rounded-sm hover:bg-green-600"
-                              onClick={() => handleReviewSubmit(item.productId)}
-                            >
-                              Submit Review
-                            </button>
-                          </center>
-                        </div>
-                      ) : (
-                        <p>Review option will be available after delivery.</p>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <div className="flex justify-end mt-4">
+                        </td>
+                        <td className="p-3 border border-gray-300">
+                          LKR {parseFloat(item.price).toFixed(2)}
+                        </td>
+                        <td className="p-3 border border-gray-300">
+                          {item.quantity}
+                        </td>
+                        <td className="p-3 border border-gray-300">
+                          LKR{" "}
+                          {(parseFloat(item.price) * item.quantity).toFixed(2)}
+                        </td>
+                        <td className="p-3 border border-gray-300 w-[250px]">
+                          {selectedOrder.status === "delivered" ? (
+                            <div className="relative p-2 border border-gray-300 rounded-md bg-gray-50">
+                              {/* ✅ Fixed Review Box on Mobile */}
+                              <textarea
+                                className="w-full p-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                value={textArea[item.productId] || ""}
+                                onChange={(e) =>
+                                  handleReviewChange(
+                                    item.productId,
+                                    e.target.value
+                                  )
+                                }
+                                rows="3"
+                              />
+                              <button
+                                className="w-full px-3 py-1 mt-2 text-white bg-green-500 rounded-md hover:bg-green-600"
+                                onClick={() =>
+                                  handleReviewSubmit(item.productId)
+                                }
+                              >
+                                Submit Review
+                              </button>
+                            </div>
+                          ) : (
+                            <p className="text-sm text-gray-500">
+                              Review option will be available after delivery.
+                            </p>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>{" "}
+            {/* ✅ End of Scrollable Content */}
+            {/* ✅ Close Button (Stays at Bottom) */}
+            <div className="flex justify-end p-4 border-t border-gray-300 bg-gray-50">
               <button
-                className="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600"
+                className="px-5 py-2 text-white bg-red-500 rounded-md hover:bg-red-600"
                 onClick={closeModal}
               >
                 Close

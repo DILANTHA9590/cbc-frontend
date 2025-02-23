@@ -39,7 +39,7 @@ export default function Cart() {
       })
       .then((res) => {
         setTotal(res.data);
-        console.log(res.data);
+        console.log("MY RESPONSE", res.data);
         // api methanadi kare product eka null naththam vitharak toaotal ekai label totola keai set karanna kiyala
         //ethakota ape code eka ekapara godak nikan riuun vena eka aduvenava
         if (res.data.total != null) {

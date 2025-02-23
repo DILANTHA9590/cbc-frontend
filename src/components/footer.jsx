@@ -9,7 +9,7 @@ export default function Footer() {
             <div className="space-y-5">
               <h4 className="text-xl font-bold">About Us</h4>
               <p>
-                At [Your Shop Name], we bring the best in beauty and skincare to
+                At Beauty Cosmatics, we bring the best in beauty and skincare to
                 your doorstep. From skincare solutions to cosmetics, we have you
                 covered!
               </p>
@@ -67,7 +67,7 @@ export default function Footer() {
 
           {/* Bottom Section */}
           <div className="mt-10 border-t border-[#cd7225] pt-5">
-            <p>&copy; 2025 [Your Shop Name]. All Rights Reserved.</p>
+            <p>&copy; 2025 Beauty Cosmatics. All Rights Reserved.</p>
           </div>
         </div>
       </footer>

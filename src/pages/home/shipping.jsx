@@ -78,7 +78,7 @@ export default function ShippingPage() {
       .then((res) => {
         toast.success("Order placed successfully");
         // navigate("/order-success", { state: { orderId: res.data.orderId } });
-        navigate("/orders");
+        navigate("/order");
       })
       .catch((err) => {
         toast.error("Failed to place order");
@@ -92,79 +92,101 @@ export default function ShippingPage() {
 
   return (
     <>
-      <div className="w-full h-full p-4">
-        <div className="flex flex-col w-full h-full overflow-y-scroll ">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr>
-                <th>Product Image</th>
-                <th>Product Name</th>
-                <th className="hidden sm:table-cell">Product Id</th>
-                <th>Product Qty</th>
-                <th>Product Price</th>
-                <th>Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              {cart.map((item) => (
-                <CartCard
-                  key={item.productId}
-                  productId={item.productId}
-                  qty={item.qty}
-                />
-              ))}
-            </tbody>
-          </table>
+      <div className="flex flex-col w-full h-full p-4">
+        {/* ✅ Scrollable Content Wrapper */}
+        <div className="flex flex-col w-full h-full p-6 overflow-y-auto bg-white rounded-lg shadow-md">
+          {/* ✅ Scrollable Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border border-collapse border-gray-300">
+              {/* ✅ Sticky Header for better readability */}
+              <thead className="sticky top-0 bg-gray-100 shadow-md">
+                <tr>
+                  <th className="p-3 border">Product Image</th>
+                  <th className="p-3 border">Product Name</th>
+                  <th className="hidden p-3 border sm:table-cell">
+                    Product ID
+                  </th>
+                  <th className="p-3 border">Quantity</th>
+                  <th className="p-3 border">Price</th>
+                  <th className="p-3 border">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cart.map((item) => (
+                  <CartCard
+                    key={item.productId}
+                    productId={item.productId}
+                    qty={item.qty}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-          <div className="p-4">
-            <div className="flex flex-col space-y-2">
-              <label className="text-lg font-medium">Name</label>
+          {/* ✅ User Input Form */}
+          <div className="p-4 mt-4 rounded-md shadow-sm bg-gray-50">
+            <h2 className="mb-3 text-xl font-semibold text-gray-700">
+              Customer Details
+            </h2>
+            <div className="flex flex-col space-y-3">
+              <label className="text-lg font-medium text-gray-600">Name</label>
               <input
                 type="text"
-                className="p-2 border rounded"
+                className="p-2 border rounded focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter your name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
 
-              <label className="text-lg font-medium">Address</label>
+              <label className="text-lg font-medium text-gray-600">
+                Address
+              </label>
               <input
                 type="text"
-                className="p-2 border rounded"
+                className="p-2 border rounded focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter your address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
               />
 
-              <label className="text-lg font-medium">Phone</label>
+              <label className="text-lg font-medium text-gray-600">Phone</label>
               <input
                 type="text"
-                className="p-2 border rounded"
+                className="p-2 border rounded focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter your phone number"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
               />
             </div>
-
-            <div className="flex flex-col items-end justify-center p-4 text-xl sm:text-3xl">
-              <h1 className="font-bold text-accent">
-                Total: LKR. {labeledTotal.toFixed(2)}
-              </h1>
-              <h1 className="font-bold text-accent">
-                Discount: LKR. {(labeledTotal - total).toFixed(2)}
-              </h1>
-              <h1 className="font-bold text-accent">
-                Grand Total: LKR. {total.toFixed(2)}
-              </h1>
-              <button
-                className="bg-orange-500 sm:w-[300px] max-w p-2 rounded mt-2 hover:bg-orange-400 text-white"
-                onClick={handleCheckout}
-              >
-                Checkout
-              </button>
-            </div>
           </div>
-        </div>
+
+          {/* ✅ Order Summary Section */}
+          <div className="flex flex-col items-end justify-center p-4 mt-4 text-xl border-t sm:text-2xl">
+            <h1 className="font-bold text-gray-700">
+              Total: LKR{" "}
+              <span className="text-gray-900">{labeledTotal.toFixed(2)}</span>
+            </h1>
+            <h1 className="font-bold text-gray-700">
+              Discount: LKR{" "}
+              <span className="text-green-500">
+                {(labeledTotal - total).toFixed(2)}
+              </span>
+            </h1>
+            <h1 className="text-2xl font-bold text-gray-700">
+              Grand Total:{" "}
+              <span className="text-red-500">LKR {total.toFixed(2)}</span>
+            </h1>
+
+            {/* ✅ Checkout Button */}
+            <button
+              className="bg-orange-500 sm:w-[300px] w-full p-3 rounded-lg mt-3 text-white font-semibold hover:bg-orange-400 transition-all duration-300"
+              onClick={handleCheckout}
+            >
+              Checkout
+            </button>
+          </div>
+        </div>{" "}
+        {/* ✅ End of Scrollable Content */}
       </div>
     </>
   );

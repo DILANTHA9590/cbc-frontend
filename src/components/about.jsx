@@ -15,7 +15,7 @@ export default function About() {
           <p className="text-xl text-[#444343] mb-6 max-w-3xl mx-auto leading-relaxed">
             At{" "}
             <span className="font-semibold text-[#cd7225]">
-              [Your Shop Name]
+              Beauty Cosmatics
             </span>
             , we are passionate about delivering the finest selection of premium
             cosmetics and skincare. Our mission is to empower you to look and

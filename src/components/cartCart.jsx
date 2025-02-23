@@ -72,7 +72,7 @@ export default function CartCard(props) {
             colSpan="6"
             className="py-4 text-lg font-semibold text-center text-gray-600"
           >
-            Loading...
+            Please wait...
           </td>
         </tr>
       ) : (

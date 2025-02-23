@@ -107,7 +107,7 @@ export default function MobileNavBar(props) {
               </li>
               <li>
                 <Link
-                  to="/"
+                  to="/about"
                   className="font-medium text-gray-800 transition-colors duration-300 hover:text-blue-600"
                   onClick={navBarClose}
                 >
@@ -116,7 +116,7 @@ export default function MobileNavBar(props) {
               </li>
               <li>
                 <Link
-                  to="/"
+                  to="/contact"
                   className="font-medium text-gray-800 transition-colors duration-300 hover:text-blue-600"
                   onClick={navBarClose}
                 >

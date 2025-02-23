@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { loardCard } from "../../utils/cartfunction";
+import { clearCart, loardCard } from "../../utils/cartfunction";
 import CartCard from "../../components/cartCart";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -49,6 +49,13 @@ export default function Cart() {
       });
   }, []);
 
+  function clearmyCart() {
+    // Just reloads the current page
+
+    clearCart();
+
+    window.location.reload();
+  }
   //meka hadala thiyenne checkout btn eka ebuvama venna oni de e tika order db ekatra yanva e api
   ///order karapau item valatamorderid ekk create karala e ti order db eke save venava//ketiyemma kiuvoth order list eka api yavanava
   //  order db ekata ethakota eya e yavana ekata order id ekk creqtate karan db ekes ave venava
@@ -96,6 +103,14 @@ export default function Cart() {
 
   return (
     <>
+      {cart.length > 0 && (
+        <button
+          className="px-3 ml-2 bg-green-400 rounded-lg"
+          onClick={clearmyCart}
+        >
+          Clear Cart
+        </button>
+      )}
       {cart && cart.length > 0 ? (
         <div className="flex flex-col w-full h-full overflow-y-scroll ">
           <table className="w-full ">

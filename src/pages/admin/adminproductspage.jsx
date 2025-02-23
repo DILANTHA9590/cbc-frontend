@@ -199,7 +199,7 @@ export default function AdminProductsPage() {
         //api methana rotate animate  eka productkoard vela naththam pennai loard velanam table eka pennai hdagannava
         // products tikaloard velanam
         productsLoaded ? ( //true nampennana oni component eka
-          <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+          <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md h-[70vh] overflow-hidden overflow-y-auto">
             <thead>
               <tr className="text-sm font-medium text-left text-gray-600 bg-gray-100">
                 <th className="px-6 py-3">Product ID</th>

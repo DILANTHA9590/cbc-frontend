@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
+import { deleteItem } from "../utils/cartfunction";
 export default function CartCard(props) {
   //dabn  apata metahanin enne pid ekai qty ekk vitharai e avata passe thama methani api axios cl ekk gahala
   // e id ekata adala data  card eken ekata disply venna hadala thiyenne apata oninam parana details valin enna hadanne
@@ -66,25 +67,48 @@ export default function CartCard(props) {
   return (
     <>
       {!loaded ? (
-        <tr>loading</tr>
+        <tr>
+          <td
+            colSpan="6"
+            className="py-4 text-lg font-semibold text-center text-gray-600"
+          >
+            Loading...
+          </td>
+        </tr>
       ) : (
-        <tr className="border-b hover:bg-accent hover:text-white">
-          <td>
+        <tr className="transition duration-300 bg-white border-b hover:bg-blue-500 hover:text-white">
+          {/* ✅ Product Image */}
+          <td className="p-2">
             <img
-              src={product?.images[0]} // Assuming product has an 'images' array
-              className="w-[100px] h-[100px] mx-auto"
+              src={product?.images[0]}
+              alt="Product"
+              className="object-cover w-24 h-24 mx-auto rounded-md shadow-md"
             />
           </td>
-          <td className="text-center">{product?.productName}</td>
-          <td className="hidden text-lg font-semibold text-center sm:block">
+
+          {/* ✅ Product Name */}
+          <td className="text-lg font-medium text-center">
+            {product?.productName}
+          </td>
+
+          {/* ✅ Product ID (Hidden on Small Screens) */}
+          <td className="hidden text-lg font-semibold text-center text-gray-700 sm:table-cell">
             {productId}
           </td>
-          <td className="text-lg text-center">{qty}</td>
-          <td className="text-xl text-center text-red-500">
-            LKR:{product?.price.toFixed(2)}
+
+          {/* ✅ Quantity */}
+          <td className="text-lg font-semibold text-center text-gray-900">
+            {qty}
           </td>
-          <td className="text-xl text-center text-red-500">
-            LKR:{(product?.lastPrice * qty).toFixed(2)}
+
+          {/* ✅ Product Price */}
+          <td className="text-xl font-semibold text-center text-red-500">
+            LKR {product?.price.toFixed(2)}
+          </td>
+
+          {/* ✅ Total Price */}
+          <td className="text-xl font-semibold text-center text-red-500">
+            LKR {(product?.lastPrice * qty).toFixed(2)}
           </td>
         </tr>
       )}

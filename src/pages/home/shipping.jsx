@@ -92,13 +92,12 @@ export default function ShippingPage() {
 
   return (
     <>
-      <div className="flex flex-col w-full h-full p-4">
+      <div className="flex flex-col w-full h-full p-4 mx-auto lg:max-w-5xl">
         {/* ✅ Scrollable Content Wrapper */}
-        <div className="flex flex-col w-full h-full p-6 overflow-y-auto bg-white rounded-lg shadow-md">
-          {/* ✅ Scrollable Table */}
+        <div className="flex flex-col w-full h-full p-6 overflow-y-auto bg-white rounded-lg shadow-md lg:p-8">
+          {/* ✅ Responsive Table */}
           <div className="overflow-x-auto">
-            <table className="w-full text-left border border-collapse border-gray-300">
-              {/* ✅ Sticky Header for better readability */}
+            <table className="w-full text-left border border-collapse border-gray-300 table-fixed">
               <thead className="sticky top-0 bg-gray-100 shadow-md">
                 <tr>
                   <th className="p-3 border">Product Image</th>
@@ -113,55 +112,59 @@ export default function ShippingPage() {
               </thead>
               <tbody>
                 {cart.map((item) => (
-                  <CartCard
-                    key={item.productId}
-                    productId={item.productId}
-                    qty={item.qty}
-                  />
+                  <CartCard key={item.productId} {...item} />
                 ))}
               </tbody>
             </table>
           </div>
 
-          {/* ✅ User Input Form */}
+          {/* ✅ User Input Form (Grid for large screens) */}
           <div className="p-4 mt-4 rounded-md shadow-sm bg-gray-50">
             <h2 className="mb-3 text-xl font-semibold text-gray-700">
               Customer Details
             </h2>
-            <div className="flex flex-col space-y-3">
-              <label className="text-lg font-medium text-gray-600">Name</label>
-              <input
-                type="text"
-                className="p-2 border rounded focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-
-              <label className="text-lg font-medium text-gray-600">
-                Address
-              </label>
-              <input
-                type="text"
-                className="p-2 border rounded focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter your address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
-
-              <label className="text-lg font-medium text-gray-600">Phone</label>
-              <input
-                type="text"
-                className="p-2 border rounded focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter your phone number"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
+            <div className="grid gap-4 md:grid-cols-2">
+              <div>
+                <label className="text-lg font-medium text-gray-600">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="text-lg font-medium text-gray-600">
+                  Address
+                </label>
+                <input
+                  type="text"
+                  className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter your address"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="text-lg font-medium text-gray-600">
+                  Phone
+                </label>
+                <input
+                  type="text"
+                  className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter your phone number"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </div>
             </div>
           </div>
 
-          {/* ✅ Order Summary Section */}
-          <div className="flex flex-col items-end justify-center p-4 mt-4 text-xl border-t sm:text-2xl">
+          {/* ✅ Order Summary Section (Larger Font for Big Screens) */}
+          <div className="flex flex-col items-end p-4 mt-4 text-lg border-t sm:text-xl">
             <h1 className="font-bold text-gray-700">
               Total: LKR{" "}
               <span className="text-gray-900">{labeledTotal.toFixed(2)}</span>
@@ -179,14 +182,13 @@ export default function ShippingPage() {
 
             {/* ✅ Checkout Button */}
             <button
-              className="bg-orange-500 sm:w-[300px] w-full p-3 rounded-lg mt-3 text-white font-semibold hover:bg-orange-400 transition-all duration-300"
+              className="w-full p-3 mt-3 font-semibold text-white transition-all duration-300 bg-orange-500 rounded-lg sm:w-[300px] hover:bg-orange-400"
               onClick={handleCheckout}
             >
               Checkout
             </button>
           </div>
-        </div>{" "}
-        {/* ✅ End of Scrollable Content */}
+        </div>
       </div>
     </>
   );

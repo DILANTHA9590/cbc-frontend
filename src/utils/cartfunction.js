@@ -55,3 +55,10 @@ export function deleteItem(productId) {
 
   console.log(" After Deleting:", cart);
 }
+
+export function cartLength() {
+  let cart = loardCard();
+  cart = cart.length;
+
+  return cart;
+}

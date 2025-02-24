@@ -149,8 +149,6 @@ export default function Cart() {
             >
               Checkout
             </button>
-
-            <button>check length</button>
           </div>
         </div>
       ) : (

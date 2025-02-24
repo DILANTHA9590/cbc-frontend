@@ -13,35 +13,17 @@ export default function Cart() {
 
   useEffect(() => {
     setCart(loardCard());
-    // console.log(loardCard()); //loard card eka details hariyata avda balaganna puluavn
-    //meka hadanne api dan ape checkout karanna onine ethakota apita total price vghe deval ganna
-    // oni eka ganna axios call ekk gahanava backend ekata methani api back eke
-    // dala thiyenne gety quates kiyala func ekk hadla thiye ekedi apta add cart
-    //karapu evage details okkoma enava ethanata
-    // thama axios  eka gahala totoal values ganna yannae
-
-    // ethakota  api api req eke denna oni api danatamath add cart karala thiyena item vala visthtara tika
-    // e tika api gannava e tika api save karala thiyenne local storage eke uda set loard card kiyala set
-    // karan thiyenneth e tika api ethakota e function eka api pass karana ava api eke for loop eka
-    //ordered Oteme kata ethakota eya e adala item vala prices okkoma ekathu karala api total
-
-    // price eka denava
 
     const token = localStorage.getItem("token");
 
     axios
       .post(import.meta.env.VITE_BACKEND_URL + "/api/orders/quote", {
-        //api get eka post ekkata maru kara
-        // mokda data emty giye ehema unu get req valin godak loku data get valin yavann aba post valin
-
-        //yavanna bari gathiyak thiyenava e nisa loku req ekk yanavane metha pcard eke e nisa post dagaththama loku data yavanmna puluavn
         orderedItems: loardCard(),
       })
       .then((res) => {
         setTotal(res.data);
         console.log("MY RESPONSE", res.data);
-        // api methanadi kare product eka null naththam vitharak toaotal ekai label totola keai set karanna kiyala
-        //ethakota ape code eka ekapara godak nikan riuun vena eka aduvenava
+
         if (res.data.total != null) {
           setTotal(res.data.total);
           setLabeledTotal(res.data.labeldTotal);
@@ -50,55 +32,18 @@ export default function Cart() {
   }, []);
 
   function clearmyCart() {
-    // Just reloads the current page
-
     clearCart();
 
     window.location.reload();
   }
-  //meka hadala thiyenne checkout btn eka ebuvama venna oni de e tika order db ekatra yanva e api
-  ///order karapau item valatamorderid ekk create karala e ti order db eke save venava//ketiyemma kiuvoth order list eka api yavanava
-  //  order db ekata ethakota eya e yavana ekata order id ekk creqtate karan db ekes ave venava
 
   function onOrderCheckoutClick() {
-    // dan  api kalin methana check out venna dummy vidihata hdagaththe ehema hariyanne na check out ebuvama  venama page ekkin
-    // check out venna api hdaganna oni api ethakota krala thiyennemethana danata card eke add vela thiyena visthrathaRA ekka
-    //state eke dala yavanava shipping page ekata apita ethakota shippen page ekata ayanakota ape cart ekthiyena item checkout
-
     //  karaganna puluvan
     navigate("/shipping", {
       state: {
         items: loardCard(),
       },
     });
-
-    // api metika danna eha paththgta aran giya e kiyanne shipping ekata aran gioya
-
-    // const token = localStorage.getItem("token");
-    // if (token == null) {
-    //   return;
-    // }
-    // axios
-    //   .post(
-    //     import.meta.env.VITE_BACKEND_URL + "/api/orders",
-    //     {
-    //       // meke order database eke ordeid emails me tika backend ekenma api hada[pu eken assign assign venava
-    //       //methanin api  orderitesms  tika yavana va e vagema api name phoneno saha adress dala yanna hdala thiyenne e nisa
-    //       // thavakalikava methnanin dala ynnava  e tika danata
-    //       orderedItems: cart, //me yavanne ape cart eke save vela thiyena orderd items tika
-    //       name: "dilantha",
-    //       address: "ampara",
-    //       phone: "ffffff",
-    //     },
-    //     {
-    //       headers: {
-    //         Authorization: "Bearer " + token,
-    //       },
-    //     }
-    //   )
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   });
   }
 
   return (
@@ -159,16 +104,3 @@ export default function Cart() {
     </>
   );
 }
-
-// return (
-//   <div className="flex flex-col items-center w-full h-full overflow-y-scroll">
-//     {cart.map((item) => {
-//       return (
-//         <span className="borde">
-//           {item.productId} X {item.qty}
-//         </span>
-//       );
-//     })}
-//   </div>
-// );
-// } meka ain karala props vidihata card hadagannava

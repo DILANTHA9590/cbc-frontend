@@ -9,22 +9,8 @@ export default function ProductPage() {
 
   const [LoadingStatus, setLoadingStatus] = useState("loading");
   const [query, setquery] = useState("");
-  // me loading ekata enna puluvan status thuna thama //loading , loaded erorrj, product not found
-
-  // api  meka hadaganne ganne type karana thana hisva thibunoth apata aai parak use effect eka  run karaganna oni
-  // eka dala  dependacy arrey ekata eka dagannava
-  //api eka damme product ekaloard unada kiyala balanna
-
-  // //
-
-  // api sankirna nokara karamuko vade
-  // const [productsloaded, setProductsLoaded] = useState(false);
 
   useEffect(() => {
-    //appi methanata dagannav laodijng venna ethakota methandi loard vela nane e nisa loading eka pennala
-    // pahaladi loadrd vechcha gaman ita adal tiuka poennava
-    //methandi kiyanne status eke loard vena gaman nam product tika ganna kiayala
-
     if (LoadingStatus === "loading") {
       axios
         .get(import.meta.env.VITE_BACKEND_URL + "/api/products")
@@ -32,7 +18,7 @@ export default function ProductPage() {
           console.log(res.data.list);
 
           setProducts(res.data.list);
-          // dan methanadi load3ed dunnama default value eka loaded unama e states eka navathinava
+
           setLoadingStatus("loaded");
         })
         .catch((erorr) => {
@@ -42,21 +28,12 @@ export default function ProductPage() {
   }, []);
 
   function search(e) {
-    // api search eka patran gannima okkoma loarding danava  mekdi ape component eka type ekedi adla product ekath ekka
-    // e kive type karaddi product eka loading eke tghama thiyenne  type karaddi ape me function eka
-    // vithrane  run venne ethakota loading ekedi loarding sreen eka run venavae adla product eka methan
-    // naththam set ploaded yata dilaa htiyenne thibba product  aye loard venna kiyala ethakota aye componenter eka render
-    //  venava
-
     setLoadingStatus("loading");
-    //api methanata e ekk danava e ekka methanata danne apata enava input eken value ekk api me search function
-    // eka ethakota e input type eka search karana ea methanata enava
-    // ita passe  e input eken ena valkue eka api gannava
+
     const query = e.target.value;
 
     setquery(query);
-    // methana venade  thama api product eka search  emty nam api
-    // product tika  thibba vidihatamaproduct tika pennava naththjam adla product eke pennava
+
     if (query == "") {
       axios
         .get(import.meta.env.VITE_BACKEND_URL + "/api/products")
@@ -64,14 +41,12 @@ export default function ProductPage() {
           console.log(res.data.list);
 
           setProducts(res.data.list);
-          // dan methanadi load3ed dunnama default value eka loaded unama e states eka navathinava
+
           setLoadingStatus("loaded");
         })
         .catch((erorr) => {
           toast.error("fail to fetch data");
         });
-
-      // ehema naththam  e adla product eka pennana
     } else {
       axios
         .get(import.meta.env.VITE_BACKEND_URL + "/api/products/search/" + query)

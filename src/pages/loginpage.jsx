@@ -81,7 +81,7 @@ export default function Loginpage() {
         </h2>
         <p className="text-center text-gray-600">
           Don't have an account?{" "}
-          <Link to="/signup" className="hover:bg-blue-700">
+          <Link to="/signup" className="hover:to-blue-600">
             Signup
           </Link>
         </p>

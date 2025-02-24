@@ -12,6 +12,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { AdminCustomerPage } from "./admin/adminCustomer";
 import AdminDashboard from "./admin/adminDashBord";
+import { RiLogoutCircleLine } from "react-icons/ri";
 
 export default function AdminPage() {
   const navigate = useNavigate();
@@ -69,6 +70,13 @@ export default function AdminPage() {
     // ehama naththam danata inna userva ganna oni api eken ekata apata
     // danata login vela inna userva ganna puluvan api ekk apata hdaganna venava
   }, []);
+
+  function logOut() {
+    window.location.href = "/products";
+    localStorage.removeItem("token");
+    // Redirect to products page after logout
+  }
+
   return (
     <>
       {/* Full-width container with flex layout */}
@@ -115,6 +123,14 @@ export default function AdminPage() {
             <BsPeople />
             Create Admin Account
           </Link>
+
+          <button
+            className="flex items-center justify-start w-full gap-2 px-4 py-2 font-semibold text-white transition-all duration-300 bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 hover:shadow-lg active:scale-95"
+            onClick={logOut}
+          >
+            <RiLogoutCircleLine className="text-xl" />
+            Log Out
+          </button>
         </div>
 
         {/* Main Content */}

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useGoogleLogin } from "@react-oauth/google";
+import { FcGoogle } from "react-icons/fc";
 
 export default function Loginpage() {
   const googleLogin = useGoogleLogin({
@@ -64,7 +65,7 @@ export default function Loginpage() {
 
         if (res.data.user.type == "admin") {
           // type eka admin nam admin page ekata yavanava
-          window.location.href = "/admin";
+          window.location.href = "/admin/dashboard";
         } else {
           window.location.href = "/";
         }
@@ -88,7 +89,7 @@ export default function Loginpage() {
             className="flex items-center justify-center w-full p-3 mb-3 border rounded-lg"
             onClick={() => googleLogin()}
           >
-            <img src="google-icon.png" alt="Google" className="w-5 h-5 mr-2" />
+            <FcGoogle />
             Sign in with Google
           </button>
         </div>

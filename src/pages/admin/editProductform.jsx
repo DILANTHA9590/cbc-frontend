@@ -182,15 +182,17 @@ export default function EditProducttForm() {
   // };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-screen bg-gray-500">
-      <h1 className="mb-6 text-3xl font-bold text-gray-800"></h1>
-      <div className="flex flex-col p-10 space-y-4 bg-white border border-gray-300 rounded-lg shadow-lg">
+    <div className="flex flex-col items-center justify-center w-full h-screen p-4 bg-gray-500">
+      <h1 className="mb-6 text-3xl font-bold text-gray-800">
+        Edit Product Panel
+      </h1>
+      <div className="flex flex-col w-full max-w-sm p-6 space-y-4 overflow-auto bg-white border border-gray-300 rounded-lg shadow-lg">
         <div className="flex flex-col space-y-2">
           <label className="font-semibold text-gray-700">Product ID</label>
           <input
             disabled
             type="text"
-            className="w-[300px] border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={productId}
             onChange={(e) => setProductID(e.target.value)}
           />
@@ -199,7 +201,7 @@ export default function EditProducttForm() {
           <label className="font-semibold text-gray-700">Product Name</label>
           <input
             type="text"
-            className="w-[300px] border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={productName}
             onChange={(e) => setProductName(e.target.value)}
           />
@@ -210,7 +212,7 @@ export default function EditProducttForm() {
           </label>
           <input
             type="text"
-            className="w-[300px] border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={alterNataiveName}
             onChange={(e) => setAlternativeNames(e.target.value)}
           />
@@ -218,17 +220,9 @@ export default function EditProducttForm() {
         <div className="flex flex-col space-y-2">
           <label className="font-semibold text-gray-700">Image URL</label>
           <input
-            // api dan image url add karanna yanne eva multiple image urls add karanna puluvan vidihata dan
-            //api hadaganna oni e nisa api me input eka athulata denna oni multiple kiyana vachane
-
             type="file"
-            className="w-[300px] border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            // value={imageUrl}//meka ain karagannava meka thermk na dala
-            onChange={(e) =>
-              //console.log(e.target.files)} //change ekak unama vena deval tika api print karganna apuluvan
-              setImageFiles(e.target.files)
-            } //api metahnata denava me ena filkes okkoma tika image files vidihata okkoma save venna kiyala
-            //api files theruvama e tika pennave methanin list ekk vidihata(arrrey apata file[0],files[1] e vge enne)
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onChange={(e) => setImageFiles(e.target.files)}
             multiple
           />
         </div>
@@ -236,7 +230,7 @@ export default function EditProducttForm() {
           <label className="font-semibold text-gray-700">Price</label>
           <input
             type="number"
-            className="w-[300px] border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
@@ -245,7 +239,7 @@ export default function EditProducttForm() {
           <label className="font-semibold text-gray-700">Last Price</label>
           <input
             type="number"
-            className="w-[300px] border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={lastPrice}
             onChange={(e) => setLastPrice(e.target.value)}
           />
@@ -254,7 +248,7 @@ export default function EditProducttForm() {
           <label className="font-semibold text-gray-700">Stock</label>
           <input
             type="number"
-            className="w-[300px] border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={stock}
             onChange={(e) => setStock(e.target.value)}
           />
@@ -262,25 +256,15 @@ export default function EditProducttForm() {
         <div className="flex flex-col space-y-2">
           <label className="font-semibold text-gray-700">Description</label>
           <textarea
-            className="w-[300px] h-[100px] border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+            className="w-full h-24 px-3 py-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        {/* <div className="flex flex-col space-y-2">
-          <label className="font-semibold text-gray-700">Product Image</label>
-          <input
-            type="file"
-            className="w-[300px] border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            onChange={handleFileChange}
-          />
-        </div> */}
         <button
-          className="w-[300px] bg-blue-500 text-white py-2 rounded-md shadow-md hover:bg-blue-600 transition-all duration-300"
-          //button eka athule itapasee api denava haddle sumbit function eka submit karanna kiyala
+          className="w-full py-2 text-white transition-all duration-300 bg-blue-500 rounded-md shadow-md hover:bg-blue-600"
           onClick={handleSubmit}
         >
-          {/* apata dan  add product eka click karama yanna oni datatika athulata ekat api udin function ekk hadagannava */}
           Update Product
         </button>
       </div>

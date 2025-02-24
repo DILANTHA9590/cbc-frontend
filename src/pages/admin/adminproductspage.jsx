@@ -168,7 +168,7 @@ export default function AdminProductsPage() {
   //dan backeend eke dhadala
 
   return (
-    <div className="relative min-h-screen p-6 bg-gray-600">
+    <div className="relative p-6 bg-[#67a5f8] h-[100vh] overflow-y-scroll overflow-hidden">
       <Link
         to={"/admin/products/addProducts"}
         className="absolute right-4 bottom-5 border  rounded-[10px] text-[30px] bg-[#5b6de6]  text-white p-[25px] 
@@ -199,7 +199,7 @@ export default function AdminProductsPage() {
         //api methana rotate animate  eka productkoard vela naththam pennai loard velanam table eka pennai hdagannava
         // products tikaloard velanam
         productsLoaded ? ( //true nampennana oni component eka
-          <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md h-[70vh] overflow-hidden overflow-y-auto">
+          <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
             <thead>
               <tr className="text-sm font-medium text-left text-gray-600 bg-gray-100">
                 <th className="px-6 py-3">Product ID</th>

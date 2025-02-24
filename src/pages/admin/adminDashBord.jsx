@@ -50,7 +50,7 @@ export default function AdminDashboard() {
 
   return (
     <>
-      <div className="flex items-center justify-center min-h-screen p-6 bg-slate-500">
+      <div className="flex items-center justify-center min-h-screen p-6 bg-[#5b6de6]">
         <div className="grid w-full max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {/* Total Admins Card */}
           <div className="p-6 text-center transition duration-300 transform bg-orange-400 rounded-lg shadow-lg hover:scale-105">

@@ -147,7 +147,7 @@ ethakota /dashbord kiyaala avoth eyata dashbord component eka loard karala penna
               />
               <Route path="/orders" element={<AdminOrderPage />} />
               <Route path="/customers" element={<AdminCustomerPage />} />
-              <Route path="/*" element={<h1>404 Not Found Page</h1>} />
+              {/* <Route path="/*" element={<h1>404 Not Found Page</h1>} /> */}
             </Routes>
           )}
           {/* // userva null nam api penna hdagannava loading screenekk */}

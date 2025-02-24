@@ -80,7 +80,10 @@ export default function Loginpage() {
           Login to your account
         </h2>
         <p className="text-center text-gray-600">
-          Don't have an account? <Link to="/signup">Signup</Link>
+          Don't have an account?{" "}
+          <Link to="/signup" className="hover:bg-blue-700">
+            Signup
+          </Link>
         </p>
 
         {/* Social Login Buttons */}

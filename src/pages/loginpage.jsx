@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useGoogleLogin } from "@react-oauth/google";
 import { FcGoogle } from "react-icons/fc";
 
 export default function Loginpage() {
+  const navigate = useNavigate();
   const googleLogin = useGoogleLogin({
     onSuccess: (res) => {
       console.log(res);
@@ -65,9 +66,12 @@ export default function Loginpage() {
 
         if (res.data.user.type == "admin") {
           // type eka admin nam admin page ekata yavanava
-          window.location.href = "/admin/dashboard";
+          navigate("/admin/dashboard");
+
+          console.log("user login", res.data);
         } else {
-          window.location.href = "/";
+          // window.location.href = "/";
+          navigate("/");
         }
       });
   }

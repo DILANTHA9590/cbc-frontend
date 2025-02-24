@@ -153,11 +153,12 @@ export default function ProductOverview() {
               <p className="hidden text-xl text-gray-600 xl:text-3xl sm:block">
                 {product.price > product.lastPrice && (
                   <span className="text-red-600 line-through">
-                    ${product.price}
+                    LKR {product.price.toFixed(2)}
                   </span>
                 )}
-                <span> ${product.lastPrice}</span>
+                <span> LKR {product.lastPrice.toFixed(2)}</span>
               </p>
+
               <p className="text-lg text-gray-600 line-clamp-3 xl:text-2xl">
                 {product.description}
               </p>

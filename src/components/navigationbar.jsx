@@ -18,6 +18,7 @@ import { MdKeyboardDoubleArrowUp } from "react-icons/md";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import axios from "axios";
 import NavBarProfilePictureDropDownMenu from "./navbarprofiledropdownmenu";
+import { cartLength } from "../utils/cartfunction";
 
 export default function NavigationBar() {
   const [isNavBarOpen, setIsNavBarOpen] = useState(false);
@@ -208,9 +209,14 @@ export default function NavigationBar() {
                 </li>
               )}
 
-              <li>
+              <li className="relative">
                 <a href="">
-                  <PiShoppingCartSimpleFill className="w-[40px] h-[40px]" />
+                  <PiShoppingCartSimpleFill
+                    className="w-[40px] h-[40px] z-10"
+                    onClick={() => {
+                      navigate("/cart");
+                    }}
+                  />
                 </a>
               </li>
             </ul>
